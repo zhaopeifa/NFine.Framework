@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DC886CD-B8A0-44E8-AADD-57FCB0CFECB8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NFine.Domain</RootNamespace>
+    <AssemblyName>NFine.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\ApiBackParameter.cs" />
+    <Compile Include="Contracts\ApiProfileCountyContracts.cs" />
+    <Compile Include="Contracts\ApiProfileUserContracts.cs" />
+    <Compile Include="Contracts\ProfileGrading_OptionsContracts.cs" />
+    <Compile Include="Contracts\ProfileGrading_TypeContracts.cs" />
+    <Compile Include="Contracts\TaskInsertContracts.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesSquareEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesScenicSpotsEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesMarketEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesParkEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesSchoolEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesConstructionSiteEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesMainWay_ConstructionEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesResidentialEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesMainWay_ResidentialEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesWatersEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesShopEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesGovernEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesMainWay_GovernEntity.cs" />
+    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesMainWay_WatersEntity.cs" />
+    <Compile Include="Entity\SystemManage\Grading\ProfileGrading_NormEntity.cs" />
+    <Compile Include="Entity\SystemManage\Grading\ProfileGrading_OptionsEntity.cs" />
+    <Compile Include="Entity\SystemManage\Grading\ProfileGrading_TypeEntity.cs" />
+    <Compile Include="Entity\SystemManage\Grading\ProfileGrading_Type_RlationEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileOperationsCompanyEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileOperationsVehicleEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileProjectEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationMachineCleanCarWorkItemEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitatioCarEntity.cs" />
+    <Compile Include="Entity\SystemManage\Task\ProfileTaskEntrySanitationEntity.cs" />
+    <Compile Include="Entity\SystemManage\Task\ProfileTaskSanitationMap.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationGreenResidentialEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationGreeningEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCesspoolEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationGarbageBoxEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCompressionStationEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationWayEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileMainWayEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationTandasEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileStreetEntity.cs" />
+    <Compile Include="Enums\ProfileAmenitiesEnum.cs" />
+    <Compile Include="Enums\ProfileEnvironmentTypeEnum.cs" />
+    <Compile Include="Enums\ProfileGovernTypeEnum.cs" />
+    <Compile Include="Enums\ProfileFiveChaosEnum.cs" />
+    <Compile Include="Enums\ProfileGovernSortEnum.cs" />
+    <Compile Include="Enums\ProfileGradeBasicDataEnum.cs" />
+    <Compile Include="Enums\ProfileOperationsCompanyTypeEnum.cs" />
+    <Compile Include="Enums\ProfileProjectTypeEnum.cs" />
+    <Compile Include="Enums\ProfileSanitationEnum.cs" />
+    <Compile Include="Enums\ProfileSanitationGarbageBoxTypeEnum.cs" />
+    <Compile Include="Enums\ProfileTandasGradeEnum.cs" />
+    <Compile Include="Enums\ProfileTandasManagementFormEnum.cs" />
+    <Compile Include="Enums\ProfileTaskStateEnum.cs" />
+    <Compile Include="Enums\ProfileWatersTypeEnum.cs" />
+    <Compile Include="Enums\ProfileWayGradeEnum.cs" />
+    <Compile Include="Infrastructure\ICreationAudited.cs" />
+    <Compile Include="Infrastructure\IDeleteAudited.cs" />
+    <Compile Include="Infrastructure\IEntity.cs" />
+    <Compile Include="Infrastructure\IModificationAudited.cs" />
+    <Compile Include="Entity\Function\ERPNFormEntity.cs" />
+    <Compile Include="Entity\Function\FontAweSomeEntity.cs" />
+    <Compile Include="Entity\SystemManage\AreaEntity.cs" />
+    <Compile Include="Entity\SystemManage\ModuleButtonEntity.cs" />
+    <Compile Include="Entity\SystemManage\ModuleEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileCityEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileCountyEntity.cs" />
+    <Compile Include="Entity\SystemManage\RoleAuthorizeEntity.cs" />
+    <Compile Include="Entity\SystemManage\UserLogOnEntity.cs" />
+    <Compile Include="Entity\SystemManage\ItemsDetailEntity.cs" />
+    <Compile Include="Entity\SystemSecurity\FilterIPEntity.cs" />
+    <Compile Include="Entity\SystemSecurity\DbBackupEntity.cs" />
+    <Compile Include="Entity\SystemSecurity\LogEntity.cs" />
+    <Compile Include="ViewModel\AuthorizeActionModel.cs" />
+    <Compile Include="IRepository\SystemManage\IAreaRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IItemsDetailRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IItemsRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IModuleButtonRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IModuleRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IOrganizeRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IRoleAuthorizeRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IRoleRepository.cs" />
+    <Compile Include="IRepository\SystemManage\IUserLogOnRepository.cs" />
+    <Compile Include="IRepository\SystemSecurity\IDbBackupRepository.cs" />
+    <Compile Include="IRepository\SystemSecurity\IFilterIPRepository.cs" />
+    <Compile Include="IRepository\SystemSecurity\ILogRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\SystemManage\ItemsEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\SystemManage\OrganizeEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\SystemManage\RoleEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\SystemManage\UserEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NFine.Code\NFine.Code.csproj">
+      <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
+      <Name>NFine.Code</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFine.Data\NFine.Data.csproj">
+      <Project>{f71003e8-a836-48f4-9df6-df9095cebd18}</Project>
+      <Name>NFine.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

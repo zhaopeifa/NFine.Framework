@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    $(function () {
+        $('.wrapper').height($(window).height() - 11);
+
+        $.ajax({
+            url: "/SystemManage/User/GetFormJsonDetail",
+            data: { keyValue: '@ViewBag.UserId'},
+            dataType: "json",
+            async: false,
+            success: function (data) {
+               
+                $("#F_Account").val(data.F_Account);
+                $("#F_RealName").val(data.F_RealName);
+                $("#F_Gender").val(data.F_Gender);
+                $("#F_Birthday").val(data.F_Birthday);
+                $("#F_IsAdministrator").val(data.F_IsAdministrator);
+                $("#F_OrganizeId").val(data.F_OrganizeId);
+                $("#F_RoleId").val(data.F_RoleId);
+                $("#F_DutyId").val(data.F_DutyId);
+                $("#F_Description").val(data.F_Description);
+                $("#F_MobilePhone").val(data.F_MobilePhone);
+                $("#F_Email").val(data.F_Email);
+            }
+        });
+    })
+</script>
+<div class="wrapper">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#a" data-toggle="tab">基本信息</a></li>
+@*        <li><a href="#b" data-toggle="tab">注册信息</a></li>
+        <li><a href="#c" data-toggle="tab">安全验证</a></li>
+        <li><a href="#c" data-toggle="tab">系统日志</a></li>
+        <li><a href="#c" data-toggle="tab">个性化设置</a></li>*@
+    </ul>
+    <div class="tab-content" style="padding-top: 5px;">
+        <div id="a" class="tab-pane active" style="padding: 15px;">
+            <ul class="pop-list">
+                <li>
+                    <label>账户</label>
+                    <input id="F_Account" name="F_Account" type="text" class="form-control" readonly/>
+                </li>
+                <li>
+                    <label>姓名</label>
+                     <input id="F_RealName" name="F_RealName" type="text" class="form-control" readonly/>
+                </li>
+                <li>
+                    <label>性别</label>
+                    <input  id="F_Gender" name="F_Gender" type="text" class="form-control" readonly/>
+                </li>
+                <li>
+                    <label>出生</label>
+                    <input id="F_Birthday" name="F_Birthday" type="text" class="form-control" readonly/>
+                </li>
+
+                 <li>
+                    <label>类型</label>
+                    <input id="F_IsAdministrator" name="F_IsAdministrator" type="text" class="form-control" readonly/>
+                </li>
+                <li>
+                    <label>组织机构</label>
+                    <input id="F_OrganizeId" name="F_OrganizeId" type="text" class="form-control" readonly/>
+                </li>
+                
+                <li>
+                    <label>角色</label>
+                    <input id="F_RoleId" name="F_RoleId" type="text" class="form-control" readonly/>
+                </li>
+                <li>
+                    <label>岗位</label>
+                    <input id="F_DutyId" name="F_DutyId" type="text" class="form-control" readonly/>
+                </li>
+                <li>
+                    <label>备注</label>
+                    <textarea id="F_Description" name="F_Description" class="form-control" style="height: 60px;" readonly></textarea>
+                </li>
+                <li class="line">
+                    <h5><span>联系方式</span></h5>
+                </li>
+                <li>
+                    <label>手机号码</label>
+                    <input id="F_MobilePhone" name="F_MobilePhone" type="text" class="form-control" readonly/>
+                </li>
+                <li>
+                    <label>电子邮箱</label>
+                    <input id="F_Email" name="F_Email" type="text" class="form-control" readonly/>
+                </li>
+               @* <li>
+                    <label>微信号</label>
+                    <input type="text" class="form-control" />
+                </li>*@
+            </ul>
+        </div>
+        <div id="b" class="tab-pane" style="padding: 15px;">
+            <ul class="pop-list">
+                <li>
+                    <label>账户</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>密码</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>第一次访问时间</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>上一次访问时间</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>最后修改密码时间</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>登录时间</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>登录次数</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>账户类型</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li class="line">
+                    <h5><span>修改密码</span></h5>
+                </li>
+                <li>
+                    <label>旧密码</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>新密码</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <label>确认新密码</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li>
+                    <div style="padding-left: 115px;">
+                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-save" style="margin-right:5px;"></i>确认修改</a>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+        <div id="c" class="tab-pane" style="padding-right: 15px;">
+            3
+        </div>
+        <div id="d" class="tab-pane" style="padding-right: 15px;">
+            4
+        </div>
+    </div>
+</div>

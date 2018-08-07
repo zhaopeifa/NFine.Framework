@@ -1,0 +1,136 @@
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NFine.Code.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NFine.Code.pdb
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\log4net.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NPOI.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NPOI.OOXML.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\log4net.xml
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NPOI.xml
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NPOI.OOXML.xml
+H:\源码\NFine快速开发框架\project\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+H:\源码\NFine快速开发框架\project\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+H:\源码\NFine快速开发框架\project\NFine.Code\obj\Debug\NFine.Code.dll
+H:\源码\NFine快速开发框架\project\NFine.Code\obj\Debug\NFine.Code.pdb
+F:\2\NFine.Code\bin\Debug\NFine.Code.dll
+F:\2\NFine.Code\bin\Debug\NFine.Code.pdb
+F:\2\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\2\NFine.Code\bin\Debug\log4net.dll
+F:\2\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+F:\2\NFine.Code\bin\Debug\NPOI.dll
+F:\2\NFine.Code\bin\Debug\NPOI.OOXML.dll
+F:\2\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+F:\2\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+F:\2\NFine.Code\bin\Debug\log4net.xml
+F:\2\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+F:\2\NFine.Code\bin\Debug\NPOI.xml
+F:\2\NFine.Code\bin\Debug\NPOI.OOXML.xml
+F:\2\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+F:\2\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+F:\2\NFine.Code\obj\Debug\NFine.Code.dll
+F:\2\NFine.Code\obj\Debug\NFine.Code.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NFine.Code.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NFine.Code.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\log4net.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NPOI.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NPOI.OOXML.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\log4net.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NPOI.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NPOI.OOXML.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\obj\Debug\NFine.Code.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Code\obj\Debug\NFine.Code.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NFine.Code.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NFine.Code.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\log4net.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NPOI.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NPOI.OOXML.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\log4net.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NPOI.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NPOI.OOXML.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\obj\Debug\NFine.Code.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Code\obj\Debug\NFine.Code.pdb
+E:\公司项目代码\code\NFine.Code\bin\Debug\NFine.Code.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\NFine.Code.pdb
+E:\公司项目代码\code\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\log4net.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\NPOI.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\NPOI.OOXML.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\公司项目代码\code\NFine.Code\bin\Debug\log4net.xml
+E:\公司项目代码\code\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+E:\公司项目代码\code\NFine.Code\bin\Debug\NPOI.xml
+E:\公司项目代码\code\NFine.Code\bin\Debug\NPOI.OOXML.xml
+E:\公司项目代码\code\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+E:\公司项目代码\code\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+E:\公司项目代码\code\NFine.Code\obj\Debug\NFine.Code.dll
+E:\公司项目代码\code\NFine.Code\obj\Debug\NFine.Code.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NFine.Code.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NFine.Code.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\log4net.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OOXML.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\log4net.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OOXML.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\obj\Debug\NFine.Code.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\obj\Debug\NFine.Code.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NFine.Code.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NFine.Code.pdb
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\log4net.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OOXML.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\log4net.xml
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.xml
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OOXML.xml
+D:\项目\卫星设备台账流程管理\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+D:\项目\卫星设备台账流程管理\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+D:\项目\卫星设备台账流程管理\NFine.Code\obj\Debug\NFine.Code.dll
+D:\项目\卫星设备台账流程管理\NFine.Code\obj\Debug\NFine.Code.pdb
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NFine.Code.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NFine.Code.pdb
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\log4net.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\Newtonsoft.Json.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NPOI.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NPOI.OOXML.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NPOI.OpenXml4Net.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\log4net.xml
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\Newtonsoft.Json.xml
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NPOI.xml
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NPOI.OOXML.xml
+D:\项目\聚力环境测评系统\NFine.Code\bin\Debug\NPOI.OpenXml4Net.xml
+D:\项目\聚力环境测评系统\NFine.Code\obj\Debug\NFine.Code.csprojResolveAssemblyReference.cache
+D:\项目\聚力环境测评系统\NFine.Code\obj\Debug\NFine.Code.dll
+D:\项目\聚力环境测评系统\NFine.Code\obj\Debug\NFine.Code.pdb

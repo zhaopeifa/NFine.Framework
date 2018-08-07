@@ -1,0 +1,442 @@
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Web.dll.config
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Web.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Web.pdb
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\EntityFramework.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\EntityFramework.SqlServer.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\Microsoft.Web.Infrastructure.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Application.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Code.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Domain.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Mapping.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Net.Http.Formatting.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Helpers.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Http.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Http.WebHost.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Mvc.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Razor.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.WebPages.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.WebPages.Razor.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Data.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Repository.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\Newtonsoft.Json.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\log4net.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NPOI.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Application.pdb
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Code.pdb
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Domain.pdb
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Mapping.pdb
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\EntityFramework.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\EntityFramework.SqlServer.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Net.Http.Formatting.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Helpers.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Http.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Http.WebHost.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Mvc.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.Razor.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.WebPages.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\System.Web.WebPages.Razor.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Data.pdb
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NFine.Repository.pdb
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\Newtonsoft.Json.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\log4net.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\NPOI.xml
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.Http.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+H:\源码\NFine快速开发框架\project\NFine.Web\obj\Debug\NFine.Web.dll
+H:\源码\NFine快速开发框架\project\NFine.Web\obj\Debug\NFine.Web.pdb
+F:\2\NFine.Web\bin\NFine.Web.dll.config
+F:\2\NFine.Web\bin\NFine.Web.dll
+F:\2\NFine.Web\bin\NFine.Web.pdb
+F:\2\NFine.Web\bin\EntityFramework.dll
+F:\2\NFine.Web\bin\EntityFramework.SqlServer.dll
+F:\2\NFine.Web\bin\Microsoft.Web.Infrastructure.dll
+F:\2\NFine.Web\bin\NFine.Application.dll
+F:\2\NFine.Web\bin\NFine.Code.dll
+F:\2\NFine.Web\bin\NFine.Domain.dll
+F:\2\NFine.Web\bin\NFine.Mapping.dll
+F:\2\NFine.Web\bin\System.Net.Http.Formatting.dll
+F:\2\NFine.Web\bin\System.Web.Helpers.dll
+F:\2\NFine.Web\bin\System.Web.Http.dll
+F:\2\NFine.Web\bin\System.Web.Http.WebHost.dll
+F:\2\NFine.Web\bin\System.Web.Mvc.dll
+F:\2\NFine.Web\bin\System.Web.Razor.dll
+F:\2\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+F:\2\NFine.Web\bin\System.Web.WebPages.dll
+F:\2\NFine.Web\bin\System.Web.WebPages.Razor.dll
+F:\2\NFine.Web\bin\Newtonsoft.Json.dll
+F:\2\NFine.Web\bin\NFine.Data.dll
+F:\2\NFine.Web\bin\NFine.Repository.dll
+F:\2\NFine.Web\bin\log4net.dll
+F:\2\NFine.Web\bin\NPOI.dll
+F:\2\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+F:\2\NFine.Web\bin\NFine.Application.pdb
+F:\2\NFine.Web\bin\NFine.Code.pdb
+F:\2\NFine.Web\bin\NFine.Domain.pdb
+F:\2\NFine.Web\bin\NFine.Mapping.pdb
+F:\2\NFine.Web\bin\EntityFramework.xml
+F:\2\NFine.Web\bin\EntityFramework.SqlServer.xml
+F:\2\NFine.Web\bin\System.Net.Http.Formatting.xml
+F:\2\NFine.Web\bin\System.Web.Helpers.xml
+F:\2\NFine.Web\bin\System.Web.Http.xml
+F:\2\NFine.Web\bin\System.Web.Http.WebHost.xml
+F:\2\NFine.Web\bin\System.Web.Mvc.xml
+F:\2\NFine.Web\bin\System.Web.Razor.xml
+F:\2\NFine.Web\bin\System.Web.WebPages.xml
+F:\2\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+F:\2\NFine.Web\bin\System.Web.WebPages.Razor.xml
+F:\2\NFine.Web\bin\Newtonsoft.Json.xml
+F:\2\NFine.Web\bin\NFine.Data.pdb
+F:\2\NFine.Web\bin\NFine.Repository.pdb
+F:\2\NFine.Web\bin\log4net.xml
+F:\2\NFine.Web\bin\NPOI.xml
+F:\2\NFine.Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.Http.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+F:\2\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+F:\2\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+F:\2\NFine.Web\obj\Debug\NFine.Web.dll
+F:\2\NFine.Web\obj\Debug\NFine.Web.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Web.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Web.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\EntityFramework.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\EntityFramework.SqlServer.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\Microsoft.Web.Infrastructure.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Application.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Code.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Domain.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Mapping.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Net.Http.Formatting.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Helpers.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Http.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Http.WebHost.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Mvc.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Razor.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.WebPages.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.WebPages.Razor.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Data.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Repository.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\Newtonsoft.Json.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\log4net.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NPOI.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Application.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Code.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Domain.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Mapping.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\EntityFramework.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\EntityFramework.SqlServer.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Net.Http.Formatting.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Helpers.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Http.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Http.WebHost.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Mvc.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.Razor.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.WebPages.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\System.Web.WebPages.Razor.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Data.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NFine.Repository.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\Newtonsoft.Json.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\log4net.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\NPOI.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.Http.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\obj\Debug\NFine.Web.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Web\obj\Debug\NFine.Web.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Web.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Web.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\EntityFramework.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Application.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Code.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Domain.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Mapping.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Net.Http.Formatting.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Helpers.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Http.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Http.WebHost.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Mvc.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Razor.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.WebPages.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Data.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Repository.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\Newtonsoft.Json.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\log4net.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NPOI.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Application.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Code.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Domain.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Mapping.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\EntityFramework.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Net.Http.Formatting.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Helpers.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Http.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Http.WebHost.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Mvc.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.Razor.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.WebPages.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Data.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NFine.Repository.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\Newtonsoft.Json.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\log4net.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\NPOI.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.Http.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\obj\Debug\NFine.Web.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Web\obj\Debug\NFine.Web.pdb
+E:\公司项目代码\code\NFine.Web\bin\NFine.Web.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Web.pdb
+E:\公司项目代码\code\NFine.Web\bin\EntityFramework.dll
+E:\公司项目代码\code\NFine.Web\bin\EntityFramework.SqlServer.dll
+E:\公司项目代码\code\NFine.Web\bin\Microsoft.Web.Infrastructure.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Application.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Code.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Domain.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Mapping.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Net.Http.Formatting.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Helpers.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Http.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Http.WebHost.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Mvc.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Razor.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.WebPages.dll
+E:\公司项目代码\code\NFine.Web\bin\System.Web.WebPages.Razor.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Repository.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Data.dll
+E:\公司项目代码\code\NFine.Web\bin\Newtonsoft.Json.dll
+E:\公司项目代码\code\NFine.Web\bin\log4net.dll
+E:\公司项目代码\code\NFine.Web\bin\NPOI.dll
+E:\公司项目代码\code\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+E:\公司项目代码\code\NFine.Web\bin\NFine.Application.pdb
+E:\公司项目代码\code\NFine.Web\bin\NFine.Code.pdb
+E:\公司项目代码\code\NFine.Web\bin\NFine.Domain.pdb
+E:\公司项目代码\code\NFine.Web\bin\NFine.Mapping.pdb
+E:\公司项目代码\code\NFine.Web\bin\EntityFramework.xml
+E:\公司项目代码\code\NFine.Web\bin\EntityFramework.SqlServer.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Net.Http.Formatting.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Helpers.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Http.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Http.WebHost.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Mvc.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.Razor.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.WebPages.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+E:\公司项目代码\code\NFine.Web\bin\System.Web.WebPages.Razor.xml
+E:\公司项目代码\code\NFine.Web\bin\NFine.Repository.pdb
+E:\公司项目代码\code\NFine.Web\bin\NFine.Data.pdb
+E:\公司项目代码\code\NFine.Web\bin\Newtonsoft.Json.xml
+E:\公司项目代码\code\NFine.Web\bin\log4net.xml
+E:\公司项目代码\code\NFine.Web\bin\NPOI.xml
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.Http.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+E:\公司项目代码\code\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+E:\公司项目代码\code\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+E:\公司项目代码\code\NFine.Web\obj\Debug\NFine.Web.dll
+E:\公司项目代码\code\NFine.Web\obj\Debug\NFine.Web.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Web.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Web.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\Newtonsoft.Json.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Application.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Code.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Domain.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Mapping.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Net.Http.Formatting.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Helpers.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Http.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Http.WebHost.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Mvc.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Razor.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Data.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Repository.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\log4net.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NPOI.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Application.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Code.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Domain.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Mapping.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\Newtonsoft.Json.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Net.Http.Formatting.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Helpers.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Http.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Http.WebHost.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Mvc.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.Razor.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Data.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NFine.Repository.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\log4net.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\NPOI.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Http.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\obj\Debug\NFine.Web.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Web\obj\Debug\NFine.Web.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Web.dll.config
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Web.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Web.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.SqlServer.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\Newtonsoft.Json.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Application.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Code.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Domain.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Mapping.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.Helpers.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.Mvc.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.Razor.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Razor.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Data.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Repository.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\log4net.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NPOI.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Application.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Domain.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Mapping.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\EntityFramework.SqlServer.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\Newtonsoft.Json.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.Helpers.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.Mvc.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.Razor.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\System.Web.WebPages.Razor.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Data.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Repository.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\log4net.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NPOI.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+D:\项目\卫星设备台账流程管理\NFine.Web\obj\Debug\NFine.Web.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\obj\Debug\NFine.Web.pdb
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NPOI.OOXML.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NPOI.OpenXmlFormats.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NPOI.OpenXml4Net.dll
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NPOI.OOXML.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NPOI.OpenXml4Net.xml
+D:\项目\卫星设备台账流程管理\NFine.Web\bin\NFine.Code.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Web.dll.config
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Web.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Web.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\EntityFramework.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\EntityFramework.SqlServer.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\Newtonsoft.Json.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Application.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Code.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Domain.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Mapping.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.Helpers.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.Mvc.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.Razor.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.WebPages.Deployment.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.WebPages.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.WebPages.Razor.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Data.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Repository.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NPOI.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NPOI.OOXML.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\log4net.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\ICSharpCode.SharpZipLib.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NPOI.OpenXmlFormats.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NPOI.OpenXml4Net.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Application.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Code.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Domain.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Mapping.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\EntityFramework.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\EntityFramework.SqlServer.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\Newtonsoft.Json.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.Helpers.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.Mvc.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.Razor.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.WebPages.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.WebPages.Deployment.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\System.Web.WebPages.Razor.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Data.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\NFine.Repository.pdb
+D:\项目\聚力环境测评系统\NFine.Web\bin\NPOI.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\NPOI.OOXML.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\log4net.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\NPOI.OpenXml4Net.xml
+D:\项目\聚力环境测评系统\NFine.Web\bin\zh-Hans\System.Web.Helpers.resources.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\zh-Hans\System.Web.Mvc.resources.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\zh-Hans\System.Web.Razor.resources.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\zh-Hans\System.Web.WebPages.resources.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+D:\项目\聚力环境测评系统\NFine.Web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+D:\项目\聚力环境测评系统\NFine.Web\obj\Debug\NFine.Web.csprojResolveAssemblyReference.cache
+D:\项目\聚力环境测评系统\NFine.Web\obj\Debug\NFine.Web.dll
+D:\项目\聚力环境测评系统\NFine.Web\obj\Debug\NFine.Web.pdb

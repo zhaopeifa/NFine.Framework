@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script type="text/javascript">
+    var pararmData = {
+        CityId: $.request("CityId"),
+        CountyId: $.request("CountyId"),
+        ProjectId: $.request("ProjectId")
+    }
+    $(function () {
+        $("#CityId").val(pararmData.CityId);
+        $("#CountyId").val(pararmData.CountyId);
+        $("#ProjectId").val(pararmData.ProjectId);
+    })
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var file = document.getElementById("uploadFile").files[0];
+        var formData = new FormData();
+        var form1Data = $("#form1").formSerialize();
+        debugger;
+        formData.append("CityId", form1Data.CityId);
+        formData.append("CountyId", form1Data.CountyId);
+        formData.append("ProjectId", form1Data.ProjectId);
+        formData.append("__RequestVerificationToken", form1Data.__RequestVerificationToken);
+        formData.append("file", file);
+
+
+        $.ImportForm({
+            url: "/SystemManage/MainWay/SummitImport",
+            param: formData,
+            success: function () {
+                debugger;
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+
+</script>
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr hidden="hidden">
+                <td>
+                    <input id="CityId" name="CityId" />
+                    <input id="CountyId" name="CountyId" />
+                    <input id="ProjectId" name="ProjectId" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">文件上传</th>
+                <td class="formValue">
+                    <input type="file" id="uploadFile" name="uploadFile" accept="xlsx/xls" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

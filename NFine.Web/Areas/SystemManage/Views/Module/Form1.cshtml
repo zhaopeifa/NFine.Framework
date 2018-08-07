@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_Form.cshtml";
+
+}
+  
+<!DOCTYPE html>
+<script type="text/javascript">
+
+    $(function () {
+
+        $.ajax({
+            url: "/SystemManage/Module/GetfontAweSomeJson",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var html = "";
+
+                for (var i in data) {
+
+                    html += '<a class="btn" onclick="btn_edit(this)" style="width:30px"><i class="fa '+data[i].F_FullName+'" ></i></a>';
+
+                }
+
+               
+
+                $('#icons').html(html);
+                //fontawesomelist = data;
+            }
+        });
+    });
+   
+
+    function btn_edit(v1) {
+        var v = $(v1).find("i").attr("class");
+        var index = parent.layer.getFrameIndex(window.name);
+        parent["Form"].$('#F_Icon').val(v);
+        parent.layer.close(index);
+    }
+</script>
+<html>
+<body>
+<div id="icons">
+@* @{
+    foreach (var item in fontawesomelist)
+    {
+                 
+    <a class="btn" onclick="btn_edit(this)" style="width:30px"><i class="fa @item.F_FullName" ></i></a>
+                      
+    }
+}*@
+</div>
+</body>
+</html>

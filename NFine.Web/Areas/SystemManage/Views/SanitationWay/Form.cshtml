@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<script>
+    var pararmData = {
+        CityId: $.request("CityId"),
+        CountyId: $.request("CountyId"),
+        ProjectId: $.request("ProjectId")
+    }
+    var keyValue = $.request("keyValue");
+
+    $(function () {
+        initControl();
+
+        $("#CityId").val(pararmData.CityId);
+        $("#CountyId").val(pararmData.CountyId);
+        $("#ProjectId").val(pararmData.ProjectId);
+
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/SanitationWay/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+    function initControl() {
+        $("#StreetId").bindSelect({
+            url: "/SystemManage/Street/GetEnableGridJsonByCountyId",
+            param: { CountyId: pararmData.CountyId },
+            id: "Key",
+            text: "Value"
+        });
+
+        $("#StreetId").change(function () {
+            $("#MainWayId").html("");
+
+            $("#MainWayId").bindSelect({
+                url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
+                param: { StreetId: $("#StreetId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#MainWayId").select2({
+                language: 'zh-CN',//转为中文版
+
+            });
+        });
+
+        $("#MainWayId").bindSelect({
+            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
+            param: { StreetId: $("#StreetId").val() },
+            id: "Key",
+            text: "Value"
+        });
+
+        $("#WayGrade").bindSelect({
+            url: "/SystemManage/SanitationWay/GetEnableWayGradeGridJson"
+        })
+
+
+
+        $("#StreetId").select2({
+            language: 'zh-CN',//转为中文版
+
+        });
+
+        $("#MainWayId").select2({
+            language: 'zh-CN',//转为中文版
+
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var postData = $("#form1").formSerialize();
+        $.submitForm({
+            url: "/SystemManage/SanitationWay/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr hidden="hidden">
+                <td>
+                    <input id="CityId" name="CityId" />
+                    <input id="CountyId" name="CountyId" />
+                    <input id="ProjectId" name="ProjectId" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">编号</th>
+                <td class="formValue">
+                    <input id="F_EnCode" name="F_EnCode" type="text" class="form-control required" placeholder="请输入编号" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">街道</th>
+                <td class="formValue">
+                    <select id="StreetId" name="StreetId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">主路</th>
+                <td class="formValue">
+                    <select id="MainWayId" name="MainWayId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">环卫道路名称</th>
+                <td class="formValue">
+                    <input id="WayName" name="WayName" type="text" class="form-control required" placeholder="请输入环卫道路名称" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">环卫道路起点</th>
+                <td class="formValue">
+                    <input id="Origin" name="Origin" type="text" class="form-control required" placeholder="请输入环卫道路起点" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">环卫道路终点</th>
+                <td class="formValue">
+                    <input id="Destination" name="Destination" type="text" class="form-control required" placeholder="请输入环卫道路终点" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">道路等级</th>
+                <td class="formValue">
+                    <select id="WayGrade" name="WayGrade" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">选项</th>
+                <td class="formValue">
+                    <input id="IsJointPartWay" name="IsJointPartWay" type="checkbox" checked="checked"><label for="IsJointPartWay">是否结合部道路</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<script>
+    var PararmsData = GetTreePararmByProjectTreeNode();
+    $(function () {
+        gridList();
+        initSearch();
+    })
+    function initSearch() {
+        $("#StreetId").bindSelect({
+            url: "/SystemManage/Street/GetEnableGridJsonByCountyId",
+            param: { CountyId: PararmsData.countyId },
+            id: "Key",
+            text: "Value"
+        });
+    }
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/AmenitiesScenicSpots/GetGridJson",
+            postData: { cityId: PararmsData.cityId, countyId: PararmsData.countyId, projectId: PararmsData.projectId },
+            height: $(window).height() - 128,
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '编号', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '区县', name: 'CountyId', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return top.clients.profileCounty[cellvalue] == null ? "" : top.clients.profileCounty[cellvalue].fullname;
+                    }
+                },
+                {
+                    label: '街道', name: 'StreetId', width: 80, align: 'left',
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clients.profileStreet[cellvalue] == null ? "" : top.clients.profileStreet[cellvalue].fullname;
+                    }
+                },
+                { label: '景点景区名称', name: 'ScenicSpotsName', width: 200, align: 'left' },
+                { label: '地址', name: 'Address', width: 80, align: 'left' }
+            ],
+            pager: "#gridPager",
+            sortname: 'F_EnCode asc,F_CreatorTime desc',
+            viewrecords: true
+        });
+
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: {
+                    keyword: $("#txt_keyword").val(),
+                    cityId: PararmsData.cityId,
+                    countyId: PararmsData.countyId,
+                    projectId: PararmsData.projectId
+                },
+            }).trigger('reloadGrid');
+        });
+
+        $("#StreetId").change(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: {
+                    StreetId: $("#StreetId").val() == "未选择" ? null : $("#StreetId").val(),
+                    keyword: $("#txt_keyword").val(),
+                    cityId: PararmsData.cityId,
+                    countyId: PararmsData.countyId,
+                    projectId: PararmsData.projectId
+                },
+            }).trigger('reloadGrid');
+        });
+    }
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "新增市容景点景区",
+            url: "/SystemManage/AmenitiesScenicSpots/Form?CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId + "&ProjectId=" + PararmsData.projectId,
+            width: "400px",
+            height: "450px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.modalOpen({
+            id: "Form",
+            title: "修改市容景点景区",
+            url: "/SystemManage/AmenitiesScenicSpots/Form?keyValue=" + keyValue + "&CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId + "&ProjectId=" + PararmsData.projectId,
+            width: "400px",
+            height: "450px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        $.deleteForm({
+            url: "/SystemManage/AmenitiesScenicSpots/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建市容景点景区</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>批量导入</a>
+        </div>
+        <div class="operate">
+            <ul class="nav nav-pills">
+                <li class="first">已选中<span>1</span>项</li>
+                <li><a id="NF-edit" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改市容景点景区</a></li>
+                <li><a id="NF-delete" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除市容景点景区</a></li>
+            </ul>
+            <a href="javascript:;" class="close"></a>
+        </div>
+        <script>$('.toolbar').authorizeButton()</script>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group" style="margin:10px;width:200px">
+                        <div class="input-group-addon">街道</div>
+                        <select id="StreetId" class="form-control">
+                            <option>未选择</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="编号/景点景区名称/地址" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>

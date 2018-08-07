@@ -1,0 +1,262 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    $(function () {
+        initControl();
+    });
+    function initControl() {
+        $("#CityId").bindSelect({
+            url: "/SystemManage/City/GetEnableGridJson",
+            id: "F_Id",
+            text: "CityName"
+        });
+
+        $("#CountyId").bindSelect({
+            url: "/SystemManage/County/GetEnableGridJson",
+            id: "F_Id",
+            text: "CountyName"
+        });
+
+        $("#CompanyId").bindSelect({
+            url: "/SystemManage/OperationsCompany/GetCompanyTypeJDEnableGridJson",
+            id: "Key",
+            text: "Value"
+        });
+
+        $("#StreetId").bindSelect({
+            url: "/SystemManage/Street/GetEnableGridJsonByCountyId_CompanyId",
+            param: { CountyId: $("#CountyId").val(), CompanyId: $("#CompanyId").val() },
+            id: "Key",
+            text: "Value"
+        });
+        $("#MainWayId").bindSelect({
+            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
+            param: { StreetId: $("#StreetId").val() },
+            id: "Key",
+            text: "Value"
+        });
+
+        $("#StreetId").change(function () {
+            $("#MainWayId").html("");
+
+            $("#MainWayId").bindSelect({
+                url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
+                param: { StreetId: $("#StreetId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#MainWayId").select2({
+                language: 'zh-CN',//转为中文版
+
+            });
+        });
+
+        $("#CountyId").change(function () {
+            $("#StreetId").html("");
+
+            $("#StreetId").bindSelect({
+                url: "/SystemManage/Street/GetEnableGridJsonByCountyId_CompanyId",
+                param: { CountyId: $("#CountyId").val(), CompanyId: $("#CompanyId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#StreetId").select2({
+                language: 'zh-CN',//转为中文版
+            });
+        });
+
+        $("#CompanyId").change(function () {
+            $("#StreetId").html("");
+
+            $("#StreetId").bindSelect({
+                url: "/SystemManage/Street/GetEnableGridJsonByCountyId_CompanyId",
+                param: { CountyId: $("#CountyId").val(), CompanyId: $("#CompanyId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#StreetId").select2({
+                language: 'zh-CN',//转为中文版
+            });
+        });
+
+        $("#MainWayId").select2({
+            language: 'zh-CN',//转为中文版
+
+        });
+
+        $("#wayOrigin").bindSelect({
+            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
+            param: { StreetId: $("#StreetId").val() },
+            id: "Key",
+            text: "Value"
+        });
+        $("#wayDestination").bindSelect({
+            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
+            param: { StreetId: $("#StreetId").val() },
+            id: "Key",
+            text: "Value"
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            url: "/SystemManage/TaskDistributing/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">案件级别</th>
+                <td class="formValue">
+                    <select id="CityId" name="CityId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">区县</th>
+                <td class="formValue">
+                    <select id="CountyId" name="CountyId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">公司</th>
+                <td class="formValue">
+                    <select id="CompanyId" name="CompanyId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">街道</th>
+                <td class="formValue">
+                    <select id="StreetId" name="StreetId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">道路清扫</th>
+                <td class="formValue">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="input-group" style="width:200px">
+                                <select id="MainWayId" name="MainWayId" class="form-control required"></select>
+                                <div class="input-group-addon">街道</div>
+                            </div>
+                            <div class="form-inline" style="width:200px">
+                                <select id="wayOrigin" name="wayOrigin" class="required"></select>
+                                <select id="wayDestination" name="wayDestination" class="required"></select>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">环卫公厕</th>
+                <td class="formValue">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="input-group" style="width:200px">
+                                <input id="TandasCount" name="TandasCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                <div class="input-group-addon">座</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">沿途垃圾收集设备</th>
+                <td class="formValue">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="input-group" style="width: 250px">
+                                <div class="input-group-addon">倒粪池</div>
+                                <input id="CesspoolCount" name="CesspoolCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                <div class="input-group-addon">处</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">垃圾箱房</th>
+                <td class="formValue">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="input-group" style="width:200px">
+                                <input id="tandasCount" name="tandasCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                <div class="input-group-addon">座</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">小压站</th>
+                <td class="formValue">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="input-group" style="width:200px">
+                                <input id="CompressionCount" name="CompressionCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                <div class="input-group-addon">座</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">沿途绿化</th>
+                <td class="formValue">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="input-group" style="width:200px">
+                                <input id="GreeningCount" name="GreeningCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                <div class="input-group-addon">座</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">绿色账户小区</th>
+                <td class="formValue">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="input-group" style="width:200px">
+                                <input id="GreenResidentialCount" name="GreenResidentialCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                <div class="input-group-addon">座</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">被派发人</th>
+                <td class="formValue col-md-1">
+                    <select id="PersonInChargeId" name="PersonInChargeId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">派发时间</th>
+                <td class="formValue">
+                    <input id="DeliveryTime" name="DeliveryTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ startDate: '%y-%M-01 00:00:00', dateFmt: 'yyyy-MM-dd HH:mm:ss', alwaysUseStartDate: true })" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">完成时间</th>
+                <td class="formValue">
+                    <input id="DeliveryTime" name="DeliveryTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ startDate: '%y-%M-01 00:00:00', dateFmt: 'yyyy-MM-dd HH:mm:ss', alwaysUseStartDate: true })" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+

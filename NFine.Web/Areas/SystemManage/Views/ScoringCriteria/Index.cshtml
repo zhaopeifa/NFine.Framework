@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<script type="text/javascript">
+    var urls = [
+        {
+            code: 'Sanitation',
+            url: "/SystemManage/ScoringCriteriaSanitation/Index",
+        },
+    ];
+    $(function () {
+        $('#layout').layout();
+        treeView();
+    });
+    function treeView() {
+        $("#itemTree").treeview({
+            url: "/SystemManage/ScoringCriteria/GetTreeEnableJson",
+            onnodeclick: function (item) {
+                if (item.hasChildren)
+                    return;
+                var url = "";
+                for (var i = 0; i < urls.length; i++) {
+                    if (urls[i].code == item.parent.value) {
+
+                        url = urls[i].url;
+                    }
+                }
+
+                $("#contextDiv").load(url);
+            }
+        });
+    }
+
+    function GetSelectNode() {
+        return $("#itemTree").getCurrentNode();
+    }
+
+</script>
+
+<div class="ui-layout" id="layout" style="height: 100%; width: 100%;">
+    <div class="ui-layout-west">
+        <div id="itemTree"></div>
+    </div>
+    <div class="ui-layout-center" id="contextDiv">
+    </div>
+</div>

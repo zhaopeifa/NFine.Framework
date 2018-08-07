@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "FormOptions";
+    Layout = "~/Views/Shared/_ALL.cshtml";
+}
+<script>
+    var GradeType = $.request("GradeType");
+    var keyValue = $.request("keyValue");
+    var OptionId = "";
+
+    $(function () {
+        $('#layout').layout();
+        treeView();
+        gridList();
+    });
+
+    function treeView() {
+        $("#itemTree").treeview({
+            url: "/SystemManage/ScoringCriteriaSanitation/GetOptionsTreeEnableJson?keyValue=" + keyValue,
+            onnodeclick: function (item) {
+
+                OptionId = item.id;
+
+                var $gridList = $("#gridList");
+
+                $gridList.jqGrid('setGridParam', {
+                    postData: { optionId: OptionId },
+                }).trigger('reloadGrid');
+            }
+        });
+    }
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/ScoringCriteriaSanitation/GetNormGridJson",
+            postData: { optionId: OptionId },
+            height: $(window).height() - 150,
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '评分标准', name: 'Describe', width: 250, align: 'left' },
+                {
+                    label: '起扣条件', name: 'Condition', width: 80, align: 'left', formatter: function (cellvalue) {
+                        return cellvalue + "处";
+                    }
+                },
+                {
+                    label: '起扣分数', name: 'ConditionGrades', width: 80, align: 'left', formatter: function (cellvalue) {
+                        return cellvalue + "分";
+                    }
+                }
+            ],
+            pager: "#gridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+    }
+</script>
+
+<div class="ui-layout" id="layout" style="height: 100%; width: 100%;">
+    <div class="ui-layout-west">
+        <div id="itemTree"></div>
+    </div>
+    <div class="ui-layout-center" id="contextDiv">
+        <div class="btn-group btn-group-xs">
+            <button type="button" class="btn btn-default" data-toggle="modal" onclick="btn_AddNorm()"><span class="glyphicon glyphicon-plus-sign"></span></button>
+            <button type="button" class="btn btn-default" onclick="btn_Delete()"><span class="glyphicon glyphicon-remove-sign"></span></button>
+            <button type="button" class="btn btn-default" data-toggle="modal" onclick="btn_UpdateNorm()"><span class="glyphicon glyphicon-pencil"></span></button>
+        </div>
+        <div class="gridPanel">
+            <table id="gridList"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">评分明细</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formGrading_Norm">
+                    <table class="form">
+                        <tr hidden="hidden">
+                            <td class="formValue">
+                                <input id="id" name="id" type="text" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">评分标准</th>
+                            <td class="formValue">
+                                <input id="Describe" name="Describe" type="text" class="form-control required" placeholder="请输入评分标准" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">起扣条件</th>
+                            <td class="formValue">
+                                <div class="input-group">
+                                    <input id="Condition" name="Condition" type="text" class="form-control required number" placeholder="请输入起扣条件" />
+                                    <div class="input-group-addon">处</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">起扣分数</th>
+                            <td class="formValue">
+                                <div class="input-group">
+                                    <input id="ConditionGrades" name="ConditionGrades" type="text" class="form-control required number" placeholder="请输入起扣分数" />
+                                    <div class="input-group-addon">分</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="btn_submitNormForm()">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+    var NormId = '';
+
+
+    function btn_AddNorm() {
+        if (OptionId == "") {
+            $.modalMsg("请选中左侧评分项目", "warning");
+            return;
+        }
+
+        $('#myModal').modal('show');
+
+        $("#Describe").val("");
+        $("#Condition").val("");
+        $("#ConditionGrades").val("");
+    }
+    function btn_UpdateNorm() {
+        if (OptionId == "") {
+            $.modalMsg("请选中左侧评分项目", "warning");
+            return;
+        }
+        if ($("#gridList").jqGridRowValue() == null || $("#gridList").jqGridRowValue().length <= 0) {
+            $.modalMsg("请选中要修改的项", "warning");
+            return;
+        }
+
+        var selectRow = $("#gridList").jqGridRowValue();
+        var keyValue = selectRow.F_Id;
+        NormId = keyValue;
+
+        $.ajax({
+            url: "/SystemManage/ScoringCriteriaSanitation/GetNormForm",
+            data: { keyValue: keyValue },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $("#formGrading_Norm").formSerialize(data);
+            }
+        });
+
+        $('#myModal').modal('show');
+    }
+
+    function btn_Delete() {
+        debugger;
+        if ($("#gridList").jqGridRowValue() == null || $("#gridList").jqGridRowValue().length <= 0) {
+            $.modalMsg("请选中要要删除的项", "warning");
+            return;
+        }
+
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.deleteForm({
+            url: "/SystemManage/ScoringCriteriaSanitation/DeleteNormForm",
+            param: { keyValue: keyValue },
+            success: function () {
+
+                var $gridList = $("#gridList");
+
+                $gridList.jqGrid('setGridParam', {
+                    postData: { optionId: OptionId },
+                }).trigger('reloadGrid');
+            }
+        })
+    }
+    function btn_submitNormForm() {
+        if (!$('#formGrading_Norm').formValid()) {
+            return false;
+        }
+
+        $('#myModal').modal('hide');
+
+        var postData = $("#formGrading_Norm").formSerialize();
+        postData["OptionsId"] = OptionId;
+
+        $.ListsubmitForm({
+            url: "/SystemManage/ScoringCriteriaSanitation/SubmitNormForm?keyValue=" + NormId,
+            param: postData,
+            success: function () {
+
+                var $gridList = $("#gridList");
+
+                $gridList.jqGrid('setGridParam', {
+                    postData: { optionId: OptionId },
+                }).trigger('reloadGrid');
+            }
+        })
+    }
+</script>

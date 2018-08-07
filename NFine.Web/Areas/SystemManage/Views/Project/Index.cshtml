@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<script type="text/javascript">
+    //道路 = 1,
+    //沿街垃圾收集设施 = 2,
+    //垃圾箱房 = 3,
+    //公厕 = 4,
+    //倒粪池小便池 = 5,
+    //压缩站 = 6,
+    //沿街绿化 = 7,
+    //绿色账户居住区 = 8,
+    //环卫作业车辆 = 9,
+    //四通八轮车 = 10,
+    //飞行保洁车 = 11,
+    //机扫车 = 12,
+    //冲洗车 = 13,
+    //垃圾清运车 = 14
+    var sanitationData = [
+        {
+            code: 1,
+            Text: "道路",
+            url: "/SystemManage/SanitationWay/Index",
+        },
+         {
+             code: 3,
+             Text: "垃圾箱房",
+             url: "/SystemManage/SanitationGarbageBox/Index",//环卫垃圾箱房
+         },
+        {
+            code: 4,
+            Text: "公厕",
+            url: "/SystemManage/SanitationTandas/Index",//环卫公厕
+        },
+        {
+            code: 5,
+            Text: "倒粪池小便池",
+            url: "/SystemManage/SanitationCesspool/Index",
+        },
+        {
+            code: 6,
+            Text: "压缩站",
+            url: "/SystemManage/SanitationCompressionStation/Index"//环卫压缩站
+        },
+        {
+            code: 7,
+            Text: "沿街绿化",
+            url: "/SystemManage/SanitationGreening/Index"//环卫沿途绿化
+        },
+        {
+            code: 8,
+            Text: "绿色账户居住区",
+            url: "/SystemManage/SanitationGreenResidential/Index"//环卫绿色账户小区
+        },
+        {
+            code: 10,
+            Text: "四通八轮车",
+            url: "/SystemManage/SanitationGreenResidential/Index"//四通八轮车
+        },
+         {
+             code: 11,
+             Text: "飞行保洁车",
+             url: "/SystemManage/SanitationGreenResidential/Index"//飞行保洁车
+         },
+          {
+              code: 11,
+              Text: "机扫车",
+              url: "/SystemManage/SanitationMachineCleanCar/Index"//机扫车
+          },
+          {
+              code: 11,
+              Text: "冲洗车",
+              url: "/SystemManage/SanitationGreenResidential/Index"//冲洗车
+          },
+          {
+              code: 11,
+              Text: "垃圾清运车",
+              url: "/SystemManage/SanitationGreenResidential/Index"//垃圾清运车
+          }
+
+    ];
+
+    var amenitiesData = [
+        {
+            code: 1,
+            url: "/SystemManage/AmenitiesSquare/Index",//市容公共广场
+        },
+        {
+            code: 2,
+            url: "/SystemManage/AmenitiesScenicSpots/Index",//市容景点景区
+        },//AmenitiesMarket
+        {
+            code: 4,
+            url: "/SystemManage/AmenitiesMarket/Index",//市容集贸市场
+        },
+        {
+            code: 6,
+            url: "/SystemManage/AmenitiesConstructionSite/Index",//市容在建工地
+        }, {
+            code: 7,
+            url: "/SystemManage/AmenitiesResidential/Index",//市容居民小区
+        },//AmenitiesResidential
+        {
+            code: 8,
+            url: "/SystemManage/AmenitiesPark/Index",//市容公园
+        },//AmenitiesSchool
+        {
+            code: 9,
+            url: "/SystemManage/AmenitiesSchool/Index",//市容中小学校
+        },
+        {
+            code: 11,
+            url: "/SystemManage/AmenitiesWaters/Index",//市容水域
+        },
+        {
+            code: 12,
+            url: "/SystemManage/AmenitiesGovern/Index",//三年治理计划
+        },
+        {
+            code: 13,
+            url: "/SystemManage/AmenitiesShop/Index",//一点一档
+        }
+    ];
+
+    $(function () {
+        $('#layout').layout();
+        treeView();
+    });
+    function treeView() {
+        $("#itemTree").treeview({
+            url: "/SystemManage/Project/GetTreeEnableJson",
+            onnodeclick: function (item) {
+                var url = "";
+                if (item.hasChildren == false) {//点击最后层才会加载数据
+                    switch (item.value) {
+                        case "4.1":
+                            for (var i = 0; i < sanitationData.length; i++) {
+                                if (item.text == sanitationData[i].Text) {
+                                    url = sanitationData[i].url;
+                                    break;
+                                }
+                            }
+                            break;
+                        case "4.2":
+                            for (var i = 0; i < amenitiesData.length; i++) {
+                                if (item.id == amenitiesData[i].code) {
+                                    url = amenitiesData[i].url;
+                                    break;
+                                }
+                            }
+                            break;
+                        default:
+
+                    }
+
+                    var data = GetTreePararmByProjectTreeNode();
+                    $("#contextDiv").load(url);
+
+                }
+            }
+        });
+    }
+
+    function GetTreePararmByProjectTreeNode() {
+        var selectNode = $("#itemTree").getCurrentNode();
+
+        function GetprojectNode(node) {
+            if (node.value == "3") {
+                return node;
+            }
+            return GetprojectNode(node.parent);
+        }
+
+        var projectNode = GetprojectNode(selectNode);//selectNode.parent;//当前节点上一层是项目节点
+        var countyNode = projectNode.parent;//项目节点上是区县节点
+        var cityNode = countyNode.parent;//区县节点上是城市节点
+
+        var data = {
+            cityId: cityNode.id,
+            countyId: countyNode.id,
+            projectId: projectNode.id
+        };
+
+        return data;
+    }
+</script>
+<div class="ui-layout" id="layout" style="height: 100%; width: 100%;">
+    <div class="ui-layout-west">
+        <div id="itemTree"></div>
+    </div>
+    <div class="ui-layout-center" id="contextDiv">
+    </div>
+</div>

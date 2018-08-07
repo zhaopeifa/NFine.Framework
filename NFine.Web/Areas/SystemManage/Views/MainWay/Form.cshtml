@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<script>
+    var pararmData = {
+        CityId: $.request("CityId"),
+        CountyId: $.request("CountyId"),
+        ProjectId: $.request("ProjectId")
+    }
+    var keyValue = $.request("keyValue");
+
+    $(function () {
+        debugger;
+        initControl();
+
+        $("#CityId").val(pararmData.CityId);
+        $("#CountyId").val(pararmData.CountyId);
+        $("#ProjectId").val(pararmData.ProjectId);
+
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/MainWay/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+    function initControl() {
+        $("#StreetId").bindSelect({
+            url: "/SystemManage/Street/GetEnableGridJsonByCountyId",
+            param: { CountyId: pararmData.CountyId },
+            id: "Key",
+            text: "Value"
+        });
+
+        $("#StreetId").select2({
+            language: 'zh-CN',//转为中文版
+
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var postData = $("#form1").formSerialize();
+        $.submitForm({
+            url: "/SystemManage/MainWay/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr hidden="hidden">
+                <td>
+                    <input id="CityId" name="CityId" />
+                    <input id="CountyId" name="CountyId" />
+                    <input id="ProjectId" name="ProjectId" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">编号</th>
+                <td class="formValue">
+                    <input id="F_EnCode" name="F_EnCode" type="text" class="form-control required" placeholder="请输入编号" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">街道</th>
+                <td class="formValue">
+                    <select id="StreetId" name="StreetId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">环卫主路名称</th>
+                <td class="formValue">
+                    <input id="MainWayName" name="MainWayName" type="text" class="form-control required" placeholder="请输入环卫主路名称" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

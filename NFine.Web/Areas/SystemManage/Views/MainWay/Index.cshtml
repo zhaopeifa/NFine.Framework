@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#layout').layout();
+        treeView();
+        gridList();
+    });
+    function treeView() {
+        $("#itemTree").treeview({
+            url: "/SystemManage/Street/GetTreeEnableJson",
+            onnodeclick: function (item) {
+                if (item.hasChildren == false) {
+                    $("#txt_keyword").val('');
+                    $('#btn_search').trigger("click");
+                }
+            }
+        });
+    }
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/SanitationWay/GetGridJson",
+            height: $(window).height() - 20,
+            colModel: [
+                 { label: '主键', name: 'F_Id', hidden: true },
+                { label: '编号', name: 'F_EnCode', width: 80, align: 'left' },
+                { label: '主路名称', name: 'MainWayName', width: 80, align: 'left' },
+                {
+                    label: '区县', name: 'CountyId', width: 80, align: 'left',
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clients.profileCounty[cellvalue] == null ? "" : top.clients.profileCounty[cellvalue].fullname;
+                    }
+                },
+                {
+                    label: '街道', name: 'StreetId', width: 80, align: 'left',
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clients.profileStreet[cellvalue] == null ? "" : top.clients.profileStreet[cellvalue].fullname;
+                    }
+                }
+            ],
+            pager: "#gridPager",
+            sortname: 'F_EnCode asc,F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                url: "/SystemManage/MainWay/GetGridJson",
+                postData: { countyId: $("#itemTree").getCurrentNode().id, keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    function btn_add() {
+        verify();
+
+        var PararmsData = GetTreePararmByProjectTreeNode();
+        $.modalOpen({
+            id: "Form",
+            title: "新增环卫主路",
+            url: "/SystemManage/MainWay/Form?CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId,
+            width: "400px",
+            height: "310px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        verify();
+
+        var PararmsData = GetTreePararmByProjectTreeNode();
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.modalOpen({
+            id: "Form",
+            title: "修环卫主路",
+            url: "/SystemManage/MainWay/Form?keyValue=" + keyValue + "&CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId,
+            width: "400px",
+            height: "310px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        verify();
+
+        $.deleteForm({
+            url: "/SystemManage/MainWay/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_Import() {
+        var PararmsData = GetTreePararmByProjectTreeNode();
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.modalOpen({
+            id: "Import",
+            title: "导入环卫主路数据",
+            url: "/SystemManage/MainWay/Import?CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId,
+            width: "400px",
+            height: "310px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function GetTreePararmByProjectTreeNode() {
+        var selectNode = $("#itemTree").getCurrentNode();
+
+        var countyNode = selectNode;
+        var cityId = countyNode.parent;
+
+        var data = {
+            cityId: cityId.id,
+            countyId: countyNode.id
+        };
+
+        return data;
+    }
+    function verify() {
+        var currNode = $("#itemTree").getCurrentNode();
+        if (currNode == null) {
+            $.modalMsg("请选择左侧区县节点在进行操作", "warning");
+            return;
+        }
+        if (currNode.hasChildren) {
+            $.modalMsg("请选择左侧最下层区县节点在进行操作", "warning");
+            return;
+        }
+
+    }
+</script>
+<div class="ui-layout" id="layout" style="height: 100%; width: 100%;">
+    <div class="ui-layout-west">
+        <div id="itemTree"></div>
+    </div>
+    <div class="ui-layout-center">
+        <div class="topPanel">
+            <div class="toolbar">
+                <div class="btn-group">
+                    <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建环卫主路</a>
+                    <a id="NF-improt" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_Import()"><i class="fa fa-plus"></i>批量导入环主路</a>
+                </div>
+                <div class="operate">
+                    <ul class="nav nav-pills">
+                        <li class="first">已选中<span>1</span>项</li>
+                        <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改环卫主路</a></li>
+                        <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除环卫主路</a></li>
+                    </ul>
+                    <a href="javascript:;" class="close"></a>
+                </div>
+                <script>$('.toolbar').authorizeButton()</script>
+            </div>
+            <div class="search">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <input id="txt_keyword" type="text" class="form-control" placeholder="主路编号/主路名称" style="width: 200px;">
+                                <span class="input-group-btn">
+                                    <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="gridPanel">
+            <table id="gridList"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</div>

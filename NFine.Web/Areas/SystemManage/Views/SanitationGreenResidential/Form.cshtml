@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var pararmData = {
+        CityId: $.request("CityId"),
+        CountyId: $.request("CountyId"),
+        ProjectId: $.request("ProjectId")
+    }
+    var keyValue = $.request("keyValue");
+
+    $(function () {
+        initControl();
+
+        $("#CityId").val(pararmData.CityId);
+        $("#CountyId").val(pararmData.CountyId);
+        $("#ProjectId").val(pararmData.ProjectId);
+
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/SanitationGreenResidential/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+    function initControl() {
+        $("#StreetId").bindSelect({
+            url: "/SystemManage/Street/GetEnableGridJsonByCountyId",
+            param: { CountyId: pararmData.CountyId },
+            id: "Key",
+            text: "Value"
+        });
+
+
+        $("#WayGrade").bindSelect({
+            url: "/SystemManage/SanitationWay/GetEnableWayGradeGridJson"
+        })
+
+
+
+        $("#StreetId").select2({
+            language: 'zh-CN',//转为中文版
+        });
+    }
+    function submitForm() {
+
+
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var postData = $("#form1").formSerialize();
+        $.submitForm({
+            url: "/SystemManage/SanitationGreenResidential/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr hidden="hidden">
+                <td>
+                    <input id="CityId" name="CityId" />
+                    <input id="CountyId" name="CountyId" />
+                    <input id="ProjectId" name="ProjectId" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">编号</th>
+                <td class="formValue">
+                    <input id="F_EnCode" name="F_EnCode" type="text" class="form-control required" placeholder="请输入编号" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">街道</th>
+                <td class="formValue">
+                    <select id="StreetId" name="StreetId" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">名称</th>
+                <td class="formValue">
+                    <input id="ResidentialName" name="ResidentialName" type="text" class="form-control required" placeholder="请输入名称" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">地址</th>
+                <td class="formValue">
+                    <input id="Address" name="Address" type="text" class="form-control required" placeholder="请输入地址" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">点位数</th>
+                <td class="formValue">
+                    <input id="SomeDigits" name="SomeDigits" type="text" class="form-control required number" placeholder="请输入点位数" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">积分点位牌兑换时间</th>
+                <td class="formValue">
+                    <input id="ExchangeTime" name="ExchangeTime" type="text" class="form-control required" placeholder="请输入兑换时间" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">备注</th>
+                <td class="formValue">
+                    <input id="Note" name="Note" type="text" class="form-control" placeholder="请输入备注" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

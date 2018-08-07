@@ -1,0 +1,185 @@
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\EntityFramework.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Domain.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Data.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Code.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\log4net.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NPOI.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\EntityFramework.xml
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Data.pdb
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NFine.Code.pdb
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\log4net.xml
+H:\源码\NFine快速开发框架\project\NFine.Mapping\bin\Debug\NPOI.xml
+H:\源码\NFine快速开发框架\project\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+H:\源码\NFine快速开发框架\project\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+H:\源码\NFine快速开发框架\project\NFine.Mapping\obj\Debug\NFine.Mapping.pdb
+F:\2\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+F:\2\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+F:\2\NFine.Mapping\bin\Debug\EntityFramework.dll
+F:\2\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+F:\2\NFine.Mapping\bin\Debug\NFine.Domain.dll
+F:\2\NFine.Mapping\bin\Debug\NFine.Code.dll
+F:\2\NFine.Mapping\bin\Debug\NFine.Data.dll
+F:\2\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+F:\2\NFine.Mapping\bin\Debug\log4net.dll
+F:\2\NFine.Mapping\bin\Debug\NPOI.dll
+F:\2\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\2\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+F:\2\NFine.Mapping\bin\Debug\EntityFramework.xml
+F:\2\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+F:\2\NFine.Mapping\bin\Debug\NFine.Code.pdb
+F:\2\NFine.Mapping\bin\Debug\NFine.Data.pdb
+F:\2\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+F:\2\NFine.Mapping\bin\Debug\log4net.xml
+F:\2\NFine.Mapping\bin\Debug\NPOI.xml
+F:\2\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+F:\2\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+F:\2\NFine.Mapping\obj\Debug\NFine.Mapping.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\EntityFramework.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Domain.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Data.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Code.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\log4net.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NPOI.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\EntityFramework.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Data.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NFine.Code.pdb
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\log4net.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\bin\Debug\NPOI.xml
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+E:\下载项目代码\nfine去后门版ppp\NFine.Mapping\obj\Debug\NFine.Mapping.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\EntityFramework.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Domain.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Data.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Code.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\log4net.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NPOI.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\EntityFramework.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Data.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NFine.Code.pdb
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\log4net.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\bin\Debug\NPOI.xml
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+C:\Users\姚栋\Desktop\卫星中心流程管理系统\NFine.Mapping\obj\Debug\NFine.Mapping.pdb
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\EntityFramework.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Domain.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Data.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Code.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\log4net.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NPOI.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\EntityFramework.xml
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Data.pdb
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NFine.Code.pdb
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\log4net.xml
+E:\公司项目代码\code\NFine.Mapping\bin\Debug\NPOI.xml
+E:\公司项目代码\code\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+E:\公司项目代码\code\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+E:\公司项目代码\code\NFine.Mapping\obj\Debug\NFine.Mapping.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Domain.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Data.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Code.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\log4net.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Data.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Code.pdb
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\log4net.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.xml
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+C:\Users\apple mac\Desktop\卫星设备台账流程管理\NFine.Mapping\obj\Debug\NFine.Mapping.pdb
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Domain.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Data.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Code.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\log4net.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.xml
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NFine.Data.pdb
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\log4net.xml
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.xml
+D:\项目\卫星设备台账流程管理\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+D:\项目\卫星设备台账流程管理\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\obj\Debug\NFine.Mapping.pdb
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.OOXML.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.OpenXml4Net.dll
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.OOXML.xml
+D:\项目\卫星设备台账流程管理\NFine.Mapping\bin\Debug\NPOI.OpenXml4Net.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Mapping.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Mapping.pdb
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\EntityFramework.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Domain.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Data.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Code.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NPOI.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NPOI.OOXML.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\Newtonsoft.Json.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\log4net.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NPOI.OpenXml4Net.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Domain.pdb
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\EntityFramework.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\EntityFramework.SqlServer.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Data.pdb
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NFine.Code.pdb
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NPOI.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NPOI.OOXML.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\Newtonsoft.Json.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\log4net.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\bin\Debug\NPOI.OpenXml4Net.xml
+D:\项目\聚力环境测评系统\NFine.Mapping\obj\Debug\NFine.Mapping.csprojResolveAssemblyReference.cache
+D:\项目\聚力环境测评系统\NFine.Mapping\obj\Debug\NFine.Mapping.dll
+D:\项目\聚力环境测评系统\NFine.Mapping\obj\Debug\NFine.Mapping.pdb

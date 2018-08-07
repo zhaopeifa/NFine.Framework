@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        initControl();
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/OperationsCompany/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+    function initControl() {
+
+        $("#VehicleTypeTree").treeview({
+            height: 300,
+            showcheck: true,
+            url: "/SystemManage/OperationsCompany/GetVehicleTypeTree",
+            param: { key: keyValue }
+        });
+
+        $("#CompanyType").bindSelect({
+            url: "/SystemManage/OperationsCompany/GetEnableCompanyTypeGridJson"
+        });
+
+        $("#CompanyType").select2({
+            language: 'zh-CN',//转为中文版
+
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var postData = $("#form1").formSerialize();
+        postData["vehicleTypeIds"] = String($("#VehicleTypeTree").getCheckedNodes());
+        $.submitForm({
+            url: "/SystemManage/OperationsCompany/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<form id="form1">
+    <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#">基本信息</a></li>
+        </ul>
+        <div style="padding-top: 20px; margin-right: 30px;">
+            <table class="form">
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="formTitle">公司名称</th>
+                    <td class="formValue">
+                        <input id="CompanyName" name="CompanyName" type="text" class="form-control required" placeholder="请输入公司名称" />
+                    </td>
+                    <th class="formTitle">公司环卫类型</th>
+                    <td class="formValue">
+                        <select id="CompanyType" name="CompanyType" class="form-control required"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">公司存在的车型</th>
+                    <td class="formValue" colspan="3">
+                        <div id="VehicleTypeTree"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,284 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_All.cshtml";
+}
+
+<script type="text/javascript">
+    var GradeType = $.request("GradeType");
+    var keyValue = $.request("keyValue");
+
+    $(function () {
+        initControl();
+
+        if (!!keyValue) {
+
+            $.ajax({
+                url: "/SystemManage/ScoringCriteriaSanitation/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+
+            $.ajax({
+                url: "/SystemManage/ScoringCriteriaSanitation/Getrelevance",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#Relevance").val(data).trigger('change');
+                }
+            });
+
+            $.ajax({
+                url: "/SystemManage/ScoringCriteriaSanitation/GetOptions",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    LoadOptions(data);
+                }
+            });
+        }
+    });
+
+    function initControl() {
+        $("#Relevance").bindSelect({
+            url: "/SystemManage/ScoringCriteriaSanitation/GetEnableGridJson",
+            param: { GradeType: GradeType },
+            id: "key",
+            text: "value"
+        });
+
+        $("#Relevance").select2({
+            language: 'zh-CN',//转为中文版
+            allowClear: true,
+            multiple: true,
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var postData = $("#form1").formSerialize();
+        postData["Relevance"] = $("#Relevance").val().toString();
+        postData["GradeType"] = GradeType;
+        postData["Options"] = JSON.stringify(GetOptions());
+
+        $.submitForm({
+            url: "/SystemManage/ScoringCriteriaSanitation/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active">
+        <a href="#info" data-toggle="tab">
+            基本资料
+        </a>
+    </li>
+    <li>
+        <a href="#workItem" data-toggle="tab">
+            评分检查项
+        </a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="info">
+        <form id="form1">
+            <div style="padding-top: 20px; margin-right: 20px;">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">关联</th>
+                        <td class="formValue">
+                            <select id="Relevance" name="Relevance" class="form-control required"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">类名</th>
+                        <td class="formValue">
+                            <input id="Name" name="Name" type="text" class="form-control required" placeholder="请输入类名" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">分值</th>
+                        <td class="formValue">
+                            <input id="Grade" name="Grade" type="text" class="form-control required number" placeholder="请输入分值" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="workItem">
+        <div class="step-pane active" style="margin: 10px; margin-bottom: 0px;height:98%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">检查项目</h3>
+            </div>
+            <div class="panel panel-default ">
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="btn_AddOptions()"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                    <button type="button" class="btn btn-default" onclick="delTr('ckb')"><span class="glyphicon glyphicon-remove-sign"></span></button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="btn_UpdateOptions()"><span class="glyphicon glyphicon-pencil"></span></button>
+                </div>
+                <table id="opTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>选择</th>
+                            <th>检查项目</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">评分检查项</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formGrading_Options">
+                    <table class="form">
+                        <tr hidden="hidden">
+                            <td class="formValue">
+                                <input id="id" name="id" type="text" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">名称</th>
+                            <td class="formValue">
+                                <input id="OpName" name="OpName" type="text" class="form-control required" placeholder="请输入名称" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="btn_submitCarWorkItemForm()">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script>
+    function btn_AddOptions() {
+        $("#OpName").val("");
+        $("#id").val("");
+    }
+    var trC;
+    function btn_UpdateOptions() {
+        var ckbs = $("input[name=ckb]:checked");
+        if (ckbs.size() == 0) {
+            alert("需选中要修改的行！");
+            return;
+        }
+       
+        //拿到第一个就行了
+        ckbs.each(function () {
+            trC = $(this).parent().parent();
+            return false;
+        });
+        var model = new gOption();
+        $(trC).children('td').each(function (j) {  // 遍历 tr 的各个 td
+            debugger;
+            if (j == 0)//取第0行的Id
+            {
+                model.id = $(this).text();
+            }
+            else if (j == 2)//取低2行Name
+            {
+                model.name = $(this).text();
+            }
+        });
+
+        $("#id").val(model.id);
+        $("#OpName").val(model.name);
+    }
+
+    function btn_submitCarWorkItemForm() {
+        if (!$('#formGrading_Options').formValid()) {
+            return false;
+        }
+        debugger;
+        $('#myModal').modal('hide');
+        if ($("#id").val() == "") {//添加
+            var trHtml = "<tr><td hidden='hidden'><input name='opId'/></td><td><input type='checkbox' name='ckb'/></td><td>" + $("#OpName").val() + "</td></tr>";
+            addTr("opTable", -1, trHtml);
+        } else {//修改
+            $(trC).children('td').each(function (j) {  // 遍历 tr 的各个 td
+                if (j == 2)//取低2行Name
+                {
+                    $(this).text($("#OpName").val());
+                }
+            });
+        }
+    }
+
+    function addTr(tab, row, trHtml) {
+        var $tr = $("#" + tab + " tr").eq(row);
+        if ($tr.size() == 0) {
+            alert("指定的table id或行数不存在！");
+            return;
+        }
+        $tr.after(trHtml);
+    }
+    function delTr(ckb) {
+        //获取选中的复选框，然后循环遍历删除
+        var ckbs = $("input[name=" + ckb + "]:checked");
+        if (ckbs.size() == 0) {
+            alert("要删除指定行，需选中要删除的行！");
+            return;
+        }
+        ckbs.each(function () {
+            $(this).parent().parent().remove();
+        });
+    }
+    function GetOptions() {
+        var Options = new Array();
+        $('#opTable tr').each(function (i) {                   // 遍历 tr
+            if (i == 0)
+                return true;
+            var model = new gOption();
+            $(this).children('td').each(function (j) {  // 遍历 tr 的各个 td
+                //alert("第" + (i + 1) + "行，第" + (j + 1) + "个td的值：" + $(this).text() + "。");
+                if (j == 0)//取第0行的Id
+                {
+                    model.id = $(this).text();
+                }
+                else if (j == 2)//取低2行Name
+                {
+                    model.name = $(this).text();
+                }
+            });
+            Options.push(model);
+        });
+        return Options;
+    }
+    function LoadOptions(data) {
+        for (var i = 0; i < data.length; i++) {
+            var trHtml = "<tr><td hidden='hidden'><input name='opId'/>" + data[i].id + "</td><td><input type='checkbox' name='ckb'/></td><td>" + data[i].name + "</td></tr>";
+            addTr("opTable", -1, trHtml);
+        }
+    }
+</script>
+<script>
+    var gOption = (function () {
+        function gOption() {
+        }
+        return gOption;
+    }());
+</script>
