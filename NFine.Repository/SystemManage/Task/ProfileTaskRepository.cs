@@ -151,7 +151,7 @@ namespace NFine.Repository.SystemManage
                             TaskId = taskEntity.F_Id,
                             ProjectType = 1,
                             State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
-                            TaskEntryType = ProfileTaskEntryTypeEnum.GarbageBox.GetIntValue(),
+                            TaskEntryType = ProfileTaskEntryTypeEnum.compressionStation.GetIntValue(),
                             EntryDataId = compressionStationIds[i],
                             StreetId = taskEntity.StreetId,
                             F_EnCode = taskEntity.F_EnCode,
@@ -163,6 +163,65 @@ namespace NFine.Repository.SystemManage
                         db.Insert<ProfileTaskEntryEntity>(compressionStationTaskEntry);
                     }
                     #endregion
+
+                    #region 沿途绿化
+                    string[] greeningIds = db.IQueryable<ProfileSanitationGreeningEntity>().Where(d => d.StreetId == taskContracts.StreetId).OrderBy(d => Guid.NewGuid()).Take(taskContracts.GreeningCount).Select(d => d.F_Id).ToArray();
+
+                    ProfileTaskEntryEntity greeningTaskEntry;
+
+                    for (int i = 0; i < greeningIds.Length; i++)
+                    {
+                        greeningTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
+                            TaskEntryType = ProfileTaskEntryTypeEnum.Greening.GetIntValue(),
+                            EntryDataId = greeningIds[i],
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId
+                        };
+
+                        greeningTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(greeningTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 绿色账户小区
+                    string[] greenResidentialIds = db.IQueryable<ProfileSanitationGreenResidentialEntity>().Where(d => d.StreetId == taskContracts.StreetId).OrderBy(d => Guid.NewGuid()).Take(taskContracts.GreenResidentialCount).Select(d => d.F_Id).ToArray();
+
+
+                    ProfileTaskEntryEntity greeningResidentialTaskEntry;
+
+                    for (int i = 0; i < greenResidentialIds.Length; i++)
+                    {
+                        greeningResidentialTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
+                            TaskEntryType = ProfileTaskEntryTypeEnum.Greening.GetIntValue(),
+                            EntryDataId = greenResidentialIds[i],
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId
+                        };
+
+                        greeningResidentialTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(greeningResidentialTaskEntry);
+                    }
+                    #endregion
+
                 }
 
                 db.Commit();

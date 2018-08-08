@@ -22,7 +22,15 @@ namespace NFine.Domain.Enums
         /// <summary>
         /// 垃圾厢房
         /// </summary>
-        GarbageBox
+        GarbageBox,
+        /// <summary>
+        /// 压缩站
+        /// </summary>
+        compressionStation,
+        /// <summary>
+        /// 沿途绿化
+        /// </summary>
+        Greening
     }
 
 
