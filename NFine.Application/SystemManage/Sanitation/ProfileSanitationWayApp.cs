@@ -133,5 +133,19 @@ namespace NFine.Application.SystemManage
 
             }
         }
+
+        /// <summary>
+        /// 获取字典 
+        /// KEy为主键Id
+        /// Value为岂止点
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValuePair<string, string>> GetDictionaryToIDMoreThan(string enCode)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append(enCode);
+
+            return service.dbcontext.Database.SqlQuery<ProfileSanitationWayEntity>(strSql.ToString()).Select(d => new KeyValuePair<string, string>(d.F_Id, d.Origin + "-" + d.Destination)).ToList();
+        }
     }
 }

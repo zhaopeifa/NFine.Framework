@@ -77,7 +77,7 @@ namespace NFine.Application.SystemManage
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append(enCode);
-
+            
             return service.dbcontext.Database.SqlQuery<ProfileMainWayEntity>(strSql.ToString()).Select(d => new KeyValuePair<string, string>(d.F_Id, d.MainWayName)).ToList();
         }
 

@@ -69,8 +69,8 @@
     <Compile Include="Entity\SystemManage\ProfileProjectEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationMachineCleanCarWorkItemEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitatioCarEntity.cs" />
-    <Compile Include="Entity\SystemManage\Task\ProfileTaskEntrySanitationEntity.cs" />
-    <Compile Include="Entity\SystemManage\Task\ProfileTaskSanitationMap.cs" />
+    <Compile Include="Entity\SystemManage\Task\ProfileTaskEntryEntity.cs" />
+    <Compile Include="Entity\SystemManage\Task\ProfileTaskEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationGreenResidentialEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationGreeningEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCesspoolEntity.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="Enums\ProfileSanitationGarbageBoxTypeEnum.cs" />
     <Compile Include="Enums\ProfileTandasGradeEnum.cs" />
     <Compile Include="Enums\ProfileTandasManagementFormEnum.cs" />
+    <Compile Include="Enums\ProfileTaskEntryTypeEnum.cs" />
     <Compile Include="Enums\ProfileTaskStateEnum.cs" />
     <Compile Include="Enums\ProfileWatersTypeEnum.cs" />
     <Compile Include="Enums\ProfileWayGradeEnum.cs" />

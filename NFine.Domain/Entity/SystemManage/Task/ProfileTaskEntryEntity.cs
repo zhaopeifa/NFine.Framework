@@ -7,12 +7,21 @@ using System.Threading.Tasks;
 namespace NFine.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// 环评-环卫-任务
+    /// 环评-环卫-任务条目
     /// </summary>
-    public class ProfileTaskSanitationEntity : IEntity<ProfileTaskSanitationEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class ProfileTaskEntryEntity : IEntity<ProfileTaskEntryEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
     {
-
         public string F_Id { get; set; }
+
+        /// <summary>
+        /// 项目类型
+        /// </summary>
+        public int ProjectType { get; set; }
+
+        /// <summary>
+        /// 任务Id
+        /// </summary>
+        public string TaskId { get; set; }
 
         /// <summary>
         /// 编号
@@ -30,7 +39,7 @@ namespace NFine.Domain.Entity.SystemManage
         public string CountyId { get; set; }
 
         /// <summary>
-        /// 环卫公司Id
+        /// 公司Id
         /// </summary>
         public string CompanyId { get; set; }
 
@@ -40,24 +49,24 @@ namespace NFine.Domain.Entity.SystemManage
         public string StreetId { get; set; }
 
         /// <summary>
-        /// 被派发人Id 责任人Id
+        /// 被派发人 责任人
         /// </summary>
         public string PersonInChargeId { get; set; }
 
         /// <summary>
-        /// 派发时间
-        /// </summary>
-        public DateTime DeliveryTime { get; set; }
-
-        /// <summary>
-        /// 完成时间
-        /// </summary>
-        public DateTime CompletionTime { get; set; }
-
-        /// <summary>
-        /// 当前任务单状态
+        /// 状态
         /// </summary>
         public int State { get; set; }
+
+        /// <summary>
+        /// 任务条目 关联类型
+        /// </summary>
+        public int TaskEntryType { get; set; }
+
+        /// <summary>
+        /// 关联数据Id
+        /// </summary>
+        public string EntryDataId { get; set; }
 
         public string F_CreatorUserId { get; set; }
 

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,8 +72,8 @@
     <Compile Include="SystemManage\ProfileProjectRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarWorkItemRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationRepository.cs" />
-    <Compile Include="SystemManage\Task\ProfileTaskEntrySanitationRepository.cs" />
-    <Compile Include="SystemManage\Task\ProfileTaskSanitationRepository.cs" />
+    <Compile Include="SystemManage\Task\ProfileTaskEntryRepository.cs" />
+    <Compile Include="SystemManage\Task\ProfileTaskRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationGreenResidentialRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationGreeningRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCesspoolRepository.cs" />

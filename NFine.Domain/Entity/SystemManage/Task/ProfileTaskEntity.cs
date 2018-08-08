@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 namespace NFine.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// 环评-环卫-任务条目
+    /// 环评-环卫-任务
     /// </summary>
-    public class ProfileTaskEntrySanitationEntity : IEntity<ProfileTaskEntrySanitationEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class ProfileTaskEntity : IEntity<ProfileTaskEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
     {
+
         public string F_Id { get; set; }
 
         /// <summary>
-        /// 任务Id
+        /// 当前任务项目类型
         /// </summary>
-        public string TaskId { get; set; }
+        public int ProjectType { get; set; }
 
         /// <summary>
         /// 编号
@@ -34,7 +35,7 @@ namespace NFine.Domain.Entity.SystemManage
         public string CountyId { get; set; }
 
         /// <summary>
-        /// 公司Id
+        /// 环卫公司Id
         /// </summary>
         public string CompanyId { get; set; }
 
@@ -44,24 +45,24 @@ namespace NFine.Domain.Entity.SystemManage
         public string StreetId { get; set; }
 
         /// <summary>
-        /// 被派发人 责任人
+        /// 被派发人Id 责任人Id
         /// </summary>
         public string PersonInChargeId { get; set; }
 
         /// <summary>
-        /// 状态
+        /// 派发时间
         /// </summary>
-        public string State { get; set; }
+        public DateTime DeliveryTime { get; set; }
 
         /// <summary>
-        /// 任务条目 关联类型
+        /// 完成时间
         /// </summary>
-        public string TaskEntryType { get; set; }
+        public DateTime CompletionTime { get; set; }
 
         /// <summary>
-        /// 关联数据Id
+        /// 当前任务单状态
         /// </summary>
-        public string EntryDataId { get; set; }
+        public int State { get; set; }
 
         public string F_CreatorUserId { get; set; }
 

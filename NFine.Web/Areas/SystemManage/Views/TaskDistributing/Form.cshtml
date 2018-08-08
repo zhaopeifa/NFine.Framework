@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <script>
+    var keyValue = $.request("keyValue");
     $(function () {
         initControl();
     });
@@ -21,6 +22,12 @@
 
         $("#CompanyId").bindSelect({
             url: "/SystemManage/OperationsCompany/GetCompanyTypeJDEnableGridJson",
+            id: "Key",
+            text: "Value"
+        });
+
+        $("#PersonInChargeId").bindSelect({
+            url: "/SystemManage/TaskDistributing/GetUserEnableGridByOutworker",
             id: "Key",
             text: "Value"
         });
@@ -84,23 +91,38 @@
             });
         });
 
+        $("#MainWayId").change(function () {
+            $("#wayId").html("");
+
+            $("#wayId").bindSelect({
+                url: "/SystemManage/TaskDistributing/GetWayEnableGridJsonByMainWay",
+                param: { mainWayId: $("#MainWayId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#wayId").select2({
+                language: 'zh-CN',//转为中文版
+            });
+        });
+
+
+        $("#wayId").bindSelect({
+            url: "/SystemManage/TaskDistributing/GetWayEnableGridJsonByMainWay",
+            param: { mainWayId: $("#MainWayId").val() },
+            id: "Key",
+            text: "Value"
+        });
+
         $("#MainWayId").select2({
             language: 'zh-CN',//转为中文版
 
         });
 
-        $("#wayOrigin").bindSelect({
-            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
-            param: { StreetId: $("#StreetId").val() },
-            id: "Key",
-            text: "Value"
+        $("#wayId").select2({
+            language: 'zh-CN',//转为中文版
         });
-        $("#wayDestination").bindSelect({
-            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
-            param: { StreetId: $("#StreetId").val() },
-            id: "Key",
-            text: "Value"
-        });
+
     }
     function submitForm() {
         if (!$('#form1').formValid()) {
@@ -152,8 +174,7 @@
                                 <div class="input-group-addon">街道</div>
                             </div>
                             <div class="form-inline" style="width:200px">
-                                <select id="wayOrigin" name="wayOrigin" class="required"></select>
-                                <select id="wayDestination" name="wayDestination" class="required"></select>
+                                <select id="wayId" name="wayId" class="required"></select>
                             </div>
                         </div>
                     </div>
@@ -192,7 +213,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="input-group" style="width:200px">
-                                <input id="tandasCount" name="tandasCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                <input id="GarbageBoxCount" name="GarbageBoxCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                 <div class="input-group-addon">座</div>
                             </div>
                         </div>
@@ -253,7 +274,7 @@
             <tr>
                 <th class="formTitle">完成时间</th>
                 <td class="formValue">
-                    <input id="DeliveryTime" name="DeliveryTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ startDate: '%y-%M-01 00:00:00', dateFmt: 'yyyy-MM-dd HH:mm:ss', alwaysUseStartDate: true })" />
+                    <input id="CompletionTime" name="CompletionTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ startDate: '%y-%M-01 00:00:00', dateFmt: 'yyyy-MM-dd HH:mm:ss', alwaysUseStartDate: true })" />
                 </td>
             </tr>
         </table>

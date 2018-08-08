@@ -11,10 +11,59 @@ namespace NFine.Domain.Enums
     /// </summary>
     public enum ProfileTaskStateEnum
     {
-        为派遣 = 0,
-        已派遣 = 1,
-        待审核 = 2,
-        已终结 = 3,
-        已作废 = -1
+        /// <summary>
+        /// 未派遣
+        /// </summary>
+        NotToSend = 0,
+        /// <summary>
+        /// 已派遣
+        /// </summary>
+        HasSent = 1,
+        /// <summary>
+        /// 待审核
+        /// </summary>
+        ToAudit = 2,
+        /// <summary>
+        /// 已终结
+        /// </summary>
+        HavePutAnEndTo = 3,
+        /// <summary>
+        /// 已作废
+        /// </summary>
+        TheCancellation = -1
+    }
+
+    public static class ProfileTaskStateEnumExtension
+    {
+        public static int GetIntValue(this ProfileTaskStateEnum type)
+        {
+            return (int)type;
+        }
+        public static string GetAnnotation(this ProfileTaskStateEnum type)
+        {
+            string result = string.Empty;
+            switch (type)
+            {
+                case ProfileTaskStateEnum.NotToSend:
+                    result = "未派遣";
+                    break;
+                case ProfileTaskStateEnum.HasSent:
+                    result = "已派遣";
+                    break;
+                case ProfileTaskStateEnum.ToAudit:
+                    result = "待审核";
+                    break;
+                case ProfileTaskStateEnum.HavePutAnEndTo:
+                    result = "已终结";
+                    break;
+                case ProfileTaskStateEnum.TheCancellation:
+                    result = "已作废";
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
     }
 }

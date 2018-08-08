@@ -89,7 +89,7 @@
     <Compile Include="SystemManage\ProfileStreetApp.cs" />
     <Compile Include="SystemManage\RoleApp.cs" />
     <Compile Include="SystemManage\ScoringCriteriaApp.cs" />
-    <Compile Include="SystemManage\Task\ProfileTaskSanitationApp.cs" />
+    <Compile Include="SystemManage\Task\ProfileTaskApp.cs" />
     <Compile Include="SystemManage\UserApp.cs" />
     <Compile Include="SystemManage\UserLogOnApp.cs" />
     <Compile Include="SystemManage\DutyApp.cs" />

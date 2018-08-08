@@ -82,8 +82,8 @@
     <Compile Include="SystemManage\ProfileProjectMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarWorkItemMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarMap.cs" />
-    <Compile Include="SystemManage\Task\ProfileTaskEntrySanitationMap.cs" />
-    <Compile Include="SystemManage\Task\ProfileTaskSanitationMap.cs" />
+    <Compile Include="SystemManage\Task\ProfileTaskEntryMap.cs" />
+    <Compile Include="SystemManage\Task\ProfileTaskMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationGreenResidentialMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationGreeningMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCesspoolMap.cs" />

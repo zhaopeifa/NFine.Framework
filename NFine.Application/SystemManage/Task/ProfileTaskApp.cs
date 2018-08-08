@@ -1,4 +1,5 @@
 ﻿using NFine.Code;
+using NFine.Domain.Contracts;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Repository.SystemManage;
 using System;
@@ -12,16 +13,16 @@ namespace NFine.Application.SystemManage
     /// <summary>
     /// 环评-环卫-任务
     /// </summary>
-    public class ProfileTaskSanitationApp
+    public class ProfileTaskApp
     {
-        private ProfileTaskSanitationRepository service = new ProfileTaskSanitationRepository();
+        private ProfileTaskRepository service = new ProfileTaskRepository();
 
         /// <summary>
         /// 使用sql查询
         /// </summary>
         /// <param name="enCode"></param>
         /// <returns></returns>
-        public List<ProfileTaskSanitationEntity> FildSql(string enCode)
+        public List<ProfileTaskEntity> FildSql(string enCode)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append(enCode);
@@ -34,9 +35,9 @@ namespace NFine.Application.SystemManage
         /// <param name="pagination">分页，排序参数</param>
         /// <param name="keyword">检索关键字</param>
         /// <returns></returns>
-        public List<ProfileTaskSanitationEntity> GetList(Pagination pagination, string keyword)
+        public List<ProfileTaskEntity> GetList(Pagination pagination, string keyword)
         {
-            var expression = ExtLinq.True<ProfileTaskSanitationEntity>();
+            var expression = ExtLinq.True<ProfileTaskEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_EnCode.Contains(keyword));
@@ -50,9 +51,14 @@ namespace NFine.Application.SystemManage
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ProfileTaskSanitationEntity GetForm(string keyValue)
+        public ProfileTaskEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
+        }
+
+        public void SubmitForm(TaskInsertContracts taskEntity, string keyValue)
+        {
+            service.SubmitForm(taskEntity, keyValue);
         }
     }
 }

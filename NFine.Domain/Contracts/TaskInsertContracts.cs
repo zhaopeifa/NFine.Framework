@@ -34,15 +34,7 @@ namespace NFine.Domain.Contracts
         /// </summary>
         public string MainWayId { get; set; }
 
-        /// <summary>
-        /// 道路起点
-        /// </summary>
-        public string wayOrigin { get; set; }
-
-        /// <summary>
-        /// 道路终点
-        /// </summary>
-        public string wayDestination { get; set; }
+        public string WayId { get; set; }
 
         /// <summary>
         /// 环卫公厕数量

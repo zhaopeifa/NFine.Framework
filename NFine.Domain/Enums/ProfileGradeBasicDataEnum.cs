@@ -19,8 +19,6 @@ namespace NFine.Domain.Enums
         环卫车辆 = 6,
         绿化 = 7,
         绿色账户小区 = 8
-
-
     }
 
     public enum ProfileScoringClassifyEntryType

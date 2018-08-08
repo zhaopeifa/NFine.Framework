@@ -32,7 +32,7 @@ namespace NFine.Domain.Entity.SystemManage
         /// <summary>
         /// 是否检查人员
         /// </summary>
-        public bool? F_IsCheckUser { get; set; }
+        public bool? F_IsOutworker { get; set; }
 
         public int? F_SortCode { get; set; }
         public bool? F_DeleteMark { get; set; }

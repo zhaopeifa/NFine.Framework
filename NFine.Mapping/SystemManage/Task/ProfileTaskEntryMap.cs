@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class ProfileTaskSanitationMap: EntityTypeConfiguration<ProfileTaskSanitationEntity>
+    public class ProfileTaskEntryMap: EntityTypeConfiguration<ProfileTaskEntryEntity>
     {
-        public ProfileTaskSanitationMap()
+        public ProfileTaskEntryMap()
         {
-            this.ToTable("ProfileTaskSanitation");
+            this.ToTable("ProfileTaskEntry");
             this.HasKey(t => t.F_Id);
         }
     }

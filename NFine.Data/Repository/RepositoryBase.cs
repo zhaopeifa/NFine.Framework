@@ -148,6 +148,7 @@ namespace NFine.Data
         {
             return dbcontext.Set<TEntity>().Where(predicate);
         }
+
         public List<TEntity> FindList<TEntity>(string strSql) where TEntity : class
         {
             return dbcontext.Database.SqlQuery<TEntity>(strSql).ToList<TEntity>();
