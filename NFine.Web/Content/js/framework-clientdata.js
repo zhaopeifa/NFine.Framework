@@ -23,7 +23,9 @@ $.clientsInit = function () {
         ProfileWatersType: [],//水域类型
         ProfileGovernSort: [],//三年治理计划分类
         ProfileEnvironmentType: [],//三年治理计划环境类型
-        ProfileGovernType:[]//三年治理计划类型
+        ProfileGovernType: [],//三年治理计划类型
+        ProfileProjectTypes: [],//项目类型
+        ProfileTaskStates:[]//任务单类型
     };
     var init = function () {
         $.ajax({
@@ -50,6 +52,8 @@ $.clientsInit = function () {
                 dataJson.ProfileGovernSort = data.ProfileGovernSort;
                 dataJson.ProfileEnvironmentType = data.ProfileEnvironmentType;
                 dataJson.ProfileGovernType = data.ProfileGovernType;
+                dataJson.ProfileProjectTypes = data.ProfileProjectTypes;
+                dataJson.ProfileTaskStates = data.ProfileTaskStates
             }
         });
     }

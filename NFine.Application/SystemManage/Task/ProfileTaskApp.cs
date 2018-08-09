@@ -60,5 +60,13 @@ namespace NFine.Application.SystemManage
         {
             service.SubmitForm(taskEntity, keyValue);
         }
+
+        /// <summary>
+        /// 任务派发
+        /// </summary>
+        public void TaskDistributed(string keyValue)
+        {
+            service.TaskDistributed(keyValue);
+        }
     }
 }

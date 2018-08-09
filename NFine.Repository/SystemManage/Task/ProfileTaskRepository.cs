@@ -42,10 +42,7 @@ namespace NFine.Repository.SystemManage
                         StreetId = taskContracts.StreetId,
                         State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
                         PersonInChargeId = taskContracts.PersonInChargeId,
-                        CompletionTime = taskContracts.CompletionTime,
-                        DeliveryTime = taskContracts.DeliveryTime,
-                        F_EnCode = "",
-
+                        CompletionTime = taskContracts.CompletionTime
                     };
                     taskEntity.Create();
 
@@ -62,7 +59,6 @@ namespace NFine.Repository.SystemManage
                         CountyId = taskEntity.CountyId,
                         TaskId = taskEntity.F_Id,
                         ProjectType = 1,
-                        State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
                         TaskEntryType = ProfileTaskEntryTypeEnum.Way.GetIntValue(),
                         EntryDataId = taskContracts.WayId,
                         StreetId = taskEntity.StreetId,
@@ -91,11 +87,9 @@ namespace NFine.Repository.SystemManage
                             CountyId = taskEntity.CountyId,
                             TaskId = taskEntity.F_Id,
                             ProjectType = 1,
-                            State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
                             TaskEntryType = ProfileTaskEntryTypeEnum.Tandas.GetIntValue(),
                             EntryDataId = thandasTaskIds[i],
                             StreetId = taskEntity.StreetId,
-                            F_EnCode = taskEntity.F_EnCode,
                             PersonInChargeId = taskEntity.PersonInChargeId
                         };
                         thandasTaskEntry.Create();
@@ -122,11 +116,9 @@ namespace NFine.Repository.SystemManage
                             CountyId = taskEntity.CountyId,
                             TaskId = taskEntity.F_Id,
                             ProjectType = 1,
-                            State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
                             TaskEntryType = ProfileTaskEntryTypeEnum.GarbageBox.GetIntValue(),
                             EntryDataId = garbageBoxTaskIds[i],
                             StreetId = taskEntity.StreetId,
-                            F_EnCode = taskEntity.F_EnCode,
                             PersonInChargeId = taskEntity.PersonInChargeId
                         };
 
@@ -150,11 +142,9 @@ namespace NFine.Repository.SystemManage
                             CountyId = taskEntity.CountyId,
                             TaskId = taskEntity.F_Id,
                             ProjectType = 1,
-                            State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
                             TaskEntryType = ProfileTaskEntryTypeEnum.compressionStation.GetIntValue(),
                             EntryDataId = compressionStationIds[i],
                             StreetId = taskEntity.StreetId,
-                            F_EnCode = taskEntity.F_EnCode,
                             PersonInChargeId = taskEntity.PersonInChargeId
                         };
 
@@ -178,11 +168,9 @@ namespace NFine.Repository.SystemManage
                             CountyId = taskEntity.CountyId,
                             TaskId = taskEntity.F_Id,
                             ProjectType = 1,
-                            State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
                             TaskEntryType = ProfileTaskEntryTypeEnum.Greening.GetIntValue(),
                             EntryDataId = greeningIds[i],
                             StreetId = taskEntity.StreetId,
-                            F_EnCode = taskEntity.F_EnCode,
                             PersonInChargeId = taskEntity.PersonInChargeId
                         };
 
@@ -208,7 +196,6 @@ namespace NFine.Repository.SystemManage
                             CountyId = taskEntity.CountyId,
                             TaskId = taskEntity.F_Id,
                             ProjectType = 1,
-                            State = ProfileTaskStateEnum.NotToSend.GetIntValue(),
                             TaskEntryType = ProfileTaskEntryTypeEnum.Greening.GetIntValue(),
                             EntryDataId = greenResidentialIds[i],
                             StreetId = taskEntity.StreetId,
@@ -223,6 +210,26 @@ namespace NFine.Repository.SystemManage
                     #endregion
 
                 }
+
+                db.Commit();
+            }
+        }
+
+        public void TaskDistributed(string keyValue)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                var taskEntity = db.FindEntity<ProfileTaskEntity>(keyValue);
+                if (taskEntity.State != ProfileTaskStateEnum.NotToSend.GetIntValue())
+                {
+                    throw new Exception("当前任务单已经下发过了，请勿重复操作。");
+                }
+
+                taskEntity.DeliveryTime = DateTime.Now;//设置下发时间
+                taskEntity.F_EnCode = ((DateTime)taskEntity.DeliveryTime).ToString("yyyyMMddHHmmss");//任务单号根据派发时间生成
+                taskEntity.State = ProfileTaskStateEnum.HasSent.GetIntValue();
+
+                db.Update<ProfileTaskEntity>(taskEntity);
 
                 db.Commit();
             }

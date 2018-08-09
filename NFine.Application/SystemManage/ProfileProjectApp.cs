@@ -1,4 +1,5 @@
 ﻿using NFine.Code;
+using NFine.Domain.Contracts;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Repository.SystemManage;
 using NFine.Web.Function;

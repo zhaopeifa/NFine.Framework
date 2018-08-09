@@ -80,9 +80,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\County\CountyCode.cs" />
     <Compile Include="Code\County\ICounty.cs" />
+    <Compile Include="Code\Project\IProject.cs" />
+    <Compile Include="Code\Project\ProjectCode.cs" />
     <Compile Include="Code\User\IUser.cs" />
     <Compile Include="Code\User\UserCode.cs" />
     <Compile Include="Controllers\CountyController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\StreetController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enums\StatusCodeEnum.cs" />
     <Compile Include="Filter\ExceptionAttribute.cs" />

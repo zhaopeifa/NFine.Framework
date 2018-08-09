@@ -34,5 +34,18 @@ namespace Nfine.WebApi.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [HttpPost]
+        public IHttpActionResult Get(string cityId)
+        {
+            var result = ApiBackParameter<List<ApiProfileCountyContracts>>.Get((api) =>
+            {
+                api.StatusCode = StatusCodeEnum.成功.GetIntValue();
+                api.Data = CountyCode.GetProfileCountyEntitys(cityId);
+            });
+
+            return Ok(result);
+        }
     }
 }

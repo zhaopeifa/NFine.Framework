@@ -19,19 +19,29 @@ namespace Nfine.WebApi.Controllers
         public IHttpActionResult Login(string UserName, string PassWord)
         {
             UserEntity loginUser = null;
-            loginUser = UserCode.Login(UserName, PassWord);
-
-            var result = ApiBackParameter<UserEntity>.Get((api) =>
+            bool isHaveException = false;
+            string errorMess = "";
+            try
             {
-                if (loginUser == null)
+                loginUser = UserCode.Login(UserName, PassWord);
+            }
+            catch (Exception ex)
+            {
+                isHaveException = true;
+                errorMess = ex.ToString();
+            }
+
+            var result = ApiBackParameter<string>.Get((api) =>
+            {
+                if (loginUser == null || isHaveException)
                 {
                     api.StatusCode = StatusCodeEnum.失败.GetIntValue();
-                    api.Message = "登录失败!";
+                    api.Message = errorMess;
                 }
                 else
                 {
                     api.StatusCode = StatusCodeEnum.成功.GetIntValue();
-                    api.Data = loginUser;
+                    api.Data = loginUser.F_Id;
                     api.Message = "登录成功!";
                 }
             });

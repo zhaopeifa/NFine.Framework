@@ -6,6 +6,7 @@
 *********************************************************************************/
 using NFine.Application.SystemManage;
 using NFine.Code;
+using NFine.Domain.Enums;
 using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,9 @@ namespace NFine.Web.Controllers
                 ProfileWatersType = this.GetProfileWatersType(),
                 ProfileGovernSort = this.GetProfileGovernSort(),
                 ProfileEnvironmentType = this.GetProfileEnvironmentType(),
-                ProfileGovernType = this.GetProfileGovernType()
+                ProfileGovernType = this.GetProfileGovernType(),
+                ProfileProjectTypes = this.GetProfileProjectTypes(),
+                ProfileTaskStates = this.GetProfileTaskStates()
             };
             return Content(data.ToJson());
         }
@@ -349,6 +352,39 @@ namespace NFine.Web.Controllers
                 dictionary.Add(myCode.ToString(), fieldItem);
             }
             return dictionary;
+        }
+
+        public object GetProfileProjectTypes()
+        {
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+            foreach (NFine.Domain.Enums.ProfileProjectTypeEnum myCode in System.Enum.GetValues(typeof(NFine.Domain.Enums.ProfileProjectTypeEnum)))
+            {
+
+                var fieldItem = new
+                {
+                    encode = (int)myCode,
+                    fullname = myCode.GetDescribe()
+                };
+                dictionary.Add(((int)myCode).ToString(), fieldItem);
+            }
+            return dictionary;
+        }
+
+        public object GetProfileTaskStates()
+        {
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+            foreach (NFine.Domain.Enums.ProfileTaskStateEnum myCode in System.Enum.GetValues(typeof(NFine.Domain.Enums.ProfileTaskStateEnum)))
+            {
+
+                var fieldItem = new
+                {
+                    encode = (int)myCode,
+                    fullname = myCode.GetAnnotation()
+                };
+                dictionary.Add(((int)myCode).ToString(), fieldItem);
+            }
+            return dictionary;
+
         }
     }
 }

@@ -52,7 +52,7 @@ namespace NFine.Domain.Entity.SystemManage
         /// <summary>
         /// 派发时间
         /// </summary>
-        public DateTime DeliveryTime { get; set; }
+        public DateTime? DeliveryTime { get; set; }
 
         /// <summary>
         /// 完成时间

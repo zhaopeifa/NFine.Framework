@@ -54,11 +54,6 @@ namespace NFine.Domain.Entity.SystemManage
         public string PersonInChargeId { get; set; }
 
         /// <summary>
-        /// 状态
-        /// </summary>
-        public int State { get; set; }
-
-        /// <summary>
         /// 任务条目 关联类型
         /// </summary>
         public int TaskEntryType { get; set; }
