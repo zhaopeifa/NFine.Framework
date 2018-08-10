@@ -149,5 +149,13 @@ namespace NFine.Data
         {
             return dbcontext.Set<TEntity>().Where(predicate).Select(selector).ToList();
         }
+
+        public void QueryCommand<TEntity>(Action<IQueryable<TEntity>> callBack) where TEntity : class
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                callBack(db.IQueryable<TEntity>());
+            }
+        }
     }
 }

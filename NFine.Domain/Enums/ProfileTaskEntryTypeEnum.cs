@@ -30,7 +30,11 @@ namespace NFine.Domain.Enums
         /// <summary>
         /// 沿途绿化
         /// </summary>
-        Greening
+        Greening,
+        /// <summary>
+        /// 绿色账户小区
+        /// </summary>
+        GreenResidential,
     }
 
 

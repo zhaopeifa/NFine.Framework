@@ -32,5 +32,7 @@ namespace NFine.Data
         List<TEntity> FindList(string strSql, DbParameter[] dbParameter);
         List<TEntity> FindList(Pagination pagination);
         List<TEntity> FindList(Expression<Func<TEntity, bool>> predicate, Pagination pagination);
+
+        void QueryCommand<TEntity>(Action<IQueryable<TEntity>> callBack) where TEntity : class;
     }
 }

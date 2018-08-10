@@ -11,6 +11,8 @@ namespace NFine.Domain.Contracts
     /// </summary>
     public class TaskInsertContracts
     {
+        public string F_Id { get; set; }
+
         /// <summary>
         /// 城市
         /// </summary>

@@ -88,6 +88,8 @@
         });
     }
     function btn_delete() {
+
+
         $.deleteForm({
             url: "/SystemManage/User/DeleteForm",
             param: { keyValue: $("#gridList").jqGridRowValue().F_Id },

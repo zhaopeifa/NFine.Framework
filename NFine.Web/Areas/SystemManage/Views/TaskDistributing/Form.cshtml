@@ -6,8 +6,26 @@
     var keyValue = $.request("keyValue");
     $(function () {
         initControl();
+        TooltipCheckPointCount();
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/TaskDistributing/GetFormJson?keyValue=" + keyValue,
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+
+        
     });
     function initControl() {
+
+        selectChange()
+
+
         $("#CityId").bindSelect({
             url: "/SystemManage/City/GetEnableGridJson",
             id: "F_Id",
@@ -45,68 +63,6 @@
             text: "Value"
         });
 
-        $("#StreetId").change(function () {
-            $("#MainWayId").html("");
-
-            $("#MainWayId").bindSelect({
-                url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
-                param: { StreetId: $("#StreetId").val() },
-                id: "Key",
-                text: "Value"
-            });
-
-            $("#MainWayId").select2({
-                language: 'zh-CN',//转为中文版
-
-            });
-        });
-
-        $("#CountyId").change(function () {
-            $("#StreetId").html("");
-
-            $("#StreetId").bindSelect({
-                url: "/SystemManage/Street/GetEnableGridJsonByCountyId_CompanyId",
-                param: { CountyId: $("#CountyId").val(), CompanyId: $("#CompanyId").val() },
-                id: "Key",
-                text: "Value"
-            });
-
-            $("#StreetId").select2({
-                language: 'zh-CN',//转为中文版
-            });
-        });
-
-        $("#CompanyId").change(function () {
-            $("#StreetId").html("");
-
-            $("#StreetId").bindSelect({
-                url: "/SystemManage/Street/GetEnableGridJsonByCountyId_CompanyId",
-                param: { CountyId: $("#CountyId").val(), CompanyId: $("#CompanyId").val() },
-                id: "Key",
-                text: "Value"
-            });
-
-            $("#StreetId").select2({
-                language: 'zh-CN',//转为中文版
-            });
-        });
-
-        $("#MainWayId").change(function () {
-            $("#wayId").html("");
-
-            $("#wayId").bindSelect({
-                url: "/SystemManage/TaskDistributing/GetWayEnableGridJsonByMainWay",
-                param: { mainWayId: $("#MainWayId").val() },
-                id: "Key",
-                text: "Value"
-            });
-
-            $("#wayId").select2({
-                language: 'zh-CN',//转为中文版
-            });
-        });
-
-
         $("#wayId").bindSelect({
             url: "/SystemManage/TaskDistributing/GetWayEnableGridJsonByMainWay",
             param: { mainWayId: $("#MainWayId").val() },
@@ -123,6 +79,105 @@
             language: 'zh-CN',//转为中文版
         });
 
+    }
+    function selectChange() {
+        $("#CompanyId").change(function () {
+            $("#StreetId").html("");
+
+            $("#StreetId").bindSelect({
+                url: "/SystemManage/Street/GetEnableGridJsonByCountyId_CompanyId",
+                param: { CountyId: $("#CountyId").val(), CompanyId: $("#CompanyId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#StreetId").select2({
+                language: 'zh-CN',//转为中文版
+            });
+
+            //区县发生变化出发街道更改事件
+            $("#StreetId").trigger("change");
+        });
+
+        $("#CountyId").change(function () {
+            $("#StreetId").html("");
+
+            $("#StreetId").bindSelect({
+                url: "/SystemManage/Street/GetEnableGridJsonByCountyId_CompanyId",
+                param: { CountyId: $("#CountyId").val(), CompanyId: $("#CompanyId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#StreetId").select2({
+                language: 'zh-CN',//转为中文版
+            });
+
+            //区县发生变化出发街道更改事件
+            $("#StreetId").trigger("change");
+        });
+
+        $("#StreetId").change(function () {
+
+            //提示当前数量
+            TooltipCheckPointCount();
+
+
+            $("#MainWayId").html("");
+
+            $("#MainWayId").bindSelect({
+                url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
+                param: { StreetId: $("#StreetId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#MainWayId").select2({
+                language: 'zh-CN',//转为中文版
+
+            });
+
+            //街道变化时出发主路更改事件
+            $("#MainWayId").trigger("change");
+        });
+
+        $("#MainWayId").change(function () {
+
+            $("#wayId").html("");
+
+            $("#wayId").bindSelect({
+                url: "/SystemManage/TaskDistributing/GetWayEnableGridJsonByMainWay",
+                param: { mainWayId: $("#MainWayId").val() },
+                id: "Key",
+                text: "Value"
+            });
+
+            $("#wayId").select2({
+                language: 'zh-CN',//转为中文版
+            });
+        });
+    }
+    function TooltipCheckPointCount() {
+        $.ajax({
+            url: "/SystemManage/TaskDistributing/GetCheckPointCount",
+            data: { streetId: $("#StreetId").val() },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $("#TandasCount").attr('title', data.TandasCount + "座").tooltip('fixTitle');
+
+                $("#CesspoolCount").attr('title', data.TandasCount + "座").tooltip('fixTitle');
+
+                $("#GarbageBoxCount").attr('title', data.GarbageBox + "座").tooltip('fixTitle');
+
+                $("#CompressionCount").attr('title', data.compressionStation + "座").tooltip('fixTitle');
+
+                $("#GreeningCount").attr('title', data.Greening + "座").tooltip('fixTitle');
+
+                $("#GreenResidentialCount").attr('title', data.GreenResidential + "座").tooltip('fixTitle');
+
+            }
+        });
     }
     function submitForm() {
         if (!$('#form1').formValid()) {
@@ -265,12 +320,6 @@
                     <select id="PersonInChargeId" name="PersonInChargeId" class="form-control required"></select>
                 </td>
             </tr>
-            @*<tr>
-                <th class="formTitle">派发时间</th>
-                <td class="formValue">
-                    <input id="DeliveryTime" name="DeliveryTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ startDate: '%y-%M-01 00:00:00', dateFmt: 'yyyy-MM-dd HH:mm:ss', alwaysUseStartDate: true })" />
-                </td>
-            </tr>*@
             <tr>
                 <th class="formTitle">完成时间</th>
                 <td class="formValue">
@@ -280,4 +329,3 @@
         </table>
     </div>
 </form>
-

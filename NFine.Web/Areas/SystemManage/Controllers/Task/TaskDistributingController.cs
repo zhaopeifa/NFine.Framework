@@ -51,6 +51,33 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             return Success("操作成功。");
         }
 
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteForm(string keyValue)
+        {
+            var deleteModel = taskApp.GetForm(keyValue);
+            if (deleteModel.State != ProfileTaskStateEnum.NotToSend.GetIntValue())
+            {
+                throw new Exception("任务但只有未派遣状态下才允许删除操作!");
+            }
+
+            taskApp.DeleteForm(keyValue);
+            return Success("删除成功。");
+        }
+
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetFormJson(string keyValue)
+        {
+            var data = taskApp.GetTaskInsertContractsForm(keyValue);
+
+
+            return Content(data.ToJson());
+        }
+
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetWayEnableGridJsonByMainWay(string mainWayId)
@@ -79,5 +106,20 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 
             return Success("操作成功。");
         }
+
+        /// <summary>
+        /// 获取检查点数量
+        /// </summary>
+        /// <param name="streetId">根据街道筛选</param>
+        /// <returns></returns>
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetCheckPointCount(string streetId)
+        {
+            var countContracts = taskApp.GetCheckPostCount(streetId);
+
+            return Content(countContracts.ToJson());
+        }
+
     }
 }

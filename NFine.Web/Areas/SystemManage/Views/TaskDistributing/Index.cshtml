@@ -20,7 +20,15 @@
                         return top.clients.ProfileTaskStates[rowObject.State] == null ? "" : '<span class=\"label label-default\">' + top.clients.ProfileTaskStates[rowObject.State].fullname + '</span>';;
                     }
                 },
-                { label: '抽样单名称', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'F_EnCode', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
                 {
                     label: '案件级别', name: 'CityId', width: 80, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
@@ -49,7 +57,15 @@
                     }
                 },
                 { label: '被派发人', name: 'StreetId', width: 80, align: 'left' },
-                { label: '派发时间', name: 'DeliveryTime', width: 80, align: 'left' },
+                {
+                    label: '派发时间', name: 'DeliveryTime', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
                 { label: '完成时间', name: 'CompletionTime', width: 80, align: 'left' }
             ],
             pager: "#gridPager",
@@ -67,12 +83,46 @@
             id: "Form",
             title: "新增任务",
             url: "/SystemManage/TaskDistributing/Form",
-            width: "500px",
-            height: "610px",
+            width: "700px",
+            height: "510px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
+    }
+    function btn_edit() {
+        if ($("#gridList").jqGridRowValue().State != 0)//等于0代表为派发的
+        {
+            $.modalMsg("只有未派发状态的任务才能执行此操作。", "warning");
+            return;
+        }
+
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.modalOpen({
+            id: "Form",
+            title: "修改任务",
+            url: "/SystemManage/TaskDistributing/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "510px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        if ($("#gridList").jqGridRowValue().State != 0)//等于0代表为派发的
+        {
+            $.modalMsg("只有未派发状态的任务才能执行此操作。", "warning");
+            return;
+        }
+
+        $.deleteForm({
+            url: "/SystemManage/TaskDistributing/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
     }
     function btn_distributed() {
         if ($("#gridList").jqGridRowValue().State != 0)//等于0代表为派发的
