@@ -119,5 +119,20 @@ namespace NFine.Application.SystemManage
         {
             return service.FindEntity(keyValue);
         }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="keyValue"></param>
+        public void DeleteForm(string keyValue)
+        {
+            service.Delete(GetForm(keyValue));
+            try
+            {
+                //添加日志
+                LogMess.addLog(DbLogType.Delete.ToString(), "删除成功", "删除环卫车辆信息【" + GetForm(keyValue).CarId + "】成功！");
+            }
+            catch { }
+        }
     }
 }

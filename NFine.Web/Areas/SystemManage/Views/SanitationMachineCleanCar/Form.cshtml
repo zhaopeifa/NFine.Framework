@@ -9,6 +9,18 @@
     $(function () {
         initControl();
         gridList();
+
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/SanitationMachineCleanCar/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#formInfo").formSerialize(data);
+                }
+            });
+        }
     });
     function gridList() {
         var $gridList = $("#gridList");
