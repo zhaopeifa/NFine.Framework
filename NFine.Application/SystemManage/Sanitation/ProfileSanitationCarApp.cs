@@ -1,5 +1,6 @@
 ﻿using NFine.Code;
 using NFine.Domain.Entity.SystemManage;
+using NFine.Domain.Enums;
 using NFine.Repository.SystemManage;
 using NFine.Web.Function;
 using System;
@@ -38,6 +39,31 @@ namespace NFine.Application.SystemManage
         public List<ProfileSanitationCarEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<ProfileSanitationCarEntity>();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                expression = expression.And(t => t.F_EnCode.Contains(keyword));
+                expression = expression.Or(t => t.TeamName.Contains(keyword));
+                expression = expression.Or(t => t.CarId.Contains(keyword));
+            }
+
+            return service.FindList(expression, pagination);
+        }
+
+        /// <summary>
+        ///  获取数据列表
+        /// </summary>
+        /// <param name="carType">车辆类型</param>
+        /// <param name="pagination">分页，排序参数</param>
+        /// <param name="keyword">检索关键字</param>
+        /// <returns></returns>
+        public List<ProfileSanitationCarEntity> GetList(ProfileCarTypeEnum carType, Pagination pagination, string keyword)
+        {
+            int carTypeInt = carType.GetIntValue();
+
+            var expression = ExtLinq.True<ProfileSanitationCarEntity>();
+
+            expression = expression.And(t => t.CarType == carTypeInt);
+
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_EnCode.Contains(keyword));

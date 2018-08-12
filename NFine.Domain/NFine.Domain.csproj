@@ -84,6 +84,7 @@
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationTandasEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileStreetEntity.cs" />
     <Compile Include="Enums\ProfileAmenitiesEnum.cs" />
+    <Compile Include="Enums\ProfileCarTypeEnum.cs" />
     <Compile Include="Enums\ProfileEnvironmentTypeEnum.cs" />
     <Compile Include="Enums\ProfileGovernTypeEnum.cs" />
     <Compile Include="Enums\ProfileFiveChaosEnum.cs" />

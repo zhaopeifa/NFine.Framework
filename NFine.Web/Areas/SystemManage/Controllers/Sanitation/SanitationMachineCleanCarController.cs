@@ -1,6 +1,7 @@
 ﻿using NFine.Application.SystemManage;
 using NFine.Code;
 using NFine.Domain.Entity.SystemManage;
+using NFine.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = new
             {
-                rows = App.GetList(pagination, keyword),
+                rows = App.GetList(ProfileCarTypeEnum.MachineCleanCar, pagination, keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -44,6 +45,8 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(ProfileSanitationCarEntity entity, string keyValue)
         {
+            entity.CarType = ProfileCarTypeEnum.MachineCleanCar.GetIntValue();
+
             App.SubmitForm(entity, keyValue);
             return Success("操作成功!");
         }
