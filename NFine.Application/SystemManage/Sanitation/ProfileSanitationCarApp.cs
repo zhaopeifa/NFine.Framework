@@ -1,6 +1,7 @@
 ﻿using NFine.Code;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Repository.SystemManage;
+using NFine.Web.Function;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,14 @@ namespace NFine.Application.SystemManage
     /// </summary>
     public class ProfileSanitationCarApp
     {
-        private ProfileSanitationRepository service = new ProfileSanitationRepository();
+        private ProfileSanitationCarRepository service = new ProfileSanitationCarRepository();
 
         /// <summary>
         /// 使用sql查询
         /// </summary>
         /// <param name="enCode"></param>
         /// <returns></returns>
-        public List<ProfileSanitatioCarEntity> FildSql(string enCode)
+        public List<ProfileSanitationCarEntity> FildSql(string enCode)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append(enCode);
@@ -34,9 +35,9 @@ namespace NFine.Application.SystemManage
         /// <param name="pagination">分页，排序参数</param>
         /// <param name="keyword">检索关键字</param>
         /// <returns></returns>
-        public List<ProfileSanitatioCarEntity> GetList(Pagination pagination, string keyword)
+        public List<ProfileSanitationCarEntity> GetList(Pagination pagination, string keyword)
         {
-            var expression = ExtLinq.True<ProfileSanitatioCarEntity>();
+            var expression = ExtLinq.True<ProfileSanitationCarEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_EnCode.Contains(keyword));
@@ -48,11 +49,47 @@ namespace NFine.Application.SystemManage
         }
 
         /// <summary>
+        /// 提交，修改
+        /// </summary>
+        /// <param name="tandasEntity"></param>
+        /// <param name="keyValue"></param>
+        public void SubmitForm(ProfileSanitationCarEntity entity, string keyValue)
+        {
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                entity.Modify(keyValue);
+
+                service.Update(entity);
+
+                try
+                {
+                    //添加日志
+                    LogMess.addLog(DbLogType.Update.ToString(), "修改成功", "修改环卫作业车辆信息【" + entity.CarId + "】成功！");
+                }
+                catch { }
+            }
+            else
+            {
+                entity.Create();
+
+                service.Insert(entity);
+
+                try
+                {
+                    //添加日志
+                    LogMess.addLog(DbLogType.Update.ToString(), "修改成功", "新建环卫车辆信息【" + entity.CarId + "】成功！");
+                }
+                catch { }
+
+            }
+        }
+
+        /// <summary>
         /// 根据id获取单挑数据
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ProfileSanitatioCarEntity GetForm(string keyValue)
+        public ProfileSanitationCarEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }

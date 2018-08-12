@@ -120,6 +120,5 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 
             return Content(countContracts.ToJson());
         }
-
     }
 }

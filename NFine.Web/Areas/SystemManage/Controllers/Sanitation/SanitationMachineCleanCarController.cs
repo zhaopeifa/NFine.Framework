@@ -1,5 +1,6 @@
 ﻿using NFine.Application.SystemManage;
 using NFine.Code;
+using NFine.Domain.Entity.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,15 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             return View();
         }
 
+        [HttpPost]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitForm(ProfileSanitationCarEntity entity, string keyValue)
+        {
+            App.SubmitForm(entity, keyValue);
+            return Success("操作成功!");
+        }
+
 
         [HttpGet]
         [HandlerAjaxOnly]
@@ -50,7 +60,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             }
             var data = new
             {
-                rows =sss,
+                rows = sss,
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

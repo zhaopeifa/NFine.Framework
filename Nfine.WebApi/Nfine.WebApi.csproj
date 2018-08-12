@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\CheckingPoint\ICheckingPoint.cs" />
     <Compile Include="Code\County\CountyCode.cs" />
     <Compile Include="Code\County\ICounty.cs" />
     <Compile Include="Code\Project\IProject.cs" />

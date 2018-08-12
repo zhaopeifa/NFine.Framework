@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ApiBackParameter.cs" />
+    <Compile Include="Contracts\ApiCheckingPointContracts.cs" />
     <Compile Include="Contracts\ApiProfileCountyContracts.cs" />
     <Compile Include="Contracts\ApiProfileUserContracts.cs" />
     <Compile Include="Contracts\ApiProjectContracts.cs" />
@@ -69,8 +70,8 @@
     <Compile Include="Entity\SystemManage\ProfileOperationsCompanyEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileOperationsVehicleEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileProjectEntity.cs" />
-    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationMachineCleanCarWorkItemEntity.cs" />
-    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitatioCarEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCarWorkItemEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCarEntity.cs" />
     <Compile Include="Entity\SystemManage\Task\ProfileTaskEntryEntity.cs" />
     <Compile Include="Entity\SystemManage\Task\ProfileTaskEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationGreenResidentialEntity.cs" />

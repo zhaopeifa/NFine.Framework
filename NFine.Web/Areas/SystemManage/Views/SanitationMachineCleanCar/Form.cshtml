@@ -4,6 +4,8 @@
 }
 
 <script>
+    var keyValue = $.request("keyValue");
+
     $(function () {
         initControl();
         gridList();
@@ -42,6 +44,20 @@
 
     }
     function submitForm() {
+        if (!$('#formInfo').formValid()) {
+            return false;
+        }
+
+        debugger;
+        var postData = $("#formInfo").formSerialize();
+
+        $.submitForm({
+            url: "/SystemManage/SanitationMachineCleanCar/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
     }
 </script>
 <ul id="myTab" class="nav nav-tabs">

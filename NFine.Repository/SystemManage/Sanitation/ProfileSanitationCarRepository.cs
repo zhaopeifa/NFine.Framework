@@ -11,7 +11,7 @@ namespace NFine.Repository.SystemManage
     /// <summary>
     /// 环评-环卫-机扫车
     /// </summary>
-    public class ProfileSanitationRepository : RepositoryBase<ProfileSanitatioCarEntity>
+    public class ProfileSanitationCarRepository : RepositoryBase<ProfileSanitationCarEntity>
     {
     }
 }

@@ -9,7 +9,7 @@ namespace NFine.Domain.Entity.SystemManage
     /// <summary>
     /// 环评-环卫-机扫车
     /// </summary>
-    public class ProfileSanitatioCarEntity : IEntity<ProfileSanitatioCarEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class ProfileSanitationCarEntity : IEntity<ProfileSanitationCarEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
     {
 
         public string F_Id { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class ProfileSanitationCarWorkItemMap : EntityTypeConfiguration<ProfileSanitationCarEntity>
+    public class ProfileSanitationCarWorkItemMap : EntityTypeConfiguration<ProfileSanitationCarWorkItemEntity>
     {
         public ProfileSanitationCarWorkItemMap()
         {
