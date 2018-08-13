@@ -72,6 +72,7 @@ namespace NFine.Domain.Enums
                     _sanitationGrade.Add(ProfileGradeBasicDataEnum.道路);
                     _sanitationGrade.Add(ProfileGradeBasicDataEnum.垃圾箱房);
                     _sanitationGrade.Add(ProfileGradeBasicDataEnum.压缩站);
+                    _sanitationGrade.Add(ProfileGradeBasicDataEnum.沿街垃圾收集设施);
                     _sanitationGrade.Add(ProfileGradeBasicDataEnum.环卫车辆);
                     _sanitationGrade.Add(ProfileGradeBasicDataEnum.绿化);
                     _sanitationGrade.Add(ProfileGradeBasicDataEnum.绿色账户小区);

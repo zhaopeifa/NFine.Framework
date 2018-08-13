@@ -34,7 +34,7 @@ namespace NFine.Domain.Enums
         /// <summary>
         /// 绿色账户小区
         /// </summary>
-        GreenResidential,
+        GreenResidential
     }
 
 

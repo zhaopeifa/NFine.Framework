@@ -84,11 +84,27 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             return Content(list.ToJson());
         }
 
+        /// <summary>
+        /// 获取负责街道的环卫公司
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult GetCompanyTypeJDEnableGridJson(string keyword)
         {
             //负责街道 只有街道的
             var data = companycleApp.GetDictionary(d => d.CompanyType == (int)ProfileOperationsCompanyTypeEnum.特定街道);
+            return Content(data.ToJson());
+        }
+
+        /// <summary>
+        /// 获取负责车辆的环卫公司
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult GetCompanyTypeCLEnableGridJson()
+        {
+            var data = companycleApp.GetDictionary(d => d.CompanyType == (int)ProfileOperationsCompanyTypeEnum.特定车辆);
             return Content(data.ToJson());
         }
 

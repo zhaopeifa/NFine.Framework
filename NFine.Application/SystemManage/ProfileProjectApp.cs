@@ -22,6 +22,17 @@ namespace NFine.Application.SystemManage
             return service.FindList(strSql.ToString());
         }
 
+        public List<entity> FildSql<entity>(Func<ProfileProjectEntity, bool> where,Func<ProfileProjectEntity, entity> select)
+        {
+            List<entity> result = null;
+            service.QueryCommand<ProfileProjectEntity>((query) =>
+            {
+                result = query.Where(where).Select(select).ToList();
+            });
+
+            return result;
+        }
+
         public List<ProfileProjectEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<ProfileProjectEntity>();

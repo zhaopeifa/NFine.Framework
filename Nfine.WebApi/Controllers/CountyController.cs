@@ -1,4 +1,5 @@
-﻿using Nfine.WebApi.Enums;
+﻿using Nfine.WebApi.Contracts;
+using Nfine.WebApi.Enums;
 using NFine.Domain.Contracts;
 using NFine.Domain.Entity.SystemManage;
 using System;

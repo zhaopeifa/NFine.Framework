@@ -78,17 +78,33 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\CheckingPoint\CheckingPointCode.cs" />
     <Compile Include="Code\CheckingPoint\ICheckingPoint.cs" />
+    <Compile Include="Code\County\ApiProfileCountyContracts.cs" />
     <Compile Include="Code\County\CountyCode.cs" />
     <Compile Include="Code\County\ICounty.cs" />
     <Compile Include="Code\Project\IProject.cs" />
     <Compile Include="Code\Project\ProjectCode.cs" />
+    <Compile Include="Code\ScoringCriteria\IScoringCriteria.cs" />
+    <Compile Include="Code\ScoringCriteria\ScoringCriteriaCode.cs" />
+    <Compile Include="Code\Task\ITask.cs" />
+    <Compile Include="Code\Task\TaskCode.cs" />
     <Compile Include="Code\User\IUser.cs" />
     <Compile Include="Code\User\UserCode.cs" />
+    <Compile Include="Contracts\ApiBackParameter.cs" />
+    <Compile Include="Contracts\ApiCheckingPointClassification.cs" />
+    <Compile Include="Contracts\ApiCheckingPointContracts.cs" />
+    <Compile Include="Contracts\ApiProfileCountyContracts.cs" />
+    <Compile Include="Contracts\ApiProfileUserContracts.cs" />
+    <Compile Include="Contracts\ApiProjectContracts.cs" />
+    <Compile Include="Contracts\ApiWayContracts.cs" />
+    <Compile Include="Controllers\CheckingPointController.cs" />
     <Compile Include="Controllers\CountyController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\StreetController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Enums\CheckPointTypeEnum.cs" />
     <Compile Include="Enums\StatusCodeEnum.cs" />
     <Compile Include="Filter\ExceptionAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -96,6 +112,7 @@
     </Compile>
     <Compile Include="Models\JsonContentNegotiator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unti\CheckPointAssociatedExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -119,6 +136,10 @@
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
       <Name>NFine.Code</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NFine.Data\NFine.Data.csproj">
+      <Project>{f71003e8-a836-48f4-9df6-df9095cebd18}</Project>
+      <Name>NFine.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
       <Name>NFine.Domain</Name>
@@ -126,6 +147,10 @@
     <ProjectReference Include="..\NFine.Mapping\NFine.Mapping.csproj">
       <Project>{4e642cbe-f6c5-4cb9-9474-6b349652fe77}</Project>
       <Name>NFine.Mapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFine.Repository\NFine.Repository.csproj">
+      <Project>{875233bf-ea15-49e0-9a9c-77884a897ff6}</Project>
+      <Name>NFine.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

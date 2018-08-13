@@ -1,4 +1,5 @@
-﻿using NFine.Domain.Contracts;
+﻿using Nfine.WebApi.Contracts;
+using NFine.Domain.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

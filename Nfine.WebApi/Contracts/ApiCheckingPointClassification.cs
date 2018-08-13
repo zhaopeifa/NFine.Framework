@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NFine.Domain.Contracts
+namespace Nfine.WebApi.Contracts
 {
     /// <summary>
-    /// api 返回的区县信息
+    /// api检查点类型
     /// </summary>
-    public class ApiProfileCountyContracts
+    public class ApiCheckingPointClassification
     {
-        public string Id { get; set; }
+        public int CheckPointCode { get; set; }
         public string Name { get; set; }
+        public int Code { get; set; }
     }
 }

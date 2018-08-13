@@ -1,4 +1,6 @@
-﻿using NFine.Code;
+﻿using Nfine.WebApi.Enums;
+using NFine.Code;
+using NFine.Domain.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,8 +46,6 @@ namespace Nfine.WebApi.Filter
             }
             actionExecutedContext.Response = oResponse;
             base.OnException(actionExecutedContext);
-
-
         }
 
         private void WriteLog(HttpActionExecutedContext context)

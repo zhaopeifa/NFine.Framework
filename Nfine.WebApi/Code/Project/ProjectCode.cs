@@ -1,4 +1,5 @@
-﻿using NFine.Application.SystemManage;
+﻿using Nfine.WebApi.Contracts;
+using NFine.Application.SystemManage;
 using NFine.Domain.Contracts;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Nfine.WebApi.Code.Project
     {
         private ProfileProjectApp ProfileCountyApp = new ProfileProjectApp();
 
-        public List<NFine.Domain.Contracts.ApiProjectContracts> GetProject(string countyId = "")
+        public List<ApiProjectContracts> GetProject(string countyId = "")
         {
             StringBuilder sqlStr = new StringBuilder();
 

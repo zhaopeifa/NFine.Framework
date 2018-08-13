@@ -66,17 +66,20 @@
           {
               code: 11,
               Text: "机扫车",
-              url: "/SystemManage/SanitationMachineCleanCar/Index"//机扫车
+              url: "/SystemManage/SanitationCar/Index",//机扫车
+              parameter: { carType: 1 }
           },
           {
               code: 11,
               Text: "冲洗车",
-              url: "/SystemManage/SanitationGreenResidential/Index"//冲洗车
+              url: "/SystemManage/SanitationCar/Index",//冲洗车
+              parameter: { carType: 2 }
           },
           {
               code: 11,
               Text: "垃圾清运车",
-              url: "/SystemManage/SanitationGreenResidential/Index"//垃圾清运车
+              url: "/SystemManage/SanitationCar/Index",//垃圾清运车
+              parameter: { carType: 2 }
           }
 
     ];
@@ -123,6 +126,7 @@
         }
     ];
 
+    var selectNode = null;
     $(function () {
         $('#layout').layout();
         treeView();
@@ -138,6 +142,7 @@
                             for (var i = 0; i < sanitationData.length; i++) {
                                 if (item.text == sanitationData[i].Text) {
                                     url = sanitationData[i].url;
+                                    selectNode = sanitationData[i];
                                     break;
                                 }
                             }

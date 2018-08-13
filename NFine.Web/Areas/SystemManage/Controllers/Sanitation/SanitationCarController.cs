@@ -1,5 +1,6 @@
 ﻿using NFine.Application.SystemManage;
 using NFine.Code;
+using NFine.Domain.Contracts;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.Enums;
 using System;
@@ -13,18 +14,18 @@ namespace NFine.Web.Areas.SystemManage.Controllers
     /// <summary>
     /// 环评-环卫-机扫车
     /// </summary>
-    public class SanitationMachineCleanCarController : ControllerBase
+    public class SanitationCarController : ControllerBase
     {
         private ProfileSanitationCarApp App = new ProfileSanitationCarApp();
         private UserApp userApp = new UserApp();
 
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetGridJson(Pagination pagination, string keyword)
+        public ActionResult GetGridJson(Pagination pagination, string keyword, int carType)
         {
             var data = new
             {
-                rows = App.GetList(ProfileCarTypeEnum.MachineCleanCar, pagination, keyword),
+                rows = App.GetList((ProfileCarTypeEnum)carType, pagination, keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -43,11 +44,13 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(ProfileSanitationCarEntity entity, string keyValue)
+        public ActionResult SubmitForm(ProfileSanitationCarEntity entity, int carType, string keyValue, string workItem)
         {
-            entity.CarType = ProfileCarTypeEnum.MachineCleanCar.GetIntValue();
+            entity.CarType = carType;
 
-            App.SubmitForm(entity, keyValue);
+            ProfileCarWorkItemContracts[] works = workItem.ToObject<ProfileCarWorkItemContracts[]>();
+
+            App.SubmitForm(entity, keyValue, works);
             return Success("操作成功!");
         }
 
@@ -90,38 +93,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetWorkItemGridJson(Pagination pagination, string keyword)
+        public ActionResult GetWorkItemGridJson(string carId)
         {
-            var sss = new List<ss>();
-            for (int i = 0; i < 10; i++)
-            {
-                sss.Add(new ss());
-            }
-            var data = new
-            {
-                rows = sss,
-                total = pagination.total,
-                page = pagination.page,
-                records = pagination.records
-            };
-            return Content(data.ToJson());
-        }
-    }
+            var carWorkItems = this.App.GetCarWorkItem(carId);
 
-    public class ss
-    {
-        public ss()
-        {
-            this.F_Id = Guid.NewGuid().ToString();
-            this.F_EnCode = Guid.NewGuid().ToString();
-            this.Time = Guid.NewGuid().ToString();
-            this.MainId = Guid.NewGuid().ToString();
-            this.Origin = Guid.NewGuid().ToString();
+            return Content(carWorkItems.ToJson());
         }
-        public string F_Id { get; set; }
-        public string F_EnCode { get; set; }
-        public string Time { get; set; }
-        public string MainId { get; set; }
-        public string Origin { get; set; }
     }
 }

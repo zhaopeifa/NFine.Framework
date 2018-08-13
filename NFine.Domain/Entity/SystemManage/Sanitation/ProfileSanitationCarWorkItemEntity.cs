@@ -13,6 +13,8 @@ namespace NFine.Domain.Entity.SystemManage
     {
         public string F_Id { get; set; }
 
+        public string CarId { get; set; }
+
         /// <summary>
         /// 下标编号
         /// </summary>
@@ -24,42 +26,29 @@ namespace NFine.Domain.Entity.SystemManage
         public string F_EnCode { get; set; }
 
         /// <summary>
-        /// 关联机扫车Id
-        /// </summary>
-        public string MachineCleanCarId { get; set; }
-
-        /// <summary>
-        /// 时间段
+        /// 时间
         /// </summary>
         public string Time { get; set; }
 
         /// <summary>
-        /// 主路Id
+        /// 冲洗点名称
         /// </summary>
-        public string MainId { get; set; }
+        public string RinseName { get; set; }
 
         /// <summary>
-        /// 起点
+        /// 冲洗点地址
         /// </summary>
-        public string Origin { get; set; }
+        public string RinseAddress { get; set; }
 
         /// <summary>
-        /// 终点
+        /// 长度（米）
         /// </summary>
-        public string Destination { get; set; }
+        public int RinseLength { get; set; }
 
         /// <summary>
-        /// 类型
+        /// 备注
         /// </summary>
-        public int Type { get; set; }
-
         public string BYMESS1 { get; set; }
-
-        public string BYMESS2 { get; set; }
-
-        public string BYMESS3 { get; set; }
-
-        public string BYMESS4 { get; set; }
 
         public string F_CreatorUserId { get; set; }
 

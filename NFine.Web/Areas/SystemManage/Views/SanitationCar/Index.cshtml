@@ -5,13 +5,15 @@
 
 <script>
     var PararmsData = GetTreePararmByProjectTreeNode();
+    var CartType = selectNode.parameter.carType;
     $(function () {
         gridList();
     })
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "/SystemManage/SanitationMachineCleanCar/GetGridJson",
+            url: "/SystemManage/SanitationCar/GetGridJson",
+            postData: { carType: CartType },
             height: $(window).height() - 128,
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
@@ -20,19 +22,20 @@
                 { label: '班组名称', name: 'TeamName', width: 80, align: 'left' },
                 { label: '所属公司', name: 'CompanyId', width: 80, align: 'left' },
                 { label: '班组人数', name: 'TeamPeopleCount', width: 100, align: 'left' },
-                { label: '机扫路段', name: 'CleanRoad', width: 200, align: 'left' },
+                { label: '机扫路段', name: 'CleanRoad', width: 100, align: 'left' },
                 { label: '车队地址', name: 'CarTeamAddress', width: 80, align: 'left' },
-                { label: '驾驶员', name: '朱兴军', width: 80, align: 'left' }
+                { label: '驾驶员', name: 'Driver', width: 80, align: 'left' }
             ],
             pager: "#gridPager",
-            sortname: 'F_EnCode asc,F_CreatorTime desc',
+            sortname: 'F_CreatorTime desc',
             viewrecords: true
         });
 
         $("#btn_search").click(function () {
             $gridList.jqGrid('setGridParam', {
                 postData: {
-                    keyword: $("#txt_keyword").val()
+                    keyword: $("#txt_keyword").val(),
+                    carType: CartType
                 },
             }).trigger('reloadGrid');
         });
@@ -41,8 +44,8 @@
         debugger;
         $.modalOpen({
             id: "Form",
-            title: "新增环卫机扫车",
-            url: "/SystemManage/SanitationMachineCleanCar/Form?CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId + "&ProjectId=" + PararmsData.projectId,
+            title: "新增环卫车辆",
+            url: "/SystemManage/SanitationCar/Form?carType=" + CartType + "&CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId + "&ProjectId=" + PararmsData.projectId,
             width: "800px",
             height: "800px",
             callBack: function (iframeId) {
@@ -54,8 +57,8 @@
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalOpen({
             id: "Form",
-            title: "修改环卫机扫车",
-            url: "/SystemManage/SanitationMachineCleanCar/Form?keyValue=" + keyValue + "&CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId + "&ProjectId=" + PararmsData.projectId,
+            title: "修改环卫车辆",
+            url: "/SystemManage/SanitationCar/Form?carType=" + CartType + "&keyValue=" + keyValue + "&CityId=" + PararmsData.cityId + "&CountyId=" + PararmsData.countyId + "&ProjectId=" + PararmsData.projectId,
             width: "800px",
             height: "800px",
             callBack: function (iframeId) {
@@ -65,7 +68,7 @@
     }
     function btn_delete() {
         $.deleteForm({
-            url: "/SystemManage/SanitationMachineCleanCar/DeleteForm",
+            url: "/SystemManage/SanitationCar/DeleteForm",
             param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
@@ -77,14 +80,14 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建环卫机器扫车辆</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建环卫车辆</a>
             <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>批量导入</a>
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
                 <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-edit" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改环卫机扫车辆</a></li>
-                <li><a id="NF-delete" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除环卫机扫车辆</a></li>
+                <li><a id="NF-edit" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改环卫车辆</a></li>
+                <li><a id="NF-delete" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除环卫车辆</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>

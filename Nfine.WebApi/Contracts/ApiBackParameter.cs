@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NFine.Domain.Contracts
+namespace Nfine.WebApi.Contracts
 {
     /// <summary>
     /// web api 返回参数

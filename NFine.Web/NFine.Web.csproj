@@ -131,7 +131,7 @@
     <Compile Include="Areas\SystemManage\Controllers\OperationsVehicleTypeController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\OperationsCompanyController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Amenities\AmenitiesMarketController.cs" />
-    <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationMachineCleanCarController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationCarController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationGreenResidentialController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationGreeningController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationCesspoolController.cs" />
@@ -1191,8 +1191,8 @@
     <Content Include="Areas\SystemManage\Views\SanitationGarbageBox\Import.cshtml" />
     <Content Include="Areas\SystemManage\Views\TaskDistributing\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\TaskDistributing\Form.cshtml" />
-    <Content Include="Areas\SystemManage\Views\SanitationMachineCleanCar\Index.cshtml" />
-    <Content Include="Areas\SystemManage\Views\SanitationMachineCleanCar\Form.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationCar\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationCar\Form.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScoringCriteriaSanitation\FormOptions.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />

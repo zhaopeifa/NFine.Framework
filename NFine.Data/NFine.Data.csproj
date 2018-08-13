@@ -52,6 +52,7 @@
     <Compile Include="DBContext\NFineDbContext.cs" />
     <Compile Include="Extensions\DbHelper.cs" />
     <Compile Include="Extensions\EntityInterfaceExtensions.cs" />
+    <Compile Include="Extensions\LinqSQLExtensions.cs" />
     <Compile Include="Repository\IRepositoryBase.cs" />
     <Compile Include="Repository\IRepositoryBase.T.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

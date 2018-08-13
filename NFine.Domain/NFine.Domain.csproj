@@ -40,11 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ApiBackParameter.cs" />
-    <Compile Include="Contracts\ApiCheckingPointContracts.cs" />
-    <Compile Include="Contracts\ApiProfileCountyContracts.cs" />
-    <Compile Include="Contracts\ApiProfileUserContracts.cs" />
-    <Compile Include="Contracts\ApiProjectContracts.cs" />
+    <Compile Include="Contracts\ProfileCarWorkItemContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_OptionsContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_TypeContracts.cs" />
     <Compile Include="Contracts\TaskInsertContracts.cs" />

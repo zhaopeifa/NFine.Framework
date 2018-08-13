@@ -1,4 +1,5 @@
 ﻿using NFine.Code;
+using NFine.Domain.Contracts;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.Enums;
 using NFine.Repository.SystemManage;
@@ -75,38 +76,55 @@ namespace NFine.Application.SystemManage
         }
 
         /// <summary>
+        /// 获取车辆的工作流程
+        /// </summary>
+        /// <param name="carId"></param>
+        /// <returns></returns>
+        public List<ProfileCarWorkItemContracts> GetCarWorkItem(string carId)
+        {
+            List<ProfileCarWorkItemContracts> result = null;
+
+            service.QueryCommand<ProfileSanitationCarWorkItemEntity>((query) =>
+            {
+                result = query.Where(d => d.CarId == carId).Select(d => new ProfileCarWorkItemContracts()
+                {
+                    id = d.F_Id,
+                    time = d.Time,
+                    rinseAddress = d.RinseAddress,
+                    rinseLength = d.RinseLength,
+                    rinseName = d.RinseName,
+                    subscript = d.Subscript
+                }).ToList();
+            });
+
+            return result;
+        }
+
+        /// <summary>
         /// 提交，修改
         /// </summary>
         /// <param name="tandasEntity"></param>
         /// <param name="keyValue"></param>
-        public void SubmitForm(ProfileSanitationCarEntity entity, string keyValue)
+        public void SubmitForm(ProfileSanitationCarEntity entity, string keyValue, ProfileCarWorkItemContracts[] works)
         {
+
             if (!string.IsNullOrEmpty(keyValue))
             {
                 entity.Modify(keyValue);
-
-                service.Update(entity);
-
-                try
-                {
-                    //添加日志
-                    LogMess.addLog(DbLogType.Update.ToString(), "修改成功", "修改环卫作业车辆信息【" + entity.CarId + "】成功！");
-                }
-                catch { }
             }
             else
             {
                 entity.Create();
+            }
 
-                service.Insert(entity);
+            service.SubmitForm(entity, keyValue, works);
 
-                try
-                {
-                    //添加日志
-                    LogMess.addLog(DbLogType.Update.ToString(), "修改成功", "新建环卫车辆信息【" + entity.CarId + "】成功！");
-                }
-                catch { }
-
+            try
+            {
+                LogMess.addLog(DbLogType.Update.ToString(), "修改成功", "新建环卫车辆信息【" + entity.CarId + "】成功！");
+            }
+            catch
+            {
             }
         }
 
@@ -126,7 +144,7 @@ namespace NFine.Application.SystemManage
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)
         {
-            service.Delete(GetForm(keyValue));
+            service.DeleteForm(keyValue);
             try
             {
                 //添加日志

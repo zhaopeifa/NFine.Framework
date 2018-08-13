@@ -1,0 +1,378 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_All.cshtml";
+}
+
+<script>
+    var keyValue = $.request("keyValue");
+    var carType = $.request("carType");
+    $(function () {
+        initControl();
+
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/SanitationCar/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#formInfo").formSerialize(data);
+                }
+            });
+
+            $.ajax({
+                url: "/SystemManage/SanitationCar/GetWorkItemGridJson",
+                data: { carId: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    LoadworkItem(data);
+                }
+            });
+        }
+    });
+    function initControl() {
+        $("#CompanyId").bindSelect({
+            url: "/SystemManage/OperationsCompany/GetCompanyTypeCLEnableGridJson",
+            id: "Key",
+            text: "Value"
+        });
+
+    }
+    function submitForm() {
+        if (!$('#formInfo').formValid()) {
+            return false;
+        }
+
+        debugger;
+        var postData = $("#formInfo").formSerialize();
+        postData["workItem"] = JSON.stringify(GetWorkItem());
+
+        debugger;
+        $.submitForm({
+            url: "/SystemManage/SanitationCar/SubmitForm?carType=" + carType + "&keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active">
+        <a href="#info" data-toggle="tab">
+            基本资料
+        </a>
+    </li>
+    <li>
+        <a href="#workItem" data-toggle="tab">
+            车辆工作明细
+        </a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="info">
+        <form id="formInfo">
+            <div class="step-pane active" style="margin: 10px; margin-bottom: 0px;">
+                <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
+                    <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+                    请填写车辆工作项明细！
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">表单信息</h3>
+                    </div>
+                    <div class="panel-body" style="width: 98%;">
+                        <table class="form">
+                            <tr>
+                                <th class="formTitle">编号</th>
+                                <td class="formValue">
+                                    <input id="F_EnCode" name="F_EnCode" type="text" class="form-control required" placeholder="请输入编号" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">车牌号</th>
+                                <td class="formValue">
+                                    <input id="CarId" name="CarId" type="text" class="form-control required" placeholder="请输入车牌号" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">班组名称</th>
+                                <td class="formValue">
+                                    <input id="TeamName" name="TeamName" type="text" class="form-control required" placeholder="请输入班组名称" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">所在公司</th>
+                                <td class="formValue">
+                                    <select id="CompanyId" name="CompanyId" class="form-control required"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">班组人数</th>
+                                <td class="formValue">
+                                    <input id="TeamPeopleCount" name="TeamPeopleCount" type="text" class="form-control number" placeholder="请输入班组人数" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">机扫路段</th>
+                                <td class="formValue">
+                                    <input id="CleanRoad" name="CleanRoad" type="text" class="form-control required" placeholder="请输入机扫路段" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">车队地址</th>
+                                <td class="formValue">
+                                    <input id="CarTeamAddress" name="CarTeamAddress" type="text" class="form-control required" placeholder="请输入车队地址" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">驾驶员</th>
+                                <td class="formValue">
+                                    <input id="Driver" name="Driver" type="text" class="form-control required" placeholder="请输入驾驶员" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="workItem">
+        <div class="step-pane active" style="margin: 10px; margin-bottom: 0px;height:98%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">检查项目</h3>
+            </div>
+            <div class="panel panel-default ">
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="btn_addWorkItem()"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                    <button type="button" class="btn btn-default" onclick="delTr('ckb')"><span class="glyphicon glyphicon-remove-sign"></span></button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="btn_updateWorkItem()"><span class="glyphicon glyphicon-pencil"></span></button>
+                </div>
+                <table id="opTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>选择</th>
+                            <th>序号</th>
+                            <th>工作点时间</th>
+                            <th>工作点名称</th>
+                            <th>工作点地址</th>
+                            <th>长度（米）</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">车辆作业明细</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formCarWorkItem">
+                    <table class="form">
+                        <tr hidden="hidden">
+                            <td class="formValue">
+                                <input id="id" name="id" type="text" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">序号</th>
+                            <td class="formValue">
+                                <input id="Subscript" name="Subscript" type="text" class="form-control required number" placeholder="请输入序号" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">工作时间</th>
+                            <td class="formValue">
+                                <input id="Time" name="Time" type="text" class="form-control" placeholder="请输入清扫时间" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">工作点名称</th>
+                            <td class="formValue">
+                                <input id="RinseName" name="RinseName" type="text" class="form-control" placeholder="请输入清扫点名称" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">工作点地址</th>
+                            <td class="formValue">
+                                <input id="RinseAddress" name="RinseAddress" type="text" class="form-control" placeholder="请输入清扫点地址" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">长度（米）</th>
+                            <td class="formValue">
+                                <input id="RinseLength" name="RinseLength" type="text" class="form-control required number" placeholder="请输入长度(米)" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="btn_submitCarWorkItemForm()">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript">
+
+    function btn_addWorkItem() {
+
+        $("#Subscript").val("");
+        $("#Time").val("");
+        $("#RinseName").val("");
+        $("#RinseAddress").val("");
+        $("#RinseLength").val("");
+    }
+    function btn_updateWorkItem() {
+        var ckbs = $("input[name=ckb]:checked");
+        if (ckbs.size() == 0) {
+            alert("需选中要修改的行！");
+            return;
+        }
+
+        //拿到第一个就行了
+        ckbs.each(function () {
+            trC = $(this).parent().parent();
+            return false;
+        });
+        var model = new WorkItem();
+        $(trC).children('td').each(function (j) {  // 遍历 tr 的各个 td
+
+            if (j == 0)//取第0行的Id
+            {
+                model.id = $(this).text();
+            }
+            else if (j == 2)//取低2行Name
+            {
+                model.subscript = $(this).text();
+            } else if (j == 3) {
+                model.time = $(this).text();
+            } else if (j == 4) {
+                model.rinseName = $(this).text();
+            }
+            else if (j == 5) {
+                model.rinseAddress = $(this).text();
+            }
+            else if (j == 6) {
+                model.rinseLength = $(this).text();
+            }
+        });
+        $("#id").val(model.id);
+        $("#Subscript").val(model.subscript);
+        $("#Time").val(model.time);
+        $("#RinseName").val(model.rinseName);
+        $("#RinseAddress").val(model.rinseAddress);
+        $("#RinseLength").val(model.rinseLength);
+    }
+    function btn_submitCarWorkItemForm() {
+        if (!$('#formCarWorkItem').formValid()) {
+            return false;
+        }
+
+        $('#myModal').modal('hide');
+        debugger;
+        if ($("#id").val() == "") {//添加
+            var trHtml = "<tr><td hidden='hidden'><input name='id'>-1</input></td><td><input type='checkbox' name='ckb'/></td><td>" + $("#Subscript").val() + "</td><td>" + $("#Time").val() + "</td><td>" + $("#RinseName").val() + "</td><td>" + $("#RinseAddress").val() + "</td><td>" + $("#RinseLength").val() + "</td></tr>";
+            addTr("opTable", -1, trHtml);
+        } else {//修改
+            debugger;
+            $(trC).children('td').each(function (j) {  // 遍历 tr 的各个 td
+                if (j == 2)//取低2行Name
+                {
+                    debugger;
+                    $(this).text($("#Subscript").val());
+                } else if (j == 3) {
+                    $(this).text($("#Time").val());
+                } else if (j == 4) {
+                    $(this).text($("#RinseName").val());
+                }
+                else if (j == 5) {
+                    $(this).text($("#RinseAddress").val());
+                }
+                else if (j == 6) {
+                    $(this).text($("#RinseLength").val());
+                }
+            });
+        }
+
+    }
+
+    function addTr(tab, row, trHtml) {
+        var $tr = $("#" + tab + " tr").eq(row);
+        if ($tr.size() == 0) {
+            alert("指定的table id或行数不存在！");
+            return;
+        }
+        $tr.after(trHtml);
+    }
+    function delTr(ckb) {
+        //获取选中的复选框，然后循环遍历删除
+        var ckbs = $("input[name=" + ckb + "]:checked");
+        if (ckbs.size() == 0) {
+            alert("要删除指定行，需选中要删除的行！");
+            return;
+        }
+        ckbs.each(function () {
+            $(this).parent().parent().remove();
+        });
+    }
+
+    function GetWorkItem() {
+        var workItem = new Array();
+
+        $('#opTable tr').each(function (i) {                   // 遍历 tr
+            if (i == 0)
+                return true;
+            var model = new WorkItem();
+            $(this).children('td').each(function (j) {  // 遍历 tr 的各个 td
+                //alert("第" + (i + 1) + "行，第" + (j + 1) + "个td的值：" + $(this).text() + "。");
+                if (j == 0)//取第0行的Id
+                {
+                    model.id = $(this).text();
+                }
+                else if (j == 2)//取低2行Name
+                {
+                    model.subscript = $(this).text();
+                } else if (j == 3) {
+                    model.time = $(this).text();
+                } else if (j == 4) {
+                    model.rinseName = $(this).text();
+                }
+                else if (j == 5) {
+                    model.rinseAddress = $(this).text();
+                }
+                else if (j == 6) {
+                    model.rinseLength = $(this).text();
+                }
+            });
+            workItem.push(model);
+        });
+        return workItem;
+    }
+    function LoadworkItem(data) {
+        for (var i = 0; i < data.length; i++) {
+            var trHtml = "<tr><td hidden='hidden'><input name='id'>" + data[i].id + "</input></td><td><input type='checkbox' name='ckb'/></td><td>" + data[i].subscript + "</td><td>" + data[i].time + "</td><td>" + data[i].rinseName + "</td><td>" + data[i].rinseAddress + "</td><td>" + data[i].rinseLength + "</td></tr>";
+            addTr("opTable", -1, trHtml);
+        }
+    }
+</script>
+
+<script>
+    var WorkItem = (function () {
+        function WorkItem() {
+        }
+        return WorkItem;
+    }());
+</script>
