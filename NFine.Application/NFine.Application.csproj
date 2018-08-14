@@ -64,7 +64,6 @@
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesParkApp.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesSchoolApp.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesConstructionSiteApp.cs" />
-    <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_ConstructionApp.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesResidentialApp.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_ResidentialApp.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesWatersApp.cs" />
@@ -77,6 +76,7 @@
     <Compile Include="SystemManage\ProfileOperationsCompanyApp.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleApp.cs" />
     <Compile Include="SystemManage\ProfileProjectApp.cs" />
+    <Compile Include="SystemManage\Sanitation\ProfileSanitationLitterBinApp.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarApp.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationGreenResidentialApp.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationGreeningApp.cs" />

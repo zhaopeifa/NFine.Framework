@@ -57,7 +57,6 @@
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesParkRepository.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesSchoolRepository.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesConstructionSiteRepository.cs" />
-    <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_ConstructionRepository.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesResidentialRepository.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_ResidentialRepository.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesWatersRepository.cs" />
@@ -70,6 +69,7 @@
     <Compile Include="SystemManage\ProfileOperationsCompanyRepository.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleRepository.cs" />
     <Compile Include="SystemManage\ProfileProjectRepository.cs" />
+    <Compile Include="SystemManage\Sanitation\ProfileSanitationAlongLitterBinRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarWorkItemRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarRepository.cs" />
     <Compile Include="SystemManage\Task\ProfileTaskEntryRepository.cs" />

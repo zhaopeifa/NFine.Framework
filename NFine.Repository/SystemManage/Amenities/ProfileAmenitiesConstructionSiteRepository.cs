@@ -21,19 +21,11 @@ namespace NFine.Repository.SystemManage
                 var delEntity = db.FindEntity<ProfileAmenitiesConstructionSiteEntity>(keyValue);
                 db.Delete<ProfileAmenitiesConstructionSiteEntity>(delEntity);
 
-                //删除关系表
-                string sql = "SELECT * FROM ProfileAmenitiesMainWay_Construction WHERE ConstructionlId='" + keyValue + "'";
-                db.FindList<ProfileAmenitiesMainWay_ConstructionEntity>(sql).ForEach(d =>
-                {
-                    db.Delete<ProfileAmenitiesMainWay_ConstructionEntity>(d);
-                });
-
-
                 db.Commit();
             }
         }
 
-        public void SubmitForm(ProfileAmenitiesConstructionSiteEntity Entity, string keyValue, string[] mainWayIds)
+        public void SubmitForm(ProfileAmenitiesConstructionSiteEntity Entity, string keyValue)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
@@ -42,35 +34,13 @@ namespace NFine.Repository.SystemManage
                 {
                     //删除之前无用数据
                     db.Update(Entity);
-                    string sql = "SELECT * FROM ProfileAmenitiesMainWay_Construction WHERE ConstructionlId='" + Entity.F_Id + "'";
-                    db.FindList<ProfileAmenitiesMainWay_ConstructionEntity>(sql).ForEach(d =>
-                    {
-                        db.Delete<ProfileAmenitiesMainWay_ConstructionEntity>(d);
-                    });
-
-                    ProfileAmenitiesMainWay_ConstructionEntity centreModle;
-                    for (int i = 0; i < mainWayIds.Length; i++)
-                    {
-                        centreModle = new ProfileAmenitiesMainWay_ConstructionEntity();
-                        centreModle.Create();
-                        centreModle.MainWayId = mainWayIds[i];
-                        centreModle.ConstructionlId = Entity.F_Id;
-                        db.Insert(centreModle);
-                    }
+                   
                 }
                 else
                 {
                     db.Insert(Entity);
 
-                    ProfileAmenitiesMainWay_ConstructionEntity centreModle;
-                    for (int i = 0; i < mainWayIds.Length; i++)
-                    {
-                        centreModle = new ProfileAmenitiesMainWay_ConstructionEntity();
-                        centreModle.Create();
-                        centreModle.MainWayId = mainWayIds[i];
-                        centreModle.ConstructionlId = Entity.F_Id;
-                        db.Insert(centreModle);
-                    }
+                   
                 }
                 db.Commit();
             }

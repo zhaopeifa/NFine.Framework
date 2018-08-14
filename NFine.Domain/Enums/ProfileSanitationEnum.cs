@@ -24,7 +24,9 @@ namespace NFine.Domain.Enums
         飞行保洁车 = 11,
         机扫车 = 12,
         冲洗车 = 13,
-        垃圾清运车 = 14
+        垃圾清运车 = 14,
+        废物箱=15,
+        沿街垃圾桶=16
     }
 
     public class SanitationProjctEntry
@@ -71,6 +73,8 @@ namespace NFine.Domain.Enums
                     SanitationProjctEntry garbageBoxEntry = new SanitationProjctEntry((int)ProfileSanitationEnum.垃圾箱房, ProfileSanitationEnum.垃圾箱房.ToString(), true);
                     SanitationProjctEntry tandasEntry = new SanitationProjctEntry((int)ProfileSanitationEnum.公厕, ProfileSanitationEnum.公厕.ToString(), true);
                     SanitationProjctEntry cesspoolEntry = new SanitationProjctEntry((int)ProfileSanitationEnum.倒粪池小便池, ProfileSanitationEnum.倒粪池小便池.ToString(), true, garbageCollectionEntry);
+                    SanitationProjctEntry LitterBin = new SanitationProjctEntry((int)ProfileSanitationEnum.废物箱, ProfileSanitationEnum.废物箱.ToString(), true, garbageCollectionEntry);
+                    SanitationProjctEntry StreetTrash = new SanitationProjctEntry((int)ProfileSanitationEnum.沿街垃圾桶, ProfileSanitationEnum.沿街垃圾桶.ToString(), true, garbageCollectionEntry);
                     SanitationProjctEntry compressionStationEntry = new SanitationProjctEntry((int)ProfileSanitationEnum.压缩站, ProfileSanitationEnum.压缩站.ToString(), true);
                     SanitationProjctEntry greeningStationEntry = new SanitationProjctEntry((int)ProfileSanitationEnum.沿街绿化, ProfileSanitationEnum.沿街绿化.ToString(), true);
                     SanitationProjctEntry greenResidentialEntry = new SanitationProjctEntry((int)ProfileSanitationEnum.绿色账户居住区, ProfileSanitationEnum.绿色账户居住区.ToString(), true);
@@ -86,6 +90,8 @@ namespace NFine.Domain.Enums
                     _sanitationProjctEntryCollecion.Add(garbageBoxEntry);
                     _sanitationProjctEntryCollecion.Add(tandasEntry);
                     _sanitationProjctEntryCollecion.Add(cesspoolEntry);
+                    _sanitationProjctEntryCollecion.Add(LitterBin);
+                    _sanitationProjctEntryCollecion.Add(StreetTrash);
                     _sanitationProjctEntryCollecion.Add(compressionStationEntry);
                     _sanitationProjctEntryCollecion.Add(greeningStationEntry);
                     _sanitationProjctEntryCollecion.Add(greenResidentialEntry);

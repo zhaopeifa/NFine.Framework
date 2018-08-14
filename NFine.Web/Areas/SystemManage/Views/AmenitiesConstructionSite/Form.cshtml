@@ -28,47 +28,12 @@
                     $("#form1").formSerialize(data);
                 }
             });
-
-            $.ajax({
-                url: "/SystemManage/AmenitiesConstructionSite/GetMainWayIds",
-                data: { keyValue: keyValue },
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    debugger;
-                    $("#MainWayId").val(data).trigger('change');
-                }
-            });
         }
     });
     function initControl() {
         $("#StreetId").bindSelect({
             url: "/SystemManage/Street/GetEnableGridJsonByCountyId",
             param: { CountyId: pararmData.CountyId },
-            id: "Key",
-            text: "Value"
-        });
-
-        $("#StreetId").change(function () {
-            $("#MainWayId").html("");
-
-            $("#MainWayId").bindSelect({
-                url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
-                param: { StreetId: $("#StreetId").val() },
-                id: "Key",
-                text: "Value"
-            });
-
-            $("#MainWayId").select2({
-                language: 'zh-CN',//转为中文版
-                allowClear: true,
-                multiple: true,
-            });
-        });
-
-        $("#MainWayId").bindSelect({
-            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
-            param: { StreetId: $("#StreetId").val() },
             id: "Key",
             text: "Value"
         });
@@ -83,20 +48,14 @@
             language: 'zh-CN',//转为中文版
         });
 
-        $("#MainWayId").select2({
-            language: 'zh-CN',//转为中文版
-            allowClear: true,
-            multiple: true,
-        });
+       
     }
     function submitForm() {
 
         if (!$('#form1').formValid()) {
             return false;
         }
-        debugger;
         var postData = $("#form1").formSerialize();
-        postData["mainWayIdsStr"] = $("#MainWayId").val().toString();
         $.submitForm({
             url: "/SystemManage/AmenitiesConstructionSite/SubmitForm?keyValue=" + keyValue,
             param: postData,
@@ -127,12 +86,6 @@
                 <th class="formTitle">街道</th>
                 <td class="formValue">
                     <select id="StreetId" name="StreetId" class="form-control required"></select>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">主路</th>
-                <td>
-                    <select id="MainWayId" name="MainWayId" class="form-control required"></select>
                 </td>
             </tr>
             <tr>

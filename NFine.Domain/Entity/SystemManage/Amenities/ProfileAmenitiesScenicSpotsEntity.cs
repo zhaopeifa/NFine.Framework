@@ -48,11 +48,6 @@ namespace NFine.Domain.Entity.SystemManage
         /// </summary>
         public string ProjectId { get; set; }
 
-        /// <summary>
-        /// 主路Id
-        /// </summary>
-        public string MainWayId { get; set; }
-
         public string F_CreatorUserId { get; set; }
 
         public DateTime? F_CreatorTime { get; set; }

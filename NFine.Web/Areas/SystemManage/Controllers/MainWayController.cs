@@ -34,7 +34,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SummitImport(string CityId, string CountyId, string ProjectId, int isRename = 1)
+        public ActionResult SummitImport(string CityId, string CountyId, int isRename = 1)
         {
             var file = Request.Files[0];
 
@@ -101,6 +101,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             }
             return Success(string.Format("总条数:{0},成功条数:{1},失败条数:{2}", result.TotalQuantity, result.FailureQuantity, result.ErrorMessage));
         }
+
 
         [HttpGet]
         [HandlerAjaxOnly]

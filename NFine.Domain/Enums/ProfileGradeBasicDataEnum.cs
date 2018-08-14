@@ -150,15 +150,15 @@ namespace NFine.Domain.Enums
             switch (type)
             {
                 case ProfileWayGradeEnum.一级道路:
-                    _scoringClassify.Add(ProfileScoringClassifyEntryType.特级道路);
-                    _scoringClassify.Add(ProfileScoringClassifyEntryType.一级道路);
+                    scoringClassify.Add(ProfileScoringClassifyEntryType.特级道路);
+                    scoringClassify.Add(ProfileScoringClassifyEntryType.一级道路);
                     break;
                 case ProfileWayGradeEnum.二级道路:
                     _scoringClassify.Add(ProfileScoringClassifyEntryType.二级道路);
                     break;
                 case ProfileWayGradeEnum.三级及其它:
-                    _scoringClassify.Add(ProfileScoringClassifyEntryType.三级道路);
-                    _scoringClassify.Add(ProfileScoringClassifyEntryType.背街小巷);
+                    scoringClassify.Add(ProfileScoringClassifyEntryType.三级道路);
+                    scoringClassify.Add(ProfileScoringClassifyEntryType.背街小巷);
                     break;
                 default:
                     break;

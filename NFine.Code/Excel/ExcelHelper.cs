@@ -157,7 +157,7 @@ namespace NFine.Code
                     for (int i = startRow; i <= rowCount; ++i)
                     {
                         IRow row = sheet.GetRow(i);
-                        if (row == null) continue; //没有数据的行默认是null　　　　　　　
+                        if (row == null) continue; //没有数据的行默认是null
 
                         DataRow dataRow = data.NewRow();
                         for (int j = row.FirstCellNum; j < cellCount; ++j)

@@ -115,6 +115,7 @@ namespace NFine.Application.SystemManage
             int compressionStationTypeInt = ProfileTaskEntryTypeEnum.compressionStation.GetIntValue();
             int greeningTypeInt = ProfileTaskEntryTypeEnum.Greening.GetIntValue();
             int greenResidentialTypeInt = ProfileTaskEntryTypeEnum.GreenResidential.GetIntValue();
+            int cesspoolTypeInt = ProfileTaskEntryTypeEnum.cesspool.GetIntValue();
 
             service.Command<ProfileTaskEntryEntity>((query) =>
             {
@@ -124,10 +125,12 @@ namespace NFine.Application.SystemManage
                 result.CompressionCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(compressionStationTypeInt)).Count();
                 result.GreeningCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(greeningTypeInt)).Count();
                 result.GreenResidentialCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(greenResidentialTypeInt)).Count();
+                result.CesspoolCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(cesspoolTypeInt)).Count();
             });
 
             //获取主路
-            service.Command<ProfileSanitationWayEntity>((query) => {
+            service.Command<ProfileSanitationWayEntity>((query) =>
+            {
                 result.MainWayId = query.Where(d => d.F_Id == result.WayId).Select(d => d.MainWayId).FirstOrDefault();
             });
 
@@ -149,6 +152,11 @@ namespace NFine.Application.SystemManage
             {
                 result.TandasCount = query.Where(d => d.StreetId == streetId).Count();
             });
+
+            #endregion
+
+            #region 获取街道下倒粪池小便池数量
+            result.CesspoolCount = Data.Extensions.LinqSQLExtensions.IQueryable<ProfileSanitationCesspoolEntity>().Where(d => d.StreetId == streetId).Count();
 
             #endregion
 

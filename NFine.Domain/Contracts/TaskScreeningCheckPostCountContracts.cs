@@ -27,6 +27,11 @@ namespace NFine.Domain.Contracts
         public int compressionStation { get; set; }
 
         /// <summary>
+        /// 倒粪池小便池
+        /// </summary>
+        public int CesspoolCount { get; set; }
+
+        /// <summary>
         /// 沿途绿化数量
         /// </summary>
         public int Greening { get; set; }

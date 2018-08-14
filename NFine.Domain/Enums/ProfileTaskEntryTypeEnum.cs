@@ -34,7 +34,11 @@ namespace NFine.Domain.Enums
         /// <summary>
         /// 绿色账户小区
         /// </summary>
-        GreenResidential
+        GreenResidential,
+        /// <summary>
+        /// 发哦粪池小便池
+        /// </summary>
+        cesspool,
     }
 
 

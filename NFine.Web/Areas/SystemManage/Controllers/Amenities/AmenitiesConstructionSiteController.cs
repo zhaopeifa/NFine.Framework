@@ -13,7 +13,6 @@ namespace NFine.Web.Areas.SystemManage.Controllers
     {
         private ProfileAmenitiesConstructionSiteApp App = new ProfileAmenitiesConstructionSiteApp();
         private UserApp userApp = new UserApp();
-        private ProfileAmenitiesMainWay_ConstructionApp SCApp = new ProfileAmenitiesMainWay_ConstructionApp();
 
         [HttpGet]
         [HandlerAjaxOnly]
@@ -32,10 +31,9 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(ProfileAmenitiesConstructionSiteEntity Entity, string keyValue, string mainWayIdsStr)
+        public ActionResult SubmitForm(ProfileAmenitiesConstructionSiteEntity Entity, string keyValue)
         {
-            string[] mainWayIds = mainWayIdsStr.Split(',');
-            App.SubmitForm(Entity, keyValue, mainWayIds);
+            App.SubmitForm(Entity, keyValue);
             return Success("操作成功。");
         }
 
@@ -73,15 +71,6 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 
             }
             return Content(data.ToJson());
-        }
-
-        [HttpGet]
-        [HandlerAjaxOnly]
-        public ActionResult GetMainWayIds(string keyValue)
-        {
-            string sql = "SELECT * FROM ProfileAmenitiesMainWay_Construction WHERE ConstructionlId='" + keyValue + "'";
-            string[] ids = SCApp.FildSql(sql).Select(d => d.MainWayId).ToArray();
-            return Content(ids.ToJson());
         }
     }
 }

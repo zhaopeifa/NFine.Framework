@@ -77,7 +77,7 @@ namespace NFine.Application.SystemManage
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append(enCode);
-            
+
             return service.dbcontext.Database.SqlQuery<ProfileMainWayEntity>(strSql.ToString()).Select(d => new KeyValuePair<string, string>(d.F_Id, d.MainWayName)).ToList();
         }
 
@@ -163,6 +163,9 @@ namespace NFine.Application.SystemManage
             failureCount = 0;
             for (int i = 0; i < mainWayEntitys.Length; i++)
             {
+                if (mainWayEntitys[i] == null)
+                    continue;
+
                 mainWayEntitys[i].Create();
 
                 try
@@ -175,6 +178,14 @@ namespace NFine.Application.SystemManage
                     failureCount += 1;
                 }
             }
+        }
+
+        public string GetId(string wayName)
+        {
+            var query =NFine.Data.Extensions.LinqSQLExtensions.IQueryable<ProfileMainWayEntity>().Where(d => d.MainWayName == wayName).Select(d => d.F_Id);
+            if (query.Count() > 0)
+                return query.FirstOrDefault();
+            return null;
         }
     }
 }

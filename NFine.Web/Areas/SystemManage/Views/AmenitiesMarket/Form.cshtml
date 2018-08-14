@@ -38,28 +38,7 @@
             text: "Value"
         });
 
-        $("#StreetId").change(function () {
-            $("#MainWayId").html("");
-
-            $("#MainWayId").bindSelect({
-                url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
-                param: { StreetId: $("#StreetId").val() },
-                id: "Key",
-                text: "Value"
-            });
-
-            $("#MainWayId").select2({
-                language: 'zh-CN',//转为中文版
-
-            });
-        });
-
-        $("#MainWayId").bindSelect({
-            url: "/SystemManage/MainWay/GetEnableGridJsonByStreetId",
-            param: { StreetId: $("#StreetId").val() },
-            id: "Key",
-            text: "Value"
-        });
+       
 
 
         $("#StreetId").select2({
@@ -67,10 +46,6 @@
 
         });
 
-        $("#MainWayId").select2({
-            language: 'zh-CN',//转为中文版
-
-        });
     }
     function submitForm() {
         if (!$('#form1').formValid()) {
@@ -106,12 +81,6 @@
                 <th class="formTitle">街道</th>
                 <td class="formValue">
                     <select id="StreetId" name="StreetId" class="form-control required"></select>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">主路</th>
-                <td class="formValue">
-                    <select id="MainWayId" name="MainWayId" class="form-control required"></select>
                 </td>
             </tr>
             <tr>

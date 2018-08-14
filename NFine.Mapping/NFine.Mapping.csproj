@@ -67,7 +67,6 @@
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesParkMap.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesSchoolMap.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesConstructionSiteMap.cs" />
-    <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_ConstructionMap.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesResidentialMap.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_ResidentialMap.cs" />
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesWatersMap.cs" />
@@ -80,6 +79,7 @@
     <Compile Include="SystemManage\ProfileOperationsCompanyMap.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleMap.cs" />
     <Compile Include="SystemManage\ProfileProjectMap.cs" />
+    <Compile Include="SystemManage\Sanitation\ProfileSanitationAlongLitterBinMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarWorkItemMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationCarMap.cs" />
     <Compile Include="SystemManage\Task\ProfileTaskEntryMap.cs" />

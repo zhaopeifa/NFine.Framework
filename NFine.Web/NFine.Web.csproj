@@ -131,6 +131,7 @@
     <Compile Include="Areas\SystemManage\Controllers\OperationsVehicleTypeController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\OperationsCompanyController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Amenities\AmenitiesMarketController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationAlongLitterBinController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationCarController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationGreenResidentialController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationGreeningController.cs" />
@@ -1194,6 +1195,8 @@
     <Content Include="Areas\SystemManage\Views\SanitationCar\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationCar\Form.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScoringCriteriaSanitation\FormOptions.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Form.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />
   </ItemGroup>

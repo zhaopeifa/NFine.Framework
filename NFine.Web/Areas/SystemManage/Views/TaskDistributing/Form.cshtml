@@ -19,7 +19,7 @@
             });
         }
 
-        
+
     });
     function initControl() {
 
@@ -166,7 +166,7 @@
             success: function (data) {
                 $("#TandasCount").attr('title', data.TandasCount + "座").tooltip('fixTitle');
 
-                $("#CesspoolCount").attr('title', data.TandasCount + "座").tooltip('fixTitle');
+                $("#CesspoolCount").attr('title', data.CesspoolCount + "座").tooltip('fixTitle');
 
                 $("#GarbageBoxCount").attr('title', data.GarbageBox + "座").tooltip('fixTitle');
 
@@ -183,6 +183,7 @@
         if (!$('#form1').formValid()) {
             return false;
         }
+        debugger;
         $.submitForm({
             url: "/SystemManage/TaskDistributing/SubmitForm?keyValue=" + keyValue,
             param: $("#form1").formSerialize(),
@@ -219,101 +220,183 @@
                     <select id="StreetId" name="StreetId" class="form-control required"></select>
                 </td>
             </tr>
-            <tr>
-                <th class="formTitle">道路清扫</th>
-                <td class="formValue">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group" style="width:200px">
-                                <select id="MainWayId" name="MainWayId" class="form-control required"></select>
-                                <div class="input-group-addon">街道</div>
-                            </div>
-                            <div class="form-inline" style="width:200px">
-                                <select id="wayId" name="wayId" class="required"></select>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">环卫公厕</th>
-                <td class="formValue">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group" style="width:200px">
-                                <input id="TandasCount" name="TandasCount" type="text" class="form-control required number" placeholder="请输入数量" />
-                                <div class="input-group-addon">座</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">沿途垃圾收集设备</th>
-                <td class="formValue">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group" style="width: 250px">
-                                <div class="input-group-addon">倒粪池</div>
-                                <input id="CesspoolCount" name="CesspoolCount" type="text" class="form-control required number" placeholder="请输入数量" />
-                                <div class="input-group-addon">处</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">垃圾箱房</th>
-                <td class="formValue">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group" style="width:200px">
-                                <input id="GarbageBoxCount" name="GarbageBoxCount" type="text" class="form-control required number" placeholder="请输入数量" />
-                                <div class="input-group-addon">座</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">小压站</th>
-                <td class="formValue">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group" style="width:200px">
-                                <input id="CompressionCount" name="CompressionCount" type="text" class="form-control required number" placeholder="请输入数量" />
-                                <div class="input-group-addon">座</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">沿途绿化</th>
-                <td class="formValue">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group" style="width:200px">
-                                <input id="GreeningCount" name="GreeningCount" type="text" class="form-control required number" placeholder="请输入数量" />
-                                <div class="input-group-addon">座</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="formTitle">绿色账户小区</th>
-                <td class="formValue">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group" style="width:200px">
-                                <input id="GreenResidentialCount" name="GreenResidentialCount" type="text" class="form-control required number" placeholder="请输入数量" />
-                                <div class="input-group-addon">座</div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+
+        </table>
+        <div>
+           
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#DD" data-toggle="tab">
+                        定点任务
+                    </a>
+                </li>
+                <li>
+                    <a href="#FDD" data-toggle="tab">
+                        非定点任务
+                    </a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+
+                <div class="tab-pane fade in active" id="DD">
+                    <table class="form">
+                        <tr>
+                            <th class="formTitle">道路清扫</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width:200px">
+                                            <select id="MainWayId" name="MainWayId" class="form-control required"></select>
+                                            <div class="input-group-addon">街道</div>
+                                        </div>
+                                        <div class="form-inline" style="width:200px">
+                                            <select id="wayId" name="wayId" class="required"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">环卫公厕</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width:200px">
+                                            <input id="TandasCount" name="TandasCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">座</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">沿途垃圾收集设备</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">倒粪池</div>
+                                            <input id="CesspoolCount" name="CesspoolCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">处</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">垃圾箱房</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width:200px">
+                                            <input id="GarbageBoxCount" name="GarbageBoxCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">座</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">小压站</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width:200px">
+                                            <input id="CompressionCount" name="CompressionCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">座</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">沿途绿化</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width:200px">
+                                            <input id="GreeningCount" name="GreeningCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">座</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">绿色账户小区</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width:200px">
+                                            <input id="GreenResidentialCount" name="GreenResidentialCount" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">座</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="FDD">
+                    <table class="form">
+                        <tr>
+                            <th class="formTitle">沿街垃圾收集设备</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">废纸箱</div>
+                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">处</div>
+                                        </div>
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">沿街垃圾桶</div>
+                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">处</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">环卫作业车辆</th>
+                            <td class="formValue">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">四轮八桶车</div>
+                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">辆</div>
+                                        </div>
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">飞行保洁车</div>
+                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">辆</div>
+                                        </div>
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">机扫车</div>
+                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">辆</div>
+                                        </div>
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">冲洗车</div>
+                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">辆</div>
+                                        </div>
+                                        <div class="input-group" style="width: 250px">
+                                            <div class="input-group-addon">垃圾清运车</div>
+                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <div class="input-group-addon">辆</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <table class="form">
             <tr>
                 <th class="formTitle">被派发人</th>
                 <td class="formValue col-md-1">

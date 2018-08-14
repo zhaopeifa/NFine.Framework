@@ -100,8 +100,30 @@ namespace NFine.Repository.SystemManage
 
                     #endregion
 
-                    #region 沿途垃圾收集设备 暂时没写
+                    #region 沿途垃圾收集设备 倒粪池 小便池
 
+                    string[] cesspoolIds = db.IQueryable<ProfileSanitationCesspoolEntity>().Where(d => d.StreetId == taskContracts.StreetId).OrderBy(d => Guid.NewGuid()).Take(taskContracts.CesspoolCount).Select(d => d.F_Id).ToArray();
+
+                    ProfileTaskEntryEntity cesspoolTaskEntry;
+                    for (int i = 0; i < cesspoolIds.Length; i++)
+                    {
+                        cesspoolTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.cesspool.GetIntValue(),
+                            EntryDataId = cesspoolIds[i],
+                            StreetId = taskEntity.StreetId,
+                            PersonInChargeId = taskEntity.PersonInChargeId
+                        };
+
+                        cesspoolTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(cesspoolTaskEntry);
+                    }
                     #endregion
 
                     #region 垃圾箱房
@@ -279,8 +301,30 @@ namespace NFine.Repository.SystemManage
 
                     #endregion
 
-                    #region 沿途垃圾收集设备 暂时没写
+                    #region 沿途垃圾收集设备 倒粪池 小便池
 
+                    string[] cesspoolIds = db.IQueryable<ProfileSanitationCesspoolEntity>().Where(d => d.StreetId == taskContracts.StreetId).OrderBy(d => Guid.NewGuid()).Take(taskContracts.CesspoolCount).Select(d => d.F_Id).ToArray();
+
+                    ProfileTaskEntryEntity cesspoolTaskEntry;
+                    for (int i = 0; i < cesspoolIds.Length; i++)
+                    {
+                        cesspoolTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.cesspool.GetIntValue(),
+                            EntryDataId = cesspoolIds[i],
+                            StreetId = taskEntity.StreetId,
+                            PersonInChargeId = taskEntity.PersonInChargeId
+                        };
+
+                        cesspoolTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(cesspoolTaskEntry);
+                    }
                     #endregion
 
                     #region 垃圾箱房

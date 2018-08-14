@@ -51,7 +51,6 @@
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesParkEntity.cs" />
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesSchoolEntity.cs" />
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesConstructionSiteEntity.cs" />
-    <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesMainWay_ConstructionEntity.cs" />
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesResidentialEntity.cs" />
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesMainWay_ResidentialEntity.cs" />
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesWatersEntity.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="Entity\SystemManage\ProfileOperationsCompanyEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileOperationsVehicleEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileProjectEntity.cs" />
+    <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationAlongLitterBinEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCarWorkItemEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCarEntity.cs" />
     <Compile Include="Entity\SystemManage\Task\ProfileTaskEntryEntity.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Entity\SystemManage\ProfileMainWayEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationTandasEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileStreetEntity.cs" />
+    <Compile Include="Enums\ProfileAlongLitterBinTypeEnum.cs" />
     <Compile Include="Enums\ProfileAmenitiesEnum.cs" />
     <Compile Include="Enums\ProfileCarTypeEnum.cs" />
     <Compile Include="Enums\ProfileEnvironmentTypeEnum.cs" />

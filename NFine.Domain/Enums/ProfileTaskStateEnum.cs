@@ -16,19 +16,23 @@ namespace NFine.Domain.Enums
         /// </summary>
         NotToSend = 0,
         /// <summary>
-        /// 已派遣
+        /// 已派遣，等待完成
         /// </summary>
         HasSent = 1,
         /// <summary>
-        /// 待审核
+        /// 待审核，已完成
         /// </summary>
         ToAudit = 2,
         /// <summary>
-        /// 已终结
+        /// 退回从新任务
         /// </summary>
-        HavePutAnEndTo = 3,
+        BackTo=3,
         /// <summary>
-        /// 已作废
+        /// 已终结，审核完毕
+        /// </summary>
+        HavePutAnEndTo = 4,
+        /// <summary>
+        /// 已作废。
         /// </summary>
         TheCancellation = -1
     }

@@ -103,7 +103,7 @@ namespace NFine.Application.SystemManage
         /// </summary>
         /// <param name="tandasEntity"></param>
         /// <param name="keyValue"></param>
-        public void SubmitForm(ProfileAmenitiesConstructionSiteEntity Entity, string keyValue, string[] mainWayIds)
+        public void SubmitForm(ProfileAmenitiesConstructionSiteEntity Entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
@@ -116,7 +116,7 @@ namespace NFine.Application.SystemManage
                 Entity.Create();
             }
 
-            service.SubmitForm(Entity, keyValue, mainWayIds);
+            service.SubmitForm(Entity, keyValue);
 
             try
             {
