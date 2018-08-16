@@ -37,7 +37,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(ProfileSanitationWayEntity WayEntity, string keyValue)
         {
-            SummitImport(WayEntity.CityId, WayEntity.CountyId, WayEntity.ProjectId);
+            //SummitImport(WayEntity.CityId, WayEntity.CountyId, WayEntity.ProjectId);
 
             wayApp.SubmitForm(WayEntity, keyValue);
             return Success("操作成功。");

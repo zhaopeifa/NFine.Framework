@@ -346,12 +346,12 @@
                                     <div class="panel-body">
                                         <div class="input-group" style="width: 250px">
                                             <div class="input-group-addon">废纸箱</div>
-                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <input id="WastebasketCount" name="WastebasketCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                             <div class="input-group-addon">处</div>
                                         </div>
                                         <div class="input-group" style="width: 250px">
                                             <div class="input-group-addon">沿街垃圾桶</div>
-                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <input id="StreetTrashCount" name="StreetTrashCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                             <div class="input-group-addon">处</div>
                                         </div>
                                     </div>
@@ -365,27 +365,27 @@
                                     <div class="panel-body">
                                         <div class="input-group" style="width: 250px">
                                             <div class="input-group-addon">四轮八桶车</div>
-                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <input id="EightLadleCarCount" name="EightLadleCarCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                             <div class="input-group-addon">辆</div>
                                         </div>
                                         <div class="input-group" style="width: 250px">
                                             <div class="input-group-addon">飞行保洁车</div>
-                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <input id="FlyingCarCount" name="FlyingCarCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                             <div class="input-group-addon">辆</div>
                                         </div>
                                         <div class="input-group" style="width: 250px">
                                             <div class="input-group-addon">机扫车</div>
-                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <input id="MachineCleanCarCount" name="MachineCleanCarCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                             <div class="input-group-addon">辆</div>
                                         </div>
                                         <div class="input-group" style="width: 250px">
                                             <div class="input-group-addon">冲洗车</div>
-                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <input id="WashTheCarCount" name="WashTheCarCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                             <div class="input-group-addon">辆</div>
                                         </div>
                                         <div class="input-group" style="width: 250px">
                                             <div class="input-group-addon">垃圾清运车</div>
-                                            <input id="CesspoolCount1" name="CesspoolCount1" type="text" class="form-control required number" placeholder="请输入数量" />
+                                            <input id="GarbageTruckCarCount" name="GarbageTruckCarCount" type="text" class="form-control required number" placeholder="请输入数量" />
                                             <div class="input-group-addon">辆</div>
                                         </div>
                                     </div>
@@ -406,9 +406,11 @@
             <tr>
                 <th class="formTitle">完成时间</th>
                 <td class="formValue">
-                    <input id="CompletionTime" name="CompletionTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ startDate: '%y-%M-01 00:00:00', dateFmt: 'yyyy-MM-dd HH:mm:ss', alwaysUseStartDate: true })" />
+                    <input id="CompletionTime" name="CompletionTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ startDate: '%y-%M-%D %H:%M:%S', dateFmt: 'yyyy-MM-dd HH:mm:ss', alwaysUseStartDate: true, minDate: '%y-%M-%d %H:%m:%s' })" />
                 </td>
             </tr>
         </table>
     </div>
+
+    
 </form>

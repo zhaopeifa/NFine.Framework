@@ -14,6 +14,11 @@ namespace NFine.Domain.Entity.SystemManage
         public string F_Id { get; set; }
 
         /// <summary>
+        /// 是否定点任务
+        /// </summary>
+        public bool IsFixedPoint { get; set; }
+
+        /// <summary>
         /// 项目类型
         /// </summary>
         public int ProjectType { get; set; }
@@ -47,6 +52,11 @@ namespace NFine.Domain.Entity.SystemManage
         /// 街道Id
         /// </summary>
         public string StreetId { get; set; }
+
+        /// <summary>
+        /// 完成状态
+        /// </summary>
+        public bool CompleteState { get; set; }
 
         /// <summary>
         /// 被派发人 责任人

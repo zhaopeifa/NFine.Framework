@@ -68,6 +68,41 @@ namespace NFine.Domain.Contracts
         /// </summary>
         public int GreenResidentialCount { get; set; }
 
+        /// <summary>
+        /// 废纸箱
+        /// </summary>
+        public int WastebasketCount { get; set; }
+
+        /// <summary>
+        /// 沿途垃圾箱
+        /// </summary>
+        public int StreetTrashCount { get; set; }
+
+        /// <summary>
+        /// 机扫车
+        /// </summary>
+        public int MachineCleanCarCount { get; set; }
+
+        /// <summary>
+        /// 冲洗车
+        /// </summary>
+        public int WashTheCarCount { get; set; }
+
+        /// <summary>
+        /// 垃圾清运车
+        /// </summary>
+        public int GarbageTruckCarCount { get; set; }
+
+        /// <summary>
+        /// 飞行保洁车
+        /// </summary>
+        public int FlyingCarCount { get; set; }
+
+        /// <summary>
+        /// 四轮八桶车
+        /// </summary>
+        public int EightLadleCarCount { get; set; }
+
 
         public string PersonInChargeId { get; set; }
 

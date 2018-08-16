@@ -43,6 +43,7 @@
     <Compile Include="Contracts\ProfileCarWorkItemContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_OptionsContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_TypeContracts.cs" />
+    <Compile Include="Contracts\ProfileTaskContracts.cs" />
     <Compile Include="Contracts\TaskInsertContracts.cs" />
     <Compile Include="Contracts\TaskScreeningCheckPostCountContracts.cs" />
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesSquareEntity.cs" />

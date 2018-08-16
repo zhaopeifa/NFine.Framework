@@ -26,7 +26,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = new
             {
-                rows = taskApp.GetList(pagination, keyword),
+                rows = taskApp.GetContractsList(pagination, keyword, ProfileTaskStateEnum.NotToSend.GetIntValue()),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

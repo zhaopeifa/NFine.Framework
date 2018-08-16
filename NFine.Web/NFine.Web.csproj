@@ -154,6 +154,7 @@
     <Compile Include="Areas\SystemManage\Controllers\ScoringCriteriaController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScoringCriteriaSanitationController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\StreetController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\Task\TaskHasSentController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Task\TaskDistributingController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\UserController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ItemsTypeController.cs" />
@@ -1197,6 +1198,7 @@
     <Content Include="Areas\SystemManage\Views\ScoringCriteriaSanitation\FormOptions.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Form.cshtml" />
+    <Content Include="Areas\SystemManage\Views\TaskHasSent\Index.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />
   </ItemGroup>

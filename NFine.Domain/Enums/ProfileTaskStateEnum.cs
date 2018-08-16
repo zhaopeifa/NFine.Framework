@@ -52,10 +52,10 @@ namespace NFine.Domain.Enums
                     result = "未派遣";
                     break;
                 case ProfileTaskStateEnum.HasSent:
-                    result = "已派遣";
+                    result = "已派遣,待完成";
                     break;
                 case ProfileTaskStateEnum.ToAudit:
-                    result = "待审核";
+                    result = "待审核,已完成";
                     break;
                 case ProfileTaskStateEnum.HavePutAnEndTo:
                     result = "已终结";

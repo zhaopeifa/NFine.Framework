@@ -49,6 +49,50 @@ namespace NFine.Application.SystemManage
         }
 
         /// <summary>
+        /// 获取数据列表
+        /// </summary>
+        /// <param name="pagination"></param>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public List<ProfileTaskContracts> GetContractsList(Pagination pagination, string keyword, int? taskStateTypeInt = null)
+        {
+            var taskQuery = NFine.Data.Extensions.LinqSQLExtensions.IQueryable<ProfileTaskEntity>();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                taskQuery = taskQuery.Where(t => t.F_EnCode.Contains(keyword));
+            }
+
+            if (taskStateTypeInt != null)
+            {
+                taskQuery = taskQuery.Where(t => t.State == taskStateTypeInt);
+            }
+
+            taskQuery = taskQuery.OrderBy(d => d.F_LastModifyTime).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+            var contractsQuery = from taskEntityQ in taskQuery
+                                 join userEntityQ in NFine.Data.Extensions.LinqSQLExtensions.IQueryable<UserEntity>()
+                                 on taskEntityQ.PersonInChargeId equals userEntityQ.F_Id
+                                 select new ProfileTaskContracts
+                                 {
+                                     F_Id = taskEntityQ.F_Id,
+                                     State = taskEntityQ.State,
+                                     F_EnCode = taskEntityQ.F_EnCode,
+                                     CityId = taskEntityQ.CityId,
+                                     CountyId = taskEntityQ.CountyId,
+                                     ProjectType = taskEntityQ.ProjectType,
+                                     CompanyId = taskEntityQ.CompanyId,
+                                     StreetId = taskEntityQ.StreetId,
+                                     PersonInChargeId = taskEntityQ.PersonInChargeId,
+                                     PersonInChargeRealName = userEntityQ.F_RealName,
+                                     DeliveryTime = taskEntityQ.DeliveryTime,
+                                     CompletionTime = taskEntityQ.CompletionTime
+                                 };
+
+            return contractsQuery.ToList();
+        }
+
+        /// <summary>
         /// 根据id获取单挑数据
         /// </summary>
         /// <param name="keyValue"></param>
@@ -116,6 +160,16 @@ namespace NFine.Application.SystemManage
             int greeningTypeInt = ProfileTaskEntryTypeEnum.Greening.GetIntValue();
             int greenResidentialTypeInt = ProfileTaskEntryTypeEnum.GreenResidential.GetIntValue();
             int cesspoolTypeInt = ProfileTaskEntryTypeEnum.cesspool.GetIntValue();
+            int wastebasketInt = ProfileTaskEntryTypeEnum.Wastebasket.GetIntValue();
+            int streetTrashInt = ProfileTaskEntryTypeEnum.StreetTrash.GetIntValue();
+
+            int machineCleanCarInt = ProfileTaskEntryTypeEnum.MachineCleanCar.GetIntValue();
+            int washTheCarInt = ProfileTaskEntryTypeEnum.WashTheCar.GetIntValue();
+            int garbageTruckCarInt = ProfileTaskEntryTypeEnum.GarbageTruckCar.GetIntValue();
+            int flyingCarInt = ProfileTaskEntryTypeEnum.FlyingCar.GetIntValue();
+            int eightLadleCarInt = ProfileTaskEntryTypeEnum.EightLadleCar.GetIntValue();
+
+
 
             service.Command<ProfileTaskEntryEntity>((query) =>
             {
@@ -126,6 +180,14 @@ namespace NFine.Application.SystemManage
                 result.GreeningCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(greeningTypeInt)).Count();
                 result.GreenResidentialCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(greenResidentialTypeInt)).Count();
                 result.CesspoolCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(cesspoolTypeInt)).Count();
+                result.WastebasketCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(wastebasketInt)).Count();
+                result.StreetTrashCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(streetTrashInt)).Count();
+
+                result.MachineCleanCarCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(machineCleanCarInt)).Count();
+                result.WashTheCarCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(washTheCarInt)).Count();
+                result.GarbageTruckCarCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(garbageTruckCarInt)).Count();
+                result.FlyingCarCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(flyingCarInt)).Count();
+                result.EightLadleCarCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(eightLadleCarInt)).Count();
             });
 
             //获取主路
@@ -192,7 +254,12 @@ namespace NFine.Application.SystemManage
             });
             #endregion
 
+            //--------非定点------------
+
+           
+
             return result;
         }
+
     }
 }

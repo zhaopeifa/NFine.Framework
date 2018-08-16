@@ -36,9 +36,37 @@ namespace NFine.Domain.Enums
         /// </summary>
         GreenResidential,
         /// <summary>
-        /// 发哦粪池小便池
+        /// 倒粪池小便池
         /// </summary>
         cesspool,
+        /// <summary>
+        /// 废纸箱
+        /// </summary>
+        Wastebasket,
+        /// <summary>
+        /// 沿街垃圾桶
+        /// </summary>
+        StreetTrash,
+        /// <summary>
+        /// 机扫车
+        /// </summary>
+        MachineCleanCar,
+        /// <summary>
+        /// 冲洗车
+        /// </summary>
+        WashTheCar,
+        /// <summary>
+        /// 垃圾清运车
+        /// </summary>
+        GarbageTruckCar,
+        /// <summary>
+        /// 飞行保洁车
+        /// </summary>
+        FlyingCar,
+        /// <summary>
+        /// 四轮八桶车
+        /// </summary>
+        EightLadleCar
     }
 
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using NFine.Code;
 
 
 namespace NFine.Repository.SystemManage
@@ -64,7 +65,9 @@ namespace NFine.Repository.SystemManage
                         EntryDataId = taskContracts.WayId,
                         StreetId = taskEntity.StreetId,
                         F_EnCode = taskEntity.F_EnCode,
-                        PersonInChargeId = taskEntity.PersonInChargeId
+                        PersonInChargeId = taskEntity.PersonInChargeId,
+                        IsFixedPoint = true,
+                        CompleteState = false
                     };
 
                     wayTaskEntry.Create();
@@ -91,7 +94,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.Tandas.GetIntValue(),
                             EntryDataId = thandasTaskIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
                         thandasTaskEntry.Create();
 
@@ -117,7 +122,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.cesspool.GetIntValue(),
                             EntryDataId = cesspoolIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         cesspoolTaskEntry.Create();
@@ -142,7 +149,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.GarbageBox.GetIntValue(),
                             EntryDataId = garbageBoxTaskIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         garbageBoxTaskEntry.Create();
@@ -168,7 +177,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.compressionStation.GetIntValue(),
                             EntryDataId = compressionStationIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         compressionStationTaskEntry.Create();
@@ -194,7 +205,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.Greening.GetIntValue(),
                             EntryDataId = greeningIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         greeningTaskEntry.Create();
@@ -223,13 +236,204 @@ namespace NFine.Repository.SystemManage
                             EntryDataId = greenResidentialIds[i],
                             StreetId = taskEntity.StreetId,
                             F_EnCode = taskEntity.F_EnCode,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         greeningResidentialTaskEntry.Create();
 
                         db.Insert<ProfileTaskEntryEntity>(greeningResidentialTaskEntry);
                     }
+                    #endregion
+
+                    //-----------非定点--------------
+
+                    #region 废纸箱
+                    ProfileTaskEntryEntity WastebasketTaskEntry;
+                    for (int i = 0; i < taskContracts.WastebasketCount; i++)
+                    {
+                        WastebasketTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.Wastebasket.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        WastebasketTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(WastebasketTaskEntry);
+                    }
+
+
+                    #endregion
+
+                    #region 沿街垃圾桶
+                    ProfileTaskEntryEntity StreetTrashTaskEntry;
+                    for (int i = 0; i < taskContracts.StreetTrashCount; i++)
+                    {
+                        StreetTrashTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.StreetTrash.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        StreetTrashTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(StreetTrashTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 机扫车
+                    ProfileTaskEntryEntity MachineCleanCarTaskEntry;
+                    for (int i = 0; i < taskContracts.MachineCleanCarCount; i++)
+                    {
+                        MachineCleanCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.MachineCleanCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        MachineCleanCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(MachineCleanCarTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 冲洗车
+                    ProfileTaskEntryEntity WashTheCarTaskEntry;
+                    for (int i = 0; i < taskContracts.WashTheCarCount; i++)
+                    {
+                        WashTheCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.WashTheCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        WashTheCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(WashTheCarTaskEntry);
+                    }
+                    
+                    #endregion
+
+                    #region 垃圾清运车
+
+                    ProfileTaskEntryEntity GarbageTruckCarTaskEntry;
+                    for (int i = 0; i < taskContracts.GarbageTruckCarCount; i++)
+                    {
+                        GarbageTruckCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.GarbageTruckCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        GarbageTruckCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(GarbageTruckCarTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 飞行保洁车
+                    ProfileTaskEntryEntity FlyingCarTaskEntry;
+                    for (int i = 0; i < taskContracts.FlyingCarCount; i++)
+                    {
+                        FlyingCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.FlyingCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        FlyingCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(FlyingCarTaskEntry);
+                    }
+
+                    
+
+                    #endregion
+
+                    #region 四轮八桶车
+
+                    ProfileTaskEntryEntity EightLadleCarTaskEntry;
+                    for (int i = 0; i < taskContracts.EightLadleCarCount; i++)
+                    {
+                        EightLadleCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.EightLadleCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        EightLadleCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(EightLadleCarTaskEntry);
+                    }
+
                     #endregion
 
                 }
@@ -265,7 +469,9 @@ namespace NFine.Repository.SystemManage
                         EntryDataId = taskContracts.WayId,
                         StreetId = taskEntity.StreetId,
                         F_EnCode = taskEntity.F_EnCode,
-                        PersonInChargeId = taskEntity.PersonInChargeId
+                        PersonInChargeId = taskEntity.PersonInChargeId,
+                        IsFixedPoint = true,
+                        CompleteState = false
                     };
 
                     wayTaskEntry.Create();
@@ -292,7 +498,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.Tandas.GetIntValue(),
                             EntryDataId = thandasTaskIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
                         thandasTaskEntry.Create();
 
@@ -318,7 +526,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.cesspool.GetIntValue(),
                             EntryDataId = cesspoolIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         cesspoolTaskEntry.Create();
@@ -343,7 +553,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.GarbageBox.GetIntValue(),
                             EntryDataId = garbageBoxTaskIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         garbageBoxTaskEntry.Create();
@@ -369,7 +581,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.compressionStation.GetIntValue(),
                             EntryDataId = compressionStationIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         compressionStationTaskEntry.Create();
@@ -395,7 +609,9 @@ namespace NFine.Repository.SystemManage
                             TaskEntryType = ProfileTaskEntryTypeEnum.Greening.GetIntValue(),
                             EntryDataId = greeningIds[i],
                             StreetId = taskEntity.StreetId,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         greeningTaskEntry.Create();
@@ -424,13 +640,202 @@ namespace NFine.Repository.SystemManage
                             EntryDataId = greenResidentialIds[i],
                             StreetId = taskEntity.StreetId,
                             F_EnCode = taskEntity.F_EnCode,
-                            PersonInChargeId = taskEntity.PersonInChargeId
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = true,
+                            CompleteState = false
                         };
 
                         greeningResidentialTaskEntry.Create();
 
                         db.Insert<ProfileTaskEntryEntity>(greeningResidentialTaskEntry);
                     }
+                    #endregion
+
+                    #region 废纸箱
+                    ProfileTaskEntryEntity WastebasketTaskEntry;
+                    for (int i = 0; i < taskContracts.WastebasketCount; i++)
+                    {
+                        WastebasketTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.Wastebasket.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        WastebasketTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(WastebasketTaskEntry);
+                    }
+
+
+                    #endregion
+
+                    #region 沿街垃圾桶
+                    ProfileTaskEntryEntity StreetTrashTaskEntry;
+                    for (int i = 0; i < taskContracts.StreetTrashCount; i++)
+                    {
+                        StreetTrashTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.StreetTrash.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        StreetTrashTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(StreetTrashTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 机扫车
+                    ProfileTaskEntryEntity MachineCleanCarTaskEntry;
+                    for (int i = 0; i < taskContracts.MachineCleanCarCount; i++)
+                    {
+                        MachineCleanCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.MachineCleanCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        MachineCleanCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(MachineCleanCarTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 冲洗车
+                    ProfileTaskEntryEntity WashTheCarTaskEntry;
+                    for (int i = 0; i < taskContracts.WashTheCarCount; i++)
+                    {
+                        WashTheCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.WashTheCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        WashTheCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(WashTheCarTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 垃圾清运车
+
+                    ProfileTaskEntryEntity GarbageTruckCarTaskEntry;
+                    for (int i = 0; i < taskContracts.GarbageTruckCarCount; i++)
+                    {
+                        GarbageTruckCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.GarbageTruckCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        GarbageTruckCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(GarbageTruckCarTaskEntry);
+                    }
+
+                    #endregion
+
+                    #region 飞行保洁车
+                    ProfileTaskEntryEntity FlyingCarTaskEntry;
+                    for (int i = 0; i < taskContracts.FlyingCarCount; i++)
+                    {
+                        FlyingCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.FlyingCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        FlyingCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(FlyingCarTaskEntry);
+                    }
+
+
+
+                    #endregion
+
+                    #region 四轮八桶车
+
+                    ProfileTaskEntryEntity EightLadleCarTaskEntry;
+                    for (int i = 0; i < taskContracts.EightLadleCarCount; i++)
+                    {
+                        EightLadleCarTaskEntry = new ProfileTaskEntryEntity()
+                        {
+                            CityId = taskEntity.CityId,
+                            CompanyId = taskEntity.CompanyId,
+                            CountyId = taskEntity.CountyId,
+                            TaskId = taskEntity.F_Id,
+                            ProjectType = 1,
+                            TaskEntryType = ProfileTaskEntryTypeEnum.EightLadleCar.GetIntValue(),
+                            StreetId = taskEntity.StreetId,
+                            F_EnCode = taskEntity.F_EnCode,
+                            PersonInChargeId = taskEntity.PersonInChargeId,
+                            IsFixedPoint = false,
+                            CompleteState = false
+                        };
+
+                        EightLadleCarTaskEntry.Create();
+
+                        db.Insert<ProfileTaskEntryEntity>(EightLadleCarTaskEntry);
+                    }
+
                     #endregion
 
                 }
