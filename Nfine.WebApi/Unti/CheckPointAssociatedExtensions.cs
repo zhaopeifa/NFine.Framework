@@ -38,5 +38,25 @@ namespace Nfine.WebApi.Unti
 
             return result;
         }
+
+        public static int GetTandasGradeAssociate(CheckPointClassificationEnum type)
+        {
+            int result = -1;
+            switch (type)
+            {
+
+                case CheckPointClassificationEnum.一类公厕:
+                    result = (int)ProfileTandasGradeEnum.一类;
+                    break;
+                case CheckPointClassificationEnum.二类公厕:
+                    result = (int)ProfileTandasGradeEnum.二类;
+                    break;
+                case CheckPointClassificationEnum.三类公厕:
+                    result = (int)ProfileTandasGradeEnum.三类;
+                    break;
+            }
+
+            return result;
+        }
     }
 }

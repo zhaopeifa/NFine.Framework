@@ -10,5 +10,6 @@ namespace Nfine.WebApi.Code.Task
     public interface ITask
     {
         Contracts.ApiWayContracts[] GetWayTask(string UserId, CheckPointClassificationEnum type);
+        Contracts.ApiWayContracts[] GetTandastask(string userId, CheckPointClassificationEnum type);
     }
 }

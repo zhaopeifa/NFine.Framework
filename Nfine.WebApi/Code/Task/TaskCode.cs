@@ -105,5 +105,67 @@ namespace Nfine.WebApi.Code.Task
                 IsComplete = 0
             }).ToArray();
         }
+
+
+        public Contracts.ApiWayContracts[] GetTandastask(string UserId, Data.Enums.CheckPointClassificationEnum type)
+        {
+            #region 变量
+
+            DateTime currentTime = DateTime.Now;
+            int hasSentState = ProfileTaskStateEnum.HasSent.GetIntValue();
+
+            //当前道路的code
+            int dataTypeCode = ProfileTaskEntryTypeEnum.Tandas.GetIntValue();
+            //当前获取道路类型转换为道路的
+            int thandasTypeCode = Unti.CheckPointAssociatedExtensions.GetTandasGradeAssociate(type);
+            #endregion
+
+            //寻找当前外勤人员是否存在要完成的任务
+            var taskIsHave = from taskQ in LinqSQLExtensions.IQueryable<ProfileTaskEntity>()
+                             where taskQ.PersonInChargeId == UserId &&
+                              taskQ.DeliveryTime <= currentTime &&
+                              taskQ.CompletionTime >= currentTime &&
+                              taskQ.State == hasSentState
+                             select new
+                             {
+                                 f_id = taskQ.F_Id
+                             };
+
+            if (taskIsHave.Count() <= 0)
+            {
+                throw new Exception("此用户当前未发现任何任务!");
+            }
+
+            //查找公厕任务
+
+            var taskQuery = from taskQ in LinqSQLExtensions.IQueryable<ProfileTaskEntity>()
+                            join taskEntryQ in LinqSQLExtensions.IQueryable<ProfileTaskEntryEntity>()
+                            on taskQ.F_Id equals taskEntryQ.TaskId
+                            where taskQ.PersonInChargeId == UserId &&
+                            taskQ.DeliveryTime <= currentTime &&
+                            taskQ.CompletionTime >= currentTime &&
+                            taskEntryQ.TaskEntryType == dataTypeCode
+                            select new
+                            {
+                                TaskId = taskQ.F_Id,
+                                TaskEntryId = taskEntryQ.F_Id,
+                                DeliveryTime = taskQ.DeliveryTime,
+                                CompletionTime = taskQ.CompletionTime,
+                                EntryDataId = taskEntryQ.EntryDataId
+                            };
+
+            var dataQueery = from taskq in taskQuery
+                             join tandasData in LinqSQLExtensions.IQueryable<ProfileSanitationTandasEntity>()
+                             on taskq.EntryDataId equals tandasData.F_Id
+                             where tandasData.Grade == thandasTypeCode
+                             select new
+                             {
+                                 taskId = taskq.TaskId,
+                                 TaskEntryId=taskq.TaskEntryId,
+                                
+                             };
+
+            return null;
+        }
     }
 }
