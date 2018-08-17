@@ -144,8 +144,26 @@
             }
         });
     }
-</script>
+    function btn_TaskDetail() {
 
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        window.location = "/SystemManage/TaskDistributing/TaskDetail?keyValue=" + keyValue;
+
+        return;
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.modalOpen({
+            id: "Form",
+            maxmin: true, //开启最大化最小化按钮
+            title: "任务单明细",
+            url: "/SystemManage/TaskDistributing/TaskDetail?keyValue=" + keyValue,
+            width: "700px",
+            height: "510px",
+            maxmin: true,
+            btn: null
+        });
+    }
+    
+</script>
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
@@ -161,6 +179,8 @@
                 <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除任务</a></li>
                 <li class="split"></li>
                 <li><a id="NF-distributed" authorize="yes" onclick="btn_distributed()"><i class="fa fa-stop-circle"></i>任务派发</a></li>
+                <li class="split"></li>
+                <li><a id="NF-TaskDetail" authorize="yes" onclick="btn_TaskDetail()"><i class="fa fa-stop-circle"></i>查看任务明细</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>
@@ -185,4 +205,6 @@
     <table id="gridList"></table>
     <div id="gridPager"></div>
 </div>
+
+
 

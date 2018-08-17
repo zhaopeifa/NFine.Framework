@@ -109,6 +109,38 @@ $.modalOpen = function (options) {
         }
     });
 }
+$.maxminmodalOpen = function () {
+    var defaults = {
+        id: null,
+        title: '系统窗口',
+        width: "100px",
+        height: "100px",
+        url: '',
+        shade: 0.3,
+        btn: ['确认', '关闭'],
+        btnclass: ['btn btn-primary', 'btn btn-danger'],
+        callBack: null
+    };
+    var options = $.extend(defaults, options);
+    var _width = top.$(window).width() > parseInt(options.width.replace('px', '')) ? options.width : top.$(window).width() + 'px';
+    var _height = top.$(window).height() > parseInt(options.height.replace('px', '')) ? options.height : top.$(window).height() + 'px';
+    top.layer.open({
+        id: options.id,
+        type: 2,
+        shade: options.shade,
+        title: options.title,
+        fix: false,
+        area: [_width, _height],
+        content: options.url,
+        btn: options.btn,
+        btnclass: options.btnclass,
+        yes: function () {
+            options.callBack(options.id)
+        }, cancel: function () {
+            return true;
+        }
+    });
+}
 $.modalConfirm = function (content, callBack) {
     top.layer.confirm(content, {
         icon: "fa-exclamation-circle",

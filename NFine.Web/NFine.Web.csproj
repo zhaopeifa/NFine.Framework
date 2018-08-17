@@ -131,6 +131,7 @@
     <Compile Include="Areas\SystemManage\Controllers\OperationsVehicleTypeController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\OperationsCompanyController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Amenities\AmenitiesMarketController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\ScoreCriteria_EntryController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationAlongLitterBinController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationCarController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationGreenResidentialController.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Areas\SystemManage\Controllers\ProjectController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\RoleAuthorizeController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\RoleController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\ScoreCriteria_TypeController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScoringCriteriaController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScoringCriteriaSanitationController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\StreetController.cs" />
@@ -1199,6 +1201,11 @@
     <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Form.cshtml" />
     <Content Include="Areas\SystemManage\Views\TaskHasSent\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScoreCriteria_Entry\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScoreCriteria_Entry\Form.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScoreCriteria_Type\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScoreCriteria_Type\Form.cshtml" />
+    <Content Include="Areas\SystemManage\Views\TaskDistributing\TaskDetail.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />
   </ItemGroup>

@@ -40,10 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ITaskDetail.cs" />
     <Compile Include="Contracts\ProfileCarWorkItemContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_OptionsContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_TypeContracts.cs" />
     <Compile Include="Contracts\ProfileTaskContracts.cs" />
+    <Compile Include="Contracts\ScoreCriteriaTypeContracts.cs" />
+    <Compile Include="Contracts\TaskDetailCesspoolContracts.cs" />
+    <Compile Include="Contracts\TaskDetailCompressionStationConyracts.cs" />
+    <Compile Include="Contracts\TaskDetailGarbageBoxContracts.cs" />
+    <Compile Include="Contracts\TaskDetailGreeningContracts.cs" />
+    <Compile Include="Contracts\TaskDetailTandasContracts.cs" />
+    <Compile Include="Contracts\TaskDetailWastebasketContracts.cs" />
+    <Compile Include="Contracts\TaskDetailWayContracts.cs" />
+    <Compile Include="Contracts\TaskGreenResidentialContracts.cs" />
     <Compile Include="Contracts\TaskInsertContracts.cs" />
     <Compile Include="Contracts\TaskScreeningCheckPostCountContracts.cs" />
     <Compile Include="Entity\SystemManage\Amenities\ProfileAmenitiesSquareEntity.cs" />
@@ -66,6 +76,8 @@
     <Compile Include="Entity\SystemManage\ProfileOperationsCompanyEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileOperationsVehicleEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileProjectEntity.cs" />
+    <Compile Include="Entity\SystemManage\ScoreCriteria\ProfileScoreCriteria_TypeEntity.cs" />
+    <Compile Include="Entity\SystemManage\ScoreCriteria\ProfileScoreCriteria_EntryEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationAlongLitterBinEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCarWorkItemEntity.cs" />
     <Compile Include="Entity\SystemManage\Sanitation\ProfileSanitationCarEntity.cs" />

@@ -21,6 +21,12 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 
 
         [HttpGet]
+        public ActionResult TaskDetail()
+        {
+            return View();
+        }
+
+        [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword)
         {
@@ -120,5 +126,25 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 
             return Content(countContracts.ToJson());
         }
+
+        /// <summary>
+        /// 获取任务明细
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public ActionResult GetTaskDetail(Pagination pagination, string keyValue, int type)
+        {
+
+            var data = new
+            {
+                rows = taskApp.GetTaskDetail(pagination, keyValue, (ProfileTaskEntryTypeEnum)type),
+                total = pagination.total,
+                page = pagination.page,
+                records = pagination.records
+            };
+            return Content(data.ToJson());
+        }
+
     }
 }

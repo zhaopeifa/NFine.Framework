@@ -1,4 +1,5 @@
 ﻿using NFine.Code;
+using NFine.Data.Extensions;
 using NFine.Domain.Contracts;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.Enums;
@@ -256,10 +257,379 @@ namespace NFine.Application.SystemManage
 
             //--------非定点------------
 
-           
+
 
             return result;
         }
 
+        public ITaskDetail[] GetTaskDetail(Pagination pagination, string taskId, ProfileTaskEntryTypeEnum taskEntryType)
+        {
+            ITaskDetail[] result = null;
+
+            int taskEntryTypeInt = taskEntryType.GetIntValue();
+
+            var taskQuery = from taskQ in LinqSQLExtensions.IQueryable<ProfileTaskEntity>()
+                            join taskEntryQ in LinqSQLExtensions.IQueryable<ProfileTaskEntryEntity>()
+                            on taskQ.F_Id equals taskEntryQ.TaskId
+                            where taskQ.F_Id == taskId &&
+                            taskEntryQ.TaskEntryType == taskEntryTypeInt
+                            select new
+                            {
+                                F_Id = taskEntryQ.F_Id,
+                                DataId = taskEntryQ.EntryDataId,
+                                CompleteState = taskEntryQ.CompleteState,
+                                PersonInChargeId = taskQ.PersonInChargeId,
+                                CompletionTime = taskQ.CompletionTime
+                            };
+
+            //查一下用户名
+            var userQuery = from taskQ in taskQuery
+                            join userQ in LinqSQLExtensions.IQueryable<UserEntity>()
+                            on taskQ.PersonInChargeId equals userQ.F_Id
+                            select new
+                            {
+                                F_Id = taskQ.F_Id,
+                                DataId = taskQ.DataId,
+                                CompleteState = taskQ.CompleteState,
+                                PersonInChargeId = taskQ.PersonInChargeId,
+                                CompletionTime = taskQ.CompletionTime,
+                                PersonInChargeName = userQ.F_RealName
+                            };
+
+            //根据不同的查询不同的数据
+
+            switch (taskEntryType)
+            {
+                #region 道路
+                case ProfileTaskEntryTypeEnum.Way://道路
+
+                    var taskWayEntrysQuery = from taskQ in userQuery
+                                             join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationWayEntity>()
+                                             on taskQ.DataId equals dataQ.F_Id
+                                             select new
+                                             {
+                                                 F_Id = taskQ.F_Id,
+                                                 DataId = taskQ.DataId,
+                                                 CompleteState = taskQ.CompleteState,
+                                                 PersonInChargeId = taskQ.PersonInChargeId,
+                                                 CompletionTime = taskQ.CompletionTime,
+                                                 PersonInChargeName = taskQ.PersonInChargeName,
+                                                 WayName = dataQ.WayName,
+                                                 F_EnCode = dataQ.F_EnCode,
+                                                 Origin = dataQ.Origin,
+                                                 Destination = dataQ.Destination
+                                             };
+
+                    //设置总记录数
+                    pagination.records = taskWayEntrysQuery.Count();
+                    //设置分页数据
+                    taskWayEntrysQuery = taskWayEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = taskWayEntrysQuery.Select(t => new TaskDetailWayContracts()
+                    {
+                        F_Id = t.F_Id,
+                        DataId = t.DataId,
+                        CompleteState = t.CompleteState,
+                        PersonInChargeId = t.PersonInChargeId,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeName = t.PersonInChargeName,
+                        WayName = t.WayName,
+                        F_EnCode = t.F_EnCode,
+                        Origin = t.Origin,
+                        Destination = t.Destination
+                    }).ToArray();
+                    break;
+                #endregion
+
+                #region 公厕
+
+                case ProfileTaskEntryTypeEnum.Tandas://公厕
+
+                    var taskTandasEntrysQuery = from taskQ in userQuery
+                                                join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationTandasEntity>()
+                                                on taskQ.DataId equals dataQ.F_Id
+                                                select new
+                                                {
+                                                    F_Id = taskQ.F_Id,
+                                                    DataId = taskQ.DataId,
+                                                    CompleteState = taskQ.CompleteState,
+                                                    PersonInChargeId = taskQ.PersonInChargeId,
+                                                    CompletionTime = taskQ.CompletionTime,
+                                                    PersonInChargeName = taskQ.PersonInChargeName,
+                                                    Address = dataQ.Address,
+                                                    F_EnCode = dataQ.F_EnCode,
+                                                    CleaningUnit = dataQ.CleaningUnit
+                                                };
+
+                    //设置总记录数
+                    pagination.records = taskTandasEntrysQuery.Count();
+                    //设置分页数据
+                    taskTandasEntrysQuery = taskTandasEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = taskTandasEntrysQuery.Select(t => new TaskDetailTandasContracts()
+                    {
+                        F_Id = t.F_Id,
+                        DataId = t.DataId,
+                        CompleteState = t.CompleteState,
+                        PersonInChargeId = t.PersonInChargeId,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeName = t.PersonInChargeName,
+                        Address = t.Address,
+                        F_EnCode = t.F_EnCode,
+                        CleaningUnit = t.CleaningUnit
+                    }).ToArray();
+
+                    break;
+
+                #endregion
+
+                #region 垃圾箱房
+
+                case ProfileTaskEntryTypeEnum.GarbageBox:
+
+                    var taskGarbageBoxEntrysQuery = from taskQ in userQuery
+                                                    join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGarbageBoxEntity>()
+                                                    on taskQ.DataId equals dataQ.F_Id
+                                                    select new
+                                                    {
+                                                        F_Id = taskQ.F_Id,
+                                                        DataId = taskQ.DataId,
+                                                        CompleteState = taskQ.CompleteState,
+                                                        PersonInChargeId = taskQ.PersonInChargeId,
+                                                        CompletionTime = taskQ.CompletionTime,
+                                                        PersonInChargeName = taskQ.PersonInChargeName,
+                                                        Address = dataQ.Address,
+                                                        F_EnCode = dataQ.F_EnCode,
+                                                    };
+
+                    //设置总记录数
+                    pagination.records = taskGarbageBoxEntrysQuery.Count();
+                    //设置分页
+                    taskGarbageBoxEntrysQuery = taskGarbageBoxEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = taskGarbageBoxEntrysQuery.Select(t => new TaskDetailGarbageBoxContracts()
+                    {
+                        F_Id = t.F_Id,
+                        DataId = t.DataId,
+                        CompleteState = t.CompleteState,
+                        PersonInChargeId = t.PersonInChargeId,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeName = t.PersonInChargeName,
+                        Address = t.Address,
+                        F_EnCode = t.F_EnCode,
+                    }).ToArray();
+
+                    break;
+
+
+                #endregion
+
+                #region 压缩站
+
+                case ProfileTaskEntryTypeEnum.compressionStation:
+
+                    var taskcompressionStationEntrysQuery = from taskQ in userQuery
+                                                            join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationCompressionStationEntity>()
+                                                            on taskQ.DataId equals dataQ.F_Id
+                                                            select new
+                                                            {
+                                                                F_Id = taskQ.F_Id,
+                                                                DataId = taskQ.DataId,
+                                                                CompleteState = taskQ.CompleteState,
+                                                                PersonInChargeId = taskQ.PersonInChargeId,
+                                                                CompletionTime = taskQ.CompletionTime,
+                                                                PersonInChargeName = taskQ.PersonInChargeName,
+                                                                Address = dataQ.Address,
+                                                                OpeningHours = dataQ.OpeningHours,
+                                                                F_EnCode = dataQ.F_EnCode,
+                                                            };
+
+                    //设置总记录数
+                    pagination.records = taskcompressionStationEntrysQuery.Count();
+                    //设置分页
+                    taskcompressionStationEntrysQuery = taskcompressionStationEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = taskcompressionStationEntrysQuery.Select(t => new TaskDetailCompressionStationContracts()
+                    {
+                        F_Id = t.F_Id,
+                        DataId = t.DataId,
+                        CompleteState = t.CompleteState,
+                        PersonInChargeId = t.PersonInChargeId,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeName = t.PersonInChargeName,
+                        Address = t.Address,
+                        OpeningHours = t.OpeningHours,
+                        F_EnCode = t.F_EnCode,
+                    }).ToArray();
+
+
+                    break;
+
+                #endregion
+
+                #region 沿途绿化
+
+                case ProfileTaskEntryTypeEnum.Greening:
+
+                    var taskGreeningEntrysQuery = from taskQ in userQuery
+                                                  join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGreeningEntity>()
+                                                  on taskQ.DataId equals dataQ.F_Id
+                                                  select new
+                                                  {
+                                                      F_Id = taskQ.F_Id,
+                                                      DataId = taskQ.DataId,
+                                                      CompleteState = taskQ.CompleteState,
+                                                      PersonInChargeId = taskQ.PersonInChargeId,
+                                                      CompletionTime = taskQ.CompletionTime,
+                                                      PersonInChargeName = taskQ.PersonInChargeName,
+                                                      Address = dataQ.Address,
+                                                      Origin = dataQ.Origin,
+                                                      Destination = dataQ.Destination,
+                                                      F_EnCode = dataQ.F_EnCode,
+                                                  };
+
+                    //设置分页总数量
+                    pagination.records = taskGreeningEntrysQuery.Count();
+                    //设置分页
+                    taskGreeningEntrysQuery = taskGreeningEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = taskGreeningEntrysQuery.Select(t => new TaskDetailGreeningContracts()
+                    {
+                        F_Id = t.F_Id,
+                        DataId = t.DataId,
+                        CompleteState = t.CompleteState,
+                        PersonInChargeId = t.PersonInChargeId,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeName = t.PersonInChargeName,
+                        Address = t.Address,
+                        Origin = t.Origin,
+                        Destination = t.Destination,
+                        F_EnCode = t.F_EnCode,
+                    }).ToArray();
+
+                    break;
+
+                #endregion
+
+                #region 绿色账户小区
+
+                case ProfileTaskEntryTypeEnum.GreenResidential:
+
+                    var taskGreenResidentialEntrysQuery = from taskQ in userQuery
+                                                          join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGreenResidentialEntity>()
+                                                          on taskQ.DataId equals dataQ.F_Id
+                                                          select new
+                                                          {
+                                                              F_Id = taskQ.F_Id,
+                                                              DataId = taskQ.DataId,
+                                                              CompleteState = taskQ.CompleteState,
+                                                              PersonInChargeId = taskQ.PersonInChargeId,
+                                                              CompletionTime = taskQ.CompletionTime,
+                                                              PersonInChargeName = taskQ.PersonInChargeName,
+                                                              Address = dataQ.Address,
+                                                              ResidentialName = dataQ.ResidentialName,
+                                                              F_EnCode = dataQ.F_EnCode,
+                                                          };
+
+                    //设置分页总数量
+                    pagination.records = taskGreenResidentialEntrysQuery.Count();
+                    //设置分页
+                    taskGreenResidentialEntrysQuery = taskGreenResidentialEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = taskGreenResidentialEntrysQuery.Select(t => new TaskDetailGreenResidentialContracts()
+                    {
+                        F_Id = t.F_Id,
+                        DataId = t.DataId,
+                        CompleteState = t.CompleteState,
+                        PersonInChargeId = t.PersonInChargeId,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeName = t.PersonInChargeName,
+                        Address = t.Address,
+                        ResidentialName = t.ResidentialName,
+                        F_EnCode = t.F_EnCode,
+                    }).ToArray();
+
+                    break;
+
+                #endregion
+
+                #region 倒粪池小便池
+
+                case ProfileTaskEntryTypeEnum.cesspool:
+                    var taskcesspoolEntrysQuery = from taskQ in userQuery
+                                                  join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationCesspoolEntity>()
+                                                  on taskQ.DataId equals dataQ.F_Id
+                                                  select new
+                                                  {
+                                                      F_Id = taskQ.F_Id,
+                                                      DataId = taskQ.DataId,
+                                                      CompleteState = taskQ.CompleteState,
+                                                      PersonInChargeId = taskQ.PersonInChargeId,
+                                                      CompletionTime = taskQ.CompletionTime,
+                                                      PersonInChargeName = taskQ.PersonInChargeName,
+                                                      Address = dataQ.Address,
+                                                      F_EnCode = dataQ.F_EnCode,
+                                                  };
+
+                    //设置分页总数量
+                    pagination.records = taskcesspoolEntrysQuery.Count();
+                    //设置分页
+                    taskcesspoolEntrysQuery = taskcesspoolEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = taskcesspoolEntrysQuery.Select(t => new TaskDetailCesspoolContracts()
+                    {
+                        F_Id = t.F_Id,
+                        DataId = t.DataId,
+                        CompleteState = t.CompleteState,
+                        PersonInChargeId = t.PersonInChargeId,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeName = t.PersonInChargeName,
+                        Address = t.Address,
+                        F_EnCode = t.F_EnCode,
+                    }).ToArray();
+
+                    break;
+
+                #endregion
+
+                #region 废纸箱
+
+                case ProfileTaskEntryTypeEnum.Wastebasket:
+
+                    //设置分页总数量
+                    pagination.records = userQuery.Count();
+                    //设置分页
+                    userQuery = userQuery.OrderBy(t => t.CompletionTime).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+                    result = userQuery.Select(t => new TaskDetailWastebasketContracts()
+                    {
+                        F_Id = t.F_Id,
+                        CompleteState = t.CompleteState,
+                        CompletionTime = t.CompletionTime,
+                        PersonInChargeId = t.PersonInChargeId,
+                        PersonInChargeName = t.PersonInChargeName
+                    }).ToArray();
+
+                    break;
+
+                #endregion
+                case ProfileTaskEntryTypeEnum.StreetTrash:
+                    break;
+                case ProfileTaskEntryTypeEnum.MachineCleanCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.WashTheCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.GarbageTruckCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.FlyingCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.EightLadleCar:
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
     }
 }
