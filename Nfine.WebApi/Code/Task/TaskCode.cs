@@ -160,12 +160,33 @@ namespace Nfine.WebApi.Code.Task
                              where tandasData.Grade == thandasTypeCode
                              select new
                              {
-                                 taskId = taskq.TaskId,
-                                 TaskEntryId=taskq.TaskEntryId,
-                                
+                                 TaskId = taskq.TaskId,
+                                 TaskEntryId = taskq.TaskEntryId,
+                                 Address = tandasData.Address,
+                                 DeliveryTime = taskq.DeliveryTime,
+                                 CompletionTime = taskq.CompletionTime,
+                                 StreetId = tandasData.StreetId
                              };
 
-            return null;
+            var StreetQuery = from dataQ in dataQueery
+                              join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                              on dataQ.StreetId equals streetQ.F_Id
+                              select new
+                              {
+                                  taskId = dataQ.TaskId,
+                                  TaskEntryId = dataQ.TaskEntryId,
+                                  Address = dataQ.Address,
+                                  DeliveryTime = dataQ.DeliveryTime,
+                                  CompletionTime = dataQ.CompletionTime,
+                                  StreetId = dataQ.StreetId,
+                                  StreetName = streetQ.StreetName
+                              };
+
+            return StreetQuery.Select(d => new Contracts.ApiWayContracts()
+            {
+                Title = "环卫公厕",
+                Id = d.taskId
+            }).ToArray();
         }
     }
 }
