@@ -16,21 +16,17 @@ namespace NFine.Domain.Enums
         /// </summary>
         NotToSend = 0,
         /// <summary>
-        /// 已派遣，等待完成
+        /// 待审核
         /// </summary>
-        HasSent = 1,
-        /// <summary>
-        /// 待审核，已完成
-        /// </summary>
-        ToAudit = 2,
+        ToAudit = 1,
         /// <summary>
         /// 退回从新任务
         /// </summary>
-        BackTo=3,
+        BackTo = 2,
         /// <summary>
         /// 已终结，审核完毕
         /// </summary>
-        HavePutAnEndTo = 4,
+        HavePutAnEndTo = 3,
         /// <summary>
         /// 已作废。
         /// </summary>
@@ -51,11 +47,8 @@ namespace NFine.Domain.Enums
                 case ProfileTaskStateEnum.NotToSend:
                     result = "未派遣";
                     break;
-                case ProfileTaskStateEnum.HasSent:
-                    result = "已派遣,待完成";
-                    break;
                 case ProfileTaskStateEnum.ToAudit:
-                    result = "待审核,已完成";
+                    result = "待审核";
                     break;
                 case ProfileTaskStateEnum.HavePutAnEndTo:
                     result = "已终结";

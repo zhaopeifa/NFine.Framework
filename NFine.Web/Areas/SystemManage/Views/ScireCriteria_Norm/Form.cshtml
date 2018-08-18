@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<script>
+    
+    var normGroupId = $.request("normGroupId");
+    var classifygroupId = $.request("classifygroupId");
+
+    debugger;
+    $(function () {
+        if (!!normGroupId) {
+            $.ajax({
+                url: "/SystemManage/ScireCriteria_Norm/GetFormJson",
+                data: { normGroupId: normGroupId },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+
+        $.submitForm({
+            url: "/SystemManage/ScireCriteria_Norm/SubmitForm?normGroupId=" + normGroupId + "&classifyGroupId=" + classifygroupId,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">检查项目</th>
+                <td class="formValue">
+                    <input id="SNormProjectName" name="SNormProjectName" type="text" class="form-control required" placeholder="请输入检查项目" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">评分标准</th>
+                <td class="formValue">
+                    <input id="SNormStandardName" name="SNormStandardName" type="text" class="form-control required" placeholder="请输入评分标准" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">起扣条件</th>
+                <td class="formValue">
+                    <input id="Condition" name="Condition" type="text" class="form-control required number" placeholder="请输入起扣条件" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

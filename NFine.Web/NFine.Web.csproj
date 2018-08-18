@@ -131,6 +131,8 @@
     <Compile Include="Areas\SystemManage\Controllers\OperationsVehicleTypeController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\OperationsCompanyController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Amenities\AmenitiesMarketController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\ScireCriteria_NormController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\ScoreCriteria_ClassifyController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScoreCriteria_EntryController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationAlongLitterBinController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Sanitation\SanitationCarController.cs" />
@@ -156,8 +158,10 @@
     <Compile Include="Areas\SystemManage\Controllers\ScoringCriteriaController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScoringCriteriaSanitationController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\StreetController.cs" />
-    <Compile Include="Areas\SystemManage\Controllers\Task\TaskHasSentController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\Task\TaskAuditController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Task\TaskDistributingController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\Task\TaskHavePutAnEndTo.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\Task\TaskTheCancellationController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\UserController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ItemsTypeController.cs" />
     <Compile Include="Areas\SystemManage\SystemManageAreaRegistration.cs" />
@@ -1200,12 +1204,18 @@
     <Content Include="Areas\SystemManage\Views\ScoringCriteriaSanitation\FormOptions.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationAlongLitterBin\Form.cshtml" />
-    <Content Include="Areas\SystemManage\Views\TaskHasSent\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\TaskAudit\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScoreCriteria_Entry\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScoreCriteria_Entry\Form.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScoreCriteria_Type\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScoreCriteria_Type\Form.cshtml" />
     <Content Include="Areas\SystemManage\Views\TaskDistributing\TaskDetail.cshtml" />
+    <Content Include="Areas\SystemManage\Views\TaskTheCancellation\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\TaskHavePutAnEndTo\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScoreCriteria_Classify\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScoreCriteria_Classify\Form.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScireCriteria_Norm\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ScireCriteria_Norm\Form.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />
   </ItemGroup>

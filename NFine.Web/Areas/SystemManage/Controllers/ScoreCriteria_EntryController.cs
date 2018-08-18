@@ -64,7 +64,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetEnableGridJson()
         {
-            var data = App.GetDictionary("SELECT * FROM ProfileScoreCriteria_Entry");
+            var data = App.GetEntryDictionary("SELECT * FROM ProfileScoreCriteria_Entry");
 
             return Content(data.ToJson());
         }

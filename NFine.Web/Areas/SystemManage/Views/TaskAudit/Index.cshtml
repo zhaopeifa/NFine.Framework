@@ -10,7 +10,7 @@
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "/SystemManage/TaskHasSent/GetGridJson",
+            url: "/SystemManage/TaskAudit/GetGridJson",
             height: $(window).height() - 128,
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    label: '抽样单名称', name: 'F_EnCode', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                    label: '抽样单名称', name: 'F_EnCode', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue == null) {
                             return "暂未生成";
                         } else {
@@ -58,7 +58,7 @@
                 },
                 { label: '被派发人', name: 'PersonInChargeRealName', width: 80, align: 'left' },
                 {
-                    label: '派发时间', name: 'DeliveryTime', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                    label: '派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue == null) {
                             return "暂未生成"
                         } else {
@@ -78,6 +78,40 @@
             }).trigger('reloadGrid');
         });
     }
+    function btn_TaskDetail() {
+
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        window.location = "/SystemManage/TaskDistributing/TaskDetail?keyValue=" + keyValue;
+
+        return;
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.modalOpen({
+            id: "Form",
+            maxmin: true, //开启最大化最小化按钮
+            title: "任务单明细",
+            url: "/SystemManage/TaskDistributing/TaskDetail?keyValue=" + keyValue,
+            width: "700px",
+            height: "510px",
+            maxmin: true,
+            btn: null
+        });
+    }
+    function btn_Invalid()
+    {
+        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+        $.modalConfirm("注：您确定要作废当前任务吗？作废后将不可继续任务。", function (r) {
+            if (r) {
+                debugger;
+                $.submitForm({
+                    url: "/SystemManage/TaskTheCancellation/TaskInvalid",
+                    param: { keyValue: keyValue },
+                    success: function () {
+                        $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                })
+            }
+        });
+    }
 </script>
 
 
@@ -91,7 +125,9 @@
         <div class="operate">
             <ul class="nav nav-pills">
                 <li class="first">已选中<span>1</span>项</li>
-
+                <li><a id="NF-Invalid" authorize="yes" onclick="btn_Invalid()"><i class="fa fa-pencil-square-o"></i>作废任务单</a></li>
+                <li class="split"></li>
+                <li><a id="NF-TaskDetail" authorize="yes" onclick="btn_TaskDetail()"><i class="glyphicon glyphicon-eye-open"></i>查看任务明细</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>

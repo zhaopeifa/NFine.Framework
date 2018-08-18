@@ -69,7 +69,7 @@ namespace NFine.Application.SystemManage
                 taskQuery = taskQuery.Where(t => t.State == taskStateTypeInt);
             }
 
-            taskQuery = taskQuery.OrderBy(d => d.F_LastModifyTime).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+            taskQuery = taskQuery.OrderByDescending(d => d.F_LastModifyTime).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
 
             var contractsQuery = from taskEntityQ in taskQuery
                                  join userEntityQ in NFine.Data.Extensions.LinqSQLExtensions.IQueryable<UserEntity>()
@@ -132,6 +132,21 @@ namespace NFine.Application.SystemManage
         public void TaskDistributed(string keyValue)
         {
             service.TaskDistributed(keyValue);
+        }
+
+        /// <summary>
+        /// 任务单作废
+        /// </summary>
+        public void TaskInvalid(string keyValue)
+        {
+            service.TaskInvalid(keyValue);
+
+            try
+            {
+                //添加日志
+                LogMess.addLog(DbLogType.Delete.ToString(), "作废成功", "作废任务单信息【" + this.GetForm(keyValue).F_EnCode + "】成功！");
+            }
+            catch { }
         }
 
         /// <summary>
@@ -279,7 +294,9 @@ namespace NFine.Application.SystemManage
                                 DataId = taskEntryQ.EntryDataId,
                                 CompleteState = taskEntryQ.CompleteState,
                                 PersonInChargeId = taskQ.PersonInChargeId,
-                                CompletionTime = taskQ.CompletionTime
+                                CompletionTime = taskQ.CompletionTime,
+                                OrdeNo = taskQ.F_EnCode,
+                                DeliveryTime = taskQ.DeliveryTime
                             };
 
             //查一下用户名
@@ -293,6 +310,8 @@ namespace NFine.Application.SystemManage
                                 CompleteState = taskQ.CompleteState,
                                 PersonInChargeId = taskQ.PersonInChargeId,
                                 CompletionTime = taskQ.CompletionTime,
+                                OrdeNo = taskQ.OrdeNo,
+                                DeliveryTime = taskQ.DeliveryTime,
                                 PersonInChargeName = userQ.F_RealName
                             };
 
@@ -303,22 +322,48 @@ namespace NFine.Application.SystemManage
                 #region 道路
                 case ProfileTaskEntryTypeEnum.Way://道路
 
-                    var taskWayEntrysQuery = from taskQ in userQuery
-                                             join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationWayEntity>()
-                                             on taskQ.DataId equals dataQ.F_Id
+                    var taskWayEntrysQuery = from dataQ in
+                                                 (from taskQ in userQuery
+                                                  join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationWayEntity>()
+                                                  on taskQ.DataId equals dataQ.F_Id
+                                                  select new
+                                                  {
+                                                      F_Id = taskQ.F_Id,
+                                                      DataId = taskQ.DataId,
+                                                      StreetId = dataQ.StreetId,
+                                                      CompleteState = taskQ.CompleteState,
+                                                      PersonInChargeId = taskQ.PersonInChargeId,
+                                                      CompletionTime = taskQ.CompletionTime,
+                                                      OrdeNo = taskQ.OrdeNo,
+                                                      DeliveryTime = taskQ.DeliveryTime,
+                                                      PersonInChargeName = taskQ.PersonInChargeName,
+                                                      WayName = dataQ.WayName,
+                                                      F_EnCode = dataQ.F_EnCode,
+                                                      Origin = dataQ.Origin,
+                                                      Destination = dataQ.Destination
+                                                  })
+                                             join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                                             on dataQ.StreetId equals streetQ.F_Id
                                              select new
                                              {
-                                                 F_Id = taskQ.F_Id,
-                                                 DataId = taskQ.DataId,
-                                                 CompleteState = taskQ.CompleteState,
-                                                 PersonInChargeId = taskQ.PersonInChargeId,
-                                                 CompletionTime = taskQ.CompletionTime,
-                                                 PersonInChargeName = taskQ.PersonInChargeName,
+                                                 F_Id = dataQ.F_Id,
+                                                 DataId = dataQ.DataId,
+                                                 StreetId = dataQ.StreetId,
+                                                 CompleteState = dataQ.CompleteState,
+                                                 PersonInChargeId = dataQ.PersonInChargeId,
+                                                 OrdeNo = dataQ.OrdeNo,
+                                                 DeliveryTime = dataQ.DeliveryTime,
+                                                 CompletionTime = dataQ.CompletionTime,
+                                                 PersonInChargeName = dataQ.PersonInChargeName,
                                                  WayName = dataQ.WayName,
                                                  F_EnCode = dataQ.F_EnCode,
                                                  Origin = dataQ.Origin,
-                                                 Destination = dataQ.Destination
+                                                 Destination = dataQ.Destination,
+                                                 StreetIdName = streetQ.StreetName
                                              };
+
+
+
 
                     //设置总记录数
                     pagination.records = taskWayEntrysQuery.Count();
@@ -334,9 +379,12 @@ namespace NFine.Application.SystemManage
                         CompletionTime = t.CompletionTime,
                         PersonInChargeName = t.PersonInChargeName,
                         WayName = t.WayName,
-                        F_EnCode = t.F_EnCode,
                         Origin = t.Origin,
-                        Destination = t.Destination
+                        Destination = t.Destination,
+                        StreetId = t.StreetId,
+                        StreetName = t.StreetIdName,
+                        OrdeNo = t.OrdeNo,
+                        DeliveryTime = t.DeliveryTime
                     }).ToArray();
                     break;
                 #endregion
@@ -345,26 +393,46 @@ namespace NFine.Application.SystemManage
 
                 case ProfileTaskEntryTypeEnum.Tandas://公厕
 
-                    var taskTandasEntrysQuery = from taskQ in userQuery
-                                                join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationTandasEntity>()
-                                                on taskQ.DataId equals dataQ.F_Id
+                    var taskTandasEntrysQuery = from dataQ in
+                                                    (from taskQ in userQuery
+                                                     join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationTandasEntity>()
+                                                     on taskQ.DataId equals dataQ.F_Id
+                                                     select new
+                                                     {
+                                                         F_Id = taskQ.F_Id,
+                                                         DataId = taskQ.DataId,
+                                                         CompleteState = taskQ.CompleteState,
+                                                         PersonInChargeId = taskQ.PersonInChargeId,
+                                                         CompletionTime = taskQ.CompletionTime,
+                                                         OrdeNo = taskQ.OrdeNo,
+                                                         DeliveryTime = taskQ.DeliveryTime,
+                                                         PersonInChargeName = taskQ.PersonInChargeName,
+                                                         StreetId = dataQ.StreetId,
+                                                         Address = dataQ.Address,
+                                                         CleaningUnit = dataQ.CleaningUnit
+                                                     })
+                                                join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                                                on dataQ.StreetId equals streetQ.F_Id
                                                 select new
                                                 {
-                                                    F_Id = taskQ.F_Id,
-                                                    DataId = taskQ.DataId,
-                                                    CompleteState = taskQ.CompleteState,
-                                                    PersonInChargeId = taskQ.PersonInChargeId,
-                                                    CompletionTime = taskQ.CompletionTime,
-                                                    PersonInChargeName = taskQ.PersonInChargeName,
+                                                    F_Id = dataQ.F_Id,
+                                                    DataId = dataQ.DataId,
+                                                    CompleteState = dataQ.CompleteState,
+                                                    PersonInChargeId = dataQ.PersonInChargeId,
+                                                    CompletionTime = dataQ.CompletionTime,
+                                                    OrdeNo = dataQ.OrdeNo,
+                                                    DeliveryTime = dataQ.DeliveryTime,
+                                                    PersonInChargeName = dataQ.PersonInChargeName,
+                                                    StreetId = dataQ.StreetId,
                                                     Address = dataQ.Address,
-                                                    F_EnCode = dataQ.F_EnCode,
-                                                    CleaningUnit = dataQ.CleaningUnit
+                                                    CleaningUnit = dataQ.CleaningUnit,
+                                                    StreetIdName = streetQ.StreetName
                                                 };
 
                     //设置总记录数
                     pagination.records = taskTandasEntrysQuery.Count();
                     //设置分页数据
-                    taskTandasEntrysQuery = taskTandasEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+                    taskTandasEntrysQuery = taskTandasEntrysQuery.OrderBy(t => t.F_Id).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
 
                     result = taskTandasEntrysQuery.Select(t => new TaskDetailTandasContracts()
                     {
@@ -375,8 +443,11 @@ namespace NFine.Application.SystemManage
                         CompletionTime = t.CompletionTime,
                         PersonInChargeName = t.PersonInChargeName,
                         Address = t.Address,
-                        F_EnCode = t.F_EnCode,
-                        CleaningUnit = t.CleaningUnit
+                        CleaningUnit = t.CleaningUnit,
+                        StreetId = t.StreetId,
+                        StreetName = t.StreetIdName,
+                        OrdeNo = t.OrdeNo,
+                        DeliveryTime = t.DeliveryTime
                     }).ToArray();
 
                     break;
@@ -387,25 +458,44 @@ namespace NFine.Application.SystemManage
 
                 case ProfileTaskEntryTypeEnum.GarbageBox:
 
-                    var taskGarbageBoxEntrysQuery = from taskQ in userQuery
-                                                    join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGarbageBoxEntity>()
-                                                    on taskQ.DataId equals dataQ.F_Id
+                    var taskGarbageBoxEntrysQuery = from dataQ in
+                                                        (from taskQ in userQuery
+                                                         join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGarbageBoxEntity>()
+                                                         on taskQ.DataId equals dataQ.F_Id
+                                                         select new
+                                                         {
+                                                             F_Id = taskQ.F_Id,
+                                                             DataId = taskQ.DataId,
+                                                             CompleteState = taskQ.CompleteState,
+                                                             PersonInChargeId = taskQ.PersonInChargeId,
+                                                             CompletionTime = taskQ.CompletionTime,
+                                                             OrdeNo = taskQ.OrdeNo,
+                                                             DeliveryTime = taskQ.DeliveryTime,
+                                                             PersonInChargeName = taskQ.PersonInChargeName,
+                                                             Address = dataQ.Address,
+                                                             StreetId = dataQ.StreetId,
+                                                         })
+                                                    join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                                                    on dataQ.StreetId equals streetQ.F_Id
                                                     select new
                                                     {
-                                                        F_Id = taskQ.F_Id,
-                                                        DataId = taskQ.DataId,
-                                                        CompleteState = taskQ.CompleteState,
-                                                        PersonInChargeId = taskQ.PersonInChargeId,
-                                                        CompletionTime = taskQ.CompletionTime,
-                                                        PersonInChargeName = taskQ.PersonInChargeName,
+                                                        F_Id = dataQ.F_Id,
+                                                        DataId = dataQ.DataId,
+                                                        CompleteState = dataQ.CompleteState,
+                                                        PersonInChargeId = dataQ.PersonInChargeId,
+                                                        CompletionTime = dataQ.CompletionTime,
+                                                        OrdeNo = dataQ.OrdeNo,
+                                                        DeliveryTime = dataQ.DeliveryTime,
+                                                        PersonInChargeName = dataQ.PersonInChargeName,
                                                         Address = dataQ.Address,
-                                                        F_EnCode = dataQ.F_EnCode,
+                                                        StreetId = dataQ.StreetId,
+                                                        StreetName = streetQ.StreetName
                                                     };
 
                     //设置总记录数
                     pagination.records = taskGarbageBoxEntrysQuery.Count();
                     //设置分页
-                    taskGarbageBoxEntrysQuery = taskGarbageBoxEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+                    taskGarbageBoxEntrysQuery = taskGarbageBoxEntrysQuery.OrderBy(t => t.F_Id).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
 
                     result = taskGarbageBoxEntrysQuery.Select(t => new TaskDetailGarbageBoxContracts()
                     {
@@ -416,7 +506,10 @@ namespace NFine.Application.SystemManage
                         CompletionTime = t.CompletionTime,
                         PersonInChargeName = t.PersonInChargeName,
                         Address = t.Address,
-                        F_EnCode = t.F_EnCode,
+                        StreetId = t.StreetId,
+                        StreetName = t.StreetName,
+                        OrdeNo = t.OrdeNo,
+                        DeliveryTime = t.DeliveryTime
                     }).ToArray();
 
                     break;
@@ -428,26 +521,46 @@ namespace NFine.Application.SystemManage
 
                 case ProfileTaskEntryTypeEnum.compressionStation:
 
-                    var taskcompressionStationEntrysQuery = from taskQ in userQuery
-                                                            join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationCompressionStationEntity>()
-                                                            on taskQ.DataId equals dataQ.F_Id
+                    var taskcompressionStationEntrysQuery = from dataQ in
+                                                                (from taskQ in userQuery
+                                                                 join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationCompressionStationEntity>()
+                                                                 on taskQ.DataId equals dataQ.F_Id
+                                                                 select new
+                                                                 {
+                                                                     F_Id = taskQ.F_Id,
+                                                                     DataId = taskQ.DataId,
+                                                                     CompleteState = taskQ.CompleteState,
+                                                                     OrdeNo = taskQ.OrdeNo,
+                                                                     DeliveryTime = taskQ.DeliveryTime,
+                                                                     PersonInChargeId = taskQ.PersonInChargeId,
+                                                                     CompletionTime = taskQ.CompletionTime,
+                                                                     PersonInChargeName = taskQ.PersonInChargeName,
+                                                                     Address = dataQ.Address,
+                                                                     OpeningHours = dataQ.OpeningHours,
+                                                                     StreetId = dataQ.StreetId
+                                                                 })
+                                                            join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                                                            on dataQ.StreetId equals streetQ.F_Id
                                                             select new
                                                             {
-                                                                F_Id = taskQ.F_Id,
-                                                                DataId = taskQ.DataId,
-                                                                CompleteState = taskQ.CompleteState,
-                                                                PersonInChargeId = taskQ.PersonInChargeId,
-                                                                CompletionTime = taskQ.CompletionTime,
-                                                                PersonInChargeName = taskQ.PersonInChargeName,
+                                                                F_Id = dataQ.F_Id,
+                                                                DataId = dataQ.DataId,
+                                                                CompleteState = dataQ.CompleteState,
+                                                                PersonInChargeId = dataQ.PersonInChargeId,
+                                                                CompletionTime = dataQ.CompletionTime,
+                                                                OrdeNo = dataQ.OrdeNo,
+                                                                DeliveryTime = dataQ.DeliveryTime,
+                                                                PersonInChargeName = dataQ.PersonInChargeName,
                                                                 Address = dataQ.Address,
                                                                 OpeningHours = dataQ.OpeningHours,
-                                                                F_EnCode = dataQ.F_EnCode,
+                                                                StreetId = dataQ.StreetId,
+                                                                StreetName = streetQ.StreetName
                                                             };
 
                     //设置总记录数
                     pagination.records = taskcompressionStationEntrysQuery.Count();
                     //设置分页
-                    taskcompressionStationEntrysQuery = taskcompressionStationEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+                    taskcompressionStationEntrysQuery = taskcompressionStationEntrysQuery.OrderBy(t => t.F_Id).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
 
                     result = taskcompressionStationEntrysQuery.Select(t => new TaskDetailCompressionStationContracts()
                     {
@@ -459,7 +572,10 @@ namespace NFine.Application.SystemManage
                         PersonInChargeName = t.PersonInChargeName,
                         Address = t.Address,
                         OpeningHours = t.OpeningHours,
-                        F_EnCode = t.F_EnCode,
+                        StreetId = t.StreetId,
+                        StreetName = t.StreetName,
+                        DeliveryTime = t.DeliveryTime,
+                        OrdeNo = t.OrdeNo
                     }).ToArray();
 
 
@@ -471,27 +587,48 @@ namespace NFine.Application.SystemManage
 
                 case ProfileTaskEntryTypeEnum.Greening:
 
-                    var taskGreeningEntrysQuery = from taskQ in userQuery
-                                                  join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGreeningEntity>()
-                                                  on taskQ.DataId equals dataQ.F_Id
+                    var taskGreeningEntrysQuery = from dataQ in
+                                                      (from taskQ in userQuery
+                                                       join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGreeningEntity>()
+                                                       on taskQ.DataId equals dataQ.F_Id
+                                                       select new
+                                                       {
+                                                           F_Id = taskQ.F_Id,
+                                                           DataId = taskQ.DataId,
+                                                           CompleteState = taskQ.CompleteState,
+                                                           OrdeNo = taskQ.OrdeNo,
+                                                           DeliveryTime = taskQ.DeliveryTime,
+                                                           PersonInChargeId = taskQ.PersonInChargeId,
+                                                           CompletionTime = taskQ.CompletionTime,
+                                                           PersonInChargeName = taskQ.PersonInChargeName,
+                                                           Address = dataQ.Address,
+                                                           Origin = dataQ.Origin,
+                                                           Destination = dataQ.Destination,
+                                                           StreetId = dataQ.StreetId
+                                                       })
+                                                  join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                                                  on dataQ.StreetId equals streetQ.F_Id
                                                   select new
                                                   {
-                                                      F_Id = taskQ.F_Id,
-                                                      DataId = taskQ.DataId,
-                                                      CompleteState = taskQ.CompleteState,
-                                                      PersonInChargeId = taskQ.PersonInChargeId,
-                                                      CompletionTime = taskQ.CompletionTime,
-                                                      PersonInChargeName = taskQ.PersonInChargeName,
+                                                      F_Id = dataQ.F_Id,
+                                                      DataId = dataQ.DataId,
+                                                      CompleteState = dataQ.CompleteState,
+                                                      PersonInChargeId = dataQ.PersonInChargeId,
+                                                      CompletionTime = dataQ.CompletionTime,
+                                                      OrdeNo = dataQ.OrdeNo,
+                                                      DeliveryTime = dataQ.DeliveryTime,
+                                                      PersonInChargeName = dataQ.PersonInChargeName,
                                                       Address = dataQ.Address,
                                                       Origin = dataQ.Origin,
                                                       Destination = dataQ.Destination,
-                                                      F_EnCode = dataQ.F_EnCode,
+                                                      StreetId = dataQ.StreetId,
+                                                      StreetName = streetQ.StreetName
                                                   };
 
                     //设置分页总数量
                     pagination.records = taskGreeningEntrysQuery.Count();
                     //设置分页
-                    taskGreeningEntrysQuery = taskGreeningEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+                    taskGreeningEntrysQuery = taskGreeningEntrysQuery.OrderBy(t => t.F_Id).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
 
                     result = taskGreeningEntrysQuery.Select(t => new TaskDetailGreeningContracts()
                     {
@@ -504,7 +641,10 @@ namespace NFine.Application.SystemManage
                         Address = t.Address,
                         Origin = t.Origin,
                         Destination = t.Destination,
-                        F_EnCode = t.F_EnCode,
+                        StreetId = t.StreetId,
+                        StreetName = t.StreetName,
+                        DeliveryTime = t.DeliveryTime,
+                        OrdeNo = t.OrdeNo
                     }).ToArray();
 
                     break;
@@ -515,26 +655,46 @@ namespace NFine.Application.SystemManage
 
                 case ProfileTaskEntryTypeEnum.GreenResidential:
 
-                    var taskGreenResidentialEntrysQuery = from taskQ in userQuery
-                                                          join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGreenResidentialEntity>()
-                                                          on taskQ.DataId equals dataQ.F_Id
+                    var taskGreenResidentialEntrysQuery = from dataQ in
+                                                              (from taskQ in userQuery
+                                                               join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationGreenResidentialEntity>()
+                                                               on taskQ.DataId equals dataQ.F_Id
+                                                               select new
+                                                               {
+                                                                   F_Id = taskQ.F_Id,
+                                                                   DataId = taskQ.DataId,
+                                                                   CompleteState = taskQ.CompleteState,
+                                                                   OrdeNo = taskQ.OrdeNo,
+                                                                   DeliveryTime = taskQ.DeliveryTime,
+                                                                   PersonInChargeId = taskQ.PersonInChargeId,
+                                                                   CompletionTime = taskQ.CompletionTime,
+                                                                   PersonInChargeName = taskQ.PersonInChargeName,
+                                                                   Address = dataQ.Address,
+                                                                   ResidentialName = dataQ.ResidentialName,
+                                                                   StreetId = dataQ.StreetId
+                                                               })
+                                                          join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                                                          on dataQ.StreetId equals streetQ.F_Id
                                                           select new
                                                           {
-                                                              F_Id = taskQ.F_Id,
-                                                              DataId = taskQ.DataId,
-                                                              CompleteState = taskQ.CompleteState,
-                                                              PersonInChargeId = taskQ.PersonInChargeId,
-                                                              CompletionTime = taskQ.CompletionTime,
-                                                              PersonInChargeName = taskQ.PersonInChargeName,
+                                                              F_Id = dataQ.F_Id,
+                                                              DataId = dataQ.DataId,
+                                                              CompleteState = dataQ.CompleteState,
+                                                              PersonInChargeId = dataQ.PersonInChargeId,
+                                                              CompletionTime = dataQ.CompletionTime,
+                                                              OrdeNo = dataQ.OrdeNo,
+                                                              DeliveryTime = dataQ.DeliveryTime,
+                                                              PersonInChargeName = dataQ.PersonInChargeName,
                                                               Address = dataQ.Address,
                                                               ResidentialName = dataQ.ResidentialName,
-                                                              F_EnCode = dataQ.F_EnCode,
+                                                              StreetId = dataQ.StreetId,
+                                                              StreetName = streetQ.StreetName
                                                           };
 
                     //设置分页总数量
                     pagination.records = taskGreenResidentialEntrysQuery.Count();
                     //设置分页
-                    taskGreenResidentialEntrysQuery = taskGreenResidentialEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+                    taskGreenResidentialEntrysQuery = taskGreenResidentialEntrysQuery.OrderBy(t => t.F_Id).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
 
                     result = taskGreenResidentialEntrysQuery.Select(t => new TaskDetailGreenResidentialContracts()
                     {
@@ -546,7 +706,10 @@ namespace NFine.Application.SystemManage
                         PersonInChargeName = t.PersonInChargeName,
                         Address = t.Address,
                         ResidentialName = t.ResidentialName,
-                        F_EnCode = t.F_EnCode,
+                        StreetId = t.StreetId,
+                        StreetName = t.StreetName,
+                        DeliveryTime = t.DeliveryTime,
+                        OrdeNo = t.OrdeNo
                     }).ToArray();
 
                     break;
@@ -556,25 +719,44 @@ namespace NFine.Application.SystemManage
                 #region 倒粪池小便池
 
                 case ProfileTaskEntryTypeEnum.cesspool:
-                    var taskcesspoolEntrysQuery = from taskQ in userQuery
-                                                  join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationCesspoolEntity>()
-                                                  on taskQ.DataId equals dataQ.F_Id
+                    var taskcesspoolEntrysQuery = from dataQ in
+                                                      (from taskQ in userQuery
+                                                       join dataQ in LinqSQLExtensions.IQueryable<ProfileSanitationCesspoolEntity>()
+                                                       on taskQ.DataId equals dataQ.F_Id
+                                                       select new
+                                                       {
+                                                           F_Id = taskQ.F_Id,
+                                                           DataId = taskQ.DataId,
+                                                           CompleteState = taskQ.CompleteState,
+                                                           PersonInChargeId = taskQ.PersonInChargeId,
+                                                           CompletionTime = taskQ.CompletionTime,
+                                                           OrdeNo = taskQ.OrdeNo,
+                                                           DeliveryTime = taskQ.DeliveryTime,
+                                                           PersonInChargeName = taskQ.PersonInChargeName,
+                                                           Address = dataQ.Address,
+                                                           StreetId = dataQ.StreetId
+                                                       })
+                                                  join streetQ in LinqSQLExtensions.IQueryable<ProfileStreetEntity>()
+                                                  on dataQ.StreetId equals streetQ.F_Id
                                                   select new
                                                   {
-                                                      F_Id = taskQ.F_Id,
-                                                      DataId = taskQ.DataId,
-                                                      CompleteState = taskQ.CompleteState,
-                                                      PersonInChargeId = taskQ.PersonInChargeId,
-                                                      CompletionTime = taskQ.CompletionTime,
-                                                      PersonInChargeName = taskQ.PersonInChargeName,
+                                                      F_Id = dataQ.F_Id,
+                                                      DataId = dataQ.DataId,
+                                                      CompleteState = dataQ.CompleteState,
+                                                      PersonInChargeId = dataQ.PersonInChargeId,
+                                                      CompletionTime = dataQ.CompletionTime,
+                                                      OrdeNo = dataQ.OrdeNo,
+                                                      DeliveryTime = dataQ.DeliveryTime,
+                                                      PersonInChargeName = dataQ.PersonInChargeName,
                                                       Address = dataQ.Address,
-                                                      F_EnCode = dataQ.F_EnCode,
+                                                      StreetId = dataQ.StreetId,
+                                                      StreetName = streetQ.StreetName
                                                   };
 
                     //设置分页总数量
                     pagination.records = taskcesspoolEntrysQuery.Count();
                     //设置分页
-                    taskcesspoolEntrysQuery = taskcesspoolEntrysQuery.OrderBy(t => t.F_EnCode).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+                    taskcesspoolEntrysQuery = taskcesspoolEntrysQuery.OrderBy(t => t.F_Id).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
 
                     result = taskcesspoolEntrysQuery.Select(t => new TaskDetailCesspoolContracts()
                     {
@@ -585,7 +767,10 @@ namespace NFine.Application.SystemManage
                         CompletionTime = t.CompletionTime,
                         PersonInChargeName = t.PersonInChargeName,
                         Address = t.Address,
-                        F_EnCode = t.F_EnCode,
+                        StreetId = t.StreetId,
+                        StreetName = t.StreetName,
+                        DeliveryTime = t.DeliveryTime,
+                        OrdeNo = t.OrdeNo
                     }).ToArray();
 
                     break;

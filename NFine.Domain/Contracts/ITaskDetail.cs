@@ -24,9 +24,29 @@ namespace NFine.Domain.Contracts
         string PersonInChargeName { get; set; }
 
         /// <summary>
+        /// 街道Id
+        /// </summary>
+        string StreetId { get; set; }
+
+        /// <summary>
+        /// 街道名称
+        /// </summary>
+        string StreetName { get; set; }
+       
+        /// <summary>
+        /// 抽样单号
+        /// </summary>
+        string OrdeNo { get; set; }
+
+        /// <summary>
         /// 完成时间
         /// </summary>
         DateTime CompletionTime { get; set; }
+
+        /// <summary>
+        /// 派发时间
+        /// </summary>
+        DateTime? DeliveryTime { get; set; }
 
     }
 }

@@ -19,5 +19,14 @@ namespace NFine.Domain.Contracts
         public string PersonInChargeName { get; set; }
 
         public DateTime CompletionTime { get; set; }
+
+
+        public string StreetId { get; set; }
+
+        public string StreetName { get; set; }
+
+        public string OrdeNo { get; set; }
+
+        public DateTime? DeliveryTime { get; set; }
     }
 }

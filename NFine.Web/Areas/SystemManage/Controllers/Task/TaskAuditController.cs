@@ -12,7 +12,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
     /// <summary>
     /// 任务  已派发待审核任务单
     /// </summary>
-    public class TaskHasSentController : ControllerBase
+    public class TaskAuditController : ControllerBase
     {
         private ProfileTaskApp taskApp = new ProfileTaskApp();
         private ProfileSanitationWayApp wayApp = new ProfileSanitationWayApp();
@@ -24,7 +24,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = new
             {
-                rows = taskApp.GetContractsList(pagination, keyword, ProfileTaskStateEnum.HasSent.GetIntValue()),
+                rows = taskApp.GetContractsList(pagination, keyword, ProfileTaskStateEnum.ToAudit.GetIntValue()),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

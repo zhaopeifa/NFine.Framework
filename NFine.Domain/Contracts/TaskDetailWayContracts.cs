@@ -19,9 +19,19 @@ namespace NFine.Domain.Contracts
         /// </summary>
         public string DataId { get; set; }
 
-        public string WayName { get; set; }
+        /// <summary>
+        /// 街道Id
+        /// </summary>
+        public string StreetId { get; set; }
 
-        public string F_EnCode { get; set; }
+        
+
+        /// <summary>
+        /// 街道名称
+        /// </summary>
+        public string StreetName { get; set; }
+
+        public string WayName { get; set; }
 
         public string Origin { get; set; }
 
@@ -33,6 +43,17 @@ namespace NFine.Domain.Contracts
 
         public string PersonInChargeName { get; set; }
 
+        public string OrdeNo { get; set; }
+
+        /// <summary>
+        /// 完成时间
+        /// </summary>
         public DateTime CompletionTime { get; set; }
+
+        /// <summary>
+        /// 派发时间
+        /// </summary>
+        public DateTime? DeliveryTime { get; set; }
+
     }
 }

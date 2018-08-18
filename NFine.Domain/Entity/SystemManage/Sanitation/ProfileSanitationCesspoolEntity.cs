@@ -13,9 +13,6 @@ namespace NFine.Domain.Entity.SystemManage
     {
         public string F_Id { get; set; }
 
-        /// <summary>
-        /// 编号
-        /// </summary>
         public string F_EnCode { get; set; }
 
         /// <summary>

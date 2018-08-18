@@ -881,11 +881,39 @@ namespace NFine.Repository.SystemManage
                     throw new Exception("当前任务单已经下发过了，请勿重复操作。");
                 }
 
+                taskEntity.Modify(taskEntity.F_Id);
+
                 taskEntity.DeliveryTime = DateTime.Now;//设置下发时间
                 taskEntity.F_EnCode = ((DateTime)taskEntity.DeliveryTime).ToString("yyyyMMddHHmmss");//任务单号根据派发时间生成
-                taskEntity.State = ProfileTaskStateEnum.HasSent.GetIntValue();
+                taskEntity.State = ProfileTaskStateEnum.ToAudit.GetIntValue();
 
                 db.Update<ProfileTaskEntity>(taskEntity);
+
+                db.Commit();
+            }
+        }
+
+        /// <summary>
+        /// 任务单作废
+        /// </summary>
+        /// <param name="keyValue"></param>
+        public void TaskInvalid(string keyValue)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+
+                var taskEntity = db.FindEntity<ProfileTaskEntity>(keyValue);
+                if (taskEntity.State == ProfileTaskStateEnum.HavePutAnEndTo.GetIntValue())
+                {
+                    throw new Exception("当前任务单是完结状态，完结状态下不可作废操作。");
+                }
+
+                taskEntity.Modify(taskEntity.F_Id);
+
+                taskEntity.State = ProfileTaskStateEnum.TheCancellation.GetIntValue();
+
+                db.Update<ProfileTaskEntity>(taskEntity);
+
 
                 db.Commit();
             }

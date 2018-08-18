@@ -69,6 +69,8 @@
     <Compile Include="SystemManage\ProfileOperationsCompanyRepository.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleRepository.cs" />
     <Compile Include="SystemManage\ProfileProjectRepository.cs" />
+    <Compile Include="SystemManage\ScoreCriteria\ProfileScireCriteria_NormRepository.cs" />
+    <Compile Include="SystemManage\ScoreCriteria\ProfileScoreCriteria_ClassifyRepository.cs" />
     <Compile Include="SystemManage\ScoreCriteria\ProfileScoreCriteria_TypeRepository.cs" />
     <Compile Include="SystemManage\ScoreCriteria\ProfileScoreCriteria_EntryRepository.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationAlongLitterBinRepository.cs" />

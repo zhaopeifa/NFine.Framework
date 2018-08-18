@@ -5,8 +5,7 @@
 
 <input type=button value=后退 onclick="window.history.back()">
 <script>
-    function back()
-    {
+    function back() {
 
     }
 </script>
@@ -181,8 +180,6 @@
         }
     }
 
-
-
     function LoadWaygridList() {
         var taskEntryData = GetTaskEntryData('taskWay');
 
@@ -197,8 +194,17 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 { label: '关联基础数据主键', name: 'DataId', hidden: true },
-                { label: '道路编号', name: 'F_EnCode', width: 80, align: 'left' },
-                { label: '道路名称', name: 'WayName', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道名称', name: 'StreetName', width: 80, align: 'left' },
+                { label: '道路名称', name: 'WayName', width: 150, align: 'left' },
                 { label: '道路起点', name: 'Origin', width: 80, align: 'left' },
                 { label: '道路终点', name: 'Destination', width: 80, align: 'left' },
                 {
@@ -206,7 +212,16 @@
                         return cellvalue ? "已完成" : "未完成";
                     }
                 },
-                { label: '完成时间', name: 'CompletionTime', width: 80, align: 'left' },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
                 { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
             ],
             pager: "#taskWaygridPager",
@@ -238,7 +253,16 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 { label: '关联基础数据主键', name: 'DataId', hidden: true },
-                { label: '公厕编号', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
                 { label: '公厕地址', name: 'Address', width: 200, align: 'left' },
                 { label: '保洁单位', name: 'CleaningUnit', width: 80, align: 'left' },
                 {
@@ -246,7 +270,16 @@
                         return cellvalue ? "已完成" : "未完成";
                     }
                 },
-                { label: '完成时间', name: 'CompletionTime', width: 150, align: 'left' },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
                 { label: '责任人员', name: 'PersonInChargeName', width: 100, align: 'left' }
             ],
             pager: "#taskTandasgridPager",
@@ -275,14 +308,32 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 { label: '关联基础数据主键', name: 'DataId', hidden: true },
-                { label: '垃圾箱房编号', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
                 { label: '垃圾箱房地址', name: 'Address', width: 200, align: 'left' },
                 {
                     label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
                         return cellvalue ? "已完成" : "未完成";
                     }
                 },
-                { label: '完成时间', name: 'CompletionTime', width: 150, align: 'left' },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
                 { label: '责任人员', name: 'PersonInChargeName', width: 100, align: 'left' }
             ],
             pager: "#taskGarbageBoxgridPager",
@@ -309,7 +360,16 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 { label: '关联基础数据主键', name: 'DataId', hidden: true },
-                { label: '压缩站编号', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                 { label: '街道', name: 'StreetName', width: 80, align: 'left' },
                 { label: '压缩站地址', name: 'Address', width: 200, align: 'left' },
                  { label: '开放时间', name: 'OpeningHours', width: 100, align: 'left' },
                 {
@@ -317,7 +377,16 @@
                         return cellvalue ? "已完成" : "未完成";
                     }
                 },
-                { label: '完成时间', name: 'CompletionTime', width: 150, align: 'left' },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
                 { label: '责任人员', name: 'PersonInChargeName', width: 100, align: 'left' }
             ],
             pager: "#taskCompressionStationgridPager",
@@ -346,7 +415,16 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 { label: '关联基础数据主键', name: 'DataId', hidden: true },
-                { label: '沿途绿化编号', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
                 { label: '沿途绿化地址', name: 'Address', width: 200, align: 'left' },
                 { label: '沿途绿化起点', name: 'Origin', width: 80, align: 'left' },
                 { label: '沿途绿化终点', name: 'Destination', width: 80, align: 'left' },
@@ -355,7 +433,16 @@
                         return cellvalue ? "已完成" : "未完成";
                     }
                 },
-                { label: '完成时间', name: 'CompletionTime', width: 80, align: 'left' },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 80, align: 'left' },
                 { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
             ],
             pager: "#taskGreeninggridPager",
@@ -384,7 +471,16 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 { label: '关联基础数据主键', name: 'DataId', hidden: true },
-                { label: '小区编号', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
                 { label: '小区名称', name: 'ResidentialName', width: 80, align: 'left' },
                 { label: '小区地址', name: 'Address', width: 200, align: 'left' },
                 {
@@ -392,7 +488,16 @@
                         return cellvalue ? "已完成" : "未完成";
                     }
                 },
-                { label: '完成时间', name: 'CompletionTime', width: 80, align: 'left' },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 80, align: 'left' },
                 { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
             ],
             pager: "#taskGreenResidentialgridPager",
@@ -407,8 +512,7 @@
 
         taskEntryData.isLoad = true;
     }
-    function LoadcesspoolGrudList()
-    {
+    function LoadcesspoolGrudList() {
         var taskEntryData = GetTaskEntryData('taskcesspool');
 
         if (taskEntryData.isLoad)
@@ -422,14 +526,32 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 { label: '关联基础数据主键', name: 'DataId', hidden: true },
-                { label: '倒粪池小便池编号', name: 'F_EnCode', width: 80, align: 'left' },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
                 { label: '倒粪池小便池地址', name: 'Address', width: 200, align: 'left' },
                 {
                     label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
                         return cellvalue ? "已完成" : "未完成";
                     }
                 },
-                { label: '完成时间', name: 'CompletionTime', width: 80, align: 'left' },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 80, align: 'left' },
                 { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
             ],
             pager: "#taskCesspoolgridPager",

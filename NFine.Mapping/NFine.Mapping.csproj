@@ -79,6 +79,8 @@
     <Compile Include="SystemManage\ProfileOperationsCompanyMap.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleMap.cs" />
     <Compile Include="SystemManage\ProfileProjectMap.cs" />
+    <Compile Include="SystemManage\ScoreCriteria\ProfileScireCriteria_NormMap.cs" />
+    <Compile Include="SystemManage\ScoreCriteria\ProfileScoreCriteria_ClassifyMap.cs" />
     <Compile Include="SystemManage\ScoreCriteria\ProfileScoreCriteria_TypeMap.cs" />
     <Compile Include="SystemManage\ScoreCriteria\ProfileScoreCriteria_EntryMap.cs" />
     <Compile Include="SystemManage\Sanitation\ProfileSanitationAlongLitterBinMap.cs" />
