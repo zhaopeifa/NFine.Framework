@@ -39,6 +39,13 @@ namespace NFine.Domain.Contracts
             }
         }
 
+        public string StateNameUpdate
+        {
+            get {
+                return ((NFine.Domain.Enums.ProfileTaskStateEnum)this.State) == ProfileTaskStateEnum.BackTo ? "已退回,待上传" : "待上传";
+            }
+        }
+
         /// <summary>
         /// 抽样单号
         /// </summary>

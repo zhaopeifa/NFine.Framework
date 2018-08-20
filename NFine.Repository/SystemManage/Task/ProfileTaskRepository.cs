@@ -66,6 +66,7 @@ namespace NFine.Repository.SystemManage
                         StreetId = taskEntity.StreetId,
                         F_EnCode = taskEntity.F_EnCode,
                         PersonInChargeId = taskEntity.PersonInChargeId,
+                        BYMESS1 = taskContracts.WayPlaceCount,
                         IsFixedPoint = true,
                         CompleteState = false
                     };
@@ -470,6 +471,7 @@ namespace NFine.Repository.SystemManage
                         StreetId = taskEntity.StreetId,
                         F_EnCode = taskEntity.F_EnCode,
                         PersonInChargeId = taskEntity.PersonInChargeId,
+                        BYMESS1 = taskContracts.WayPlaceCount,
                         IsFixedPoint = true,
                         CompleteState = false
                     };

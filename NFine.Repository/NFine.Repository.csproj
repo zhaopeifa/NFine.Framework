@@ -66,6 +66,8 @@
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_WatersRepository.cs" />
     <Compile Include="SystemManage\ProfileCityRepository.cs" />
     <Compile Include="SystemManage\ProfileCountyRepository.cs" />
+    <Compile Include="SystemManage\ProfileDeducImgRepository.cs" />
+    <Compile Include="SystemManage\ProfileDeducInsRepository.cs" />
     <Compile Include="SystemManage\ProfileOperationsCompanyRepository.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleRepository.cs" />
     <Compile Include="SystemManage\ProfileProjectRepository.cs" />

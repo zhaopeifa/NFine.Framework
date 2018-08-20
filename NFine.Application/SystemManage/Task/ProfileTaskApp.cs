@@ -7,6 +7,7 @@ using NFine.Repository.SystemManage;
 using NFine.Web.Function;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -189,7 +190,12 @@ namespace NFine.Application.SystemManage
 
             service.Command<ProfileTaskEntryEntity>((query) =>
             {
-                result.WayId = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(wayTypeInt)).Select(d => d.EntryDataId).FirstOrDefault();
+                //道路的
+                var taskWayEntnty = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(wayTypeInt)).FirstOrDefault();
+                result.WayId = taskWayEntnty.EntryDataId;
+                result.WayPlaceCount = taskWayEntnty.BYMESS1 == null ? 0 : (int)taskWayEntnty.BYMESS1;
+
+
                 result.TandasCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(tandaTypeInt)).Count();
                 result.GarbageBoxCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(garbageBoxTypeInt)).Count();
                 result.CompressionCount = query.Where(d => d.TaskId == taskEntity.F_Id && d.TaskEntryType.Equals(compressionStationTypeInt)).Count();
@@ -815,6 +821,108 @@ namespace NFine.Application.SystemManage
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 获取
+        /// </summary>
+        /// <param name="pagination"></param>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public List<ProfileTaskContracts> GetNeedUpLoadTask(Pagination pagination, string keyword)
+        {
+            int toAuditInt = ProfileTaskStateEnum.ToAudit.GetIntValue();
+            int backToInt = ProfileTaskStateEnum.BackTo.GetIntValue();
+
+
+            var taskQyery = LinqSQLExtensions.IQueryable<ProfileTaskEntity>().Where(d => d.State == toAuditInt || d.State == backToInt);
+
+
+            var taskQuery = NFine.Data.Extensions.LinqSQLExtensions.IQueryable<ProfileTaskEntity>();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                taskQuery = taskQuery.Where(t => t.F_EnCode.Contains(keyword));
+            }
+
+            taskQuery = taskQuery.Where(t => t.State == toAuditInt || t.State == backToInt);
+
+            taskQuery = taskQuery.OrderByDescending(d => d.F_LastModifyTime).Skip(pagination.rows * (pagination.page - 1)).Take(pagination.rows);
+
+            var contractsQuery = from taskEntityQ in taskQuery
+                                 join userEntityQ in NFine.Data.Extensions.LinqSQLExtensions.IQueryable<UserEntity>()
+                                 on taskEntityQ.PersonInChargeId equals userEntityQ.F_Id
+                                 select new ProfileTaskContracts
+                                 {
+                                     F_Id = taskEntityQ.F_Id,
+                                     State = taskEntityQ.State,
+                                     F_EnCode = taskEntityQ.F_EnCode,
+                                     CityId = taskEntityQ.CityId,
+                                     CountyId = taskEntityQ.CountyId,
+                                     ProjectType = taskEntityQ.ProjectType,
+                                     CompanyId = taskEntityQ.CompanyId,
+                                     StreetId = taskEntityQ.StreetId,
+                                     PersonInChargeId = taskEntityQ.PersonInChargeId,
+                                     PersonInChargeRealName = userEntityQ.F_RealName,
+                                     DeliveryTime = taskEntityQ.DeliveryTime,
+                                     CompletionTime = taskEntityQ.CompletionTime
+                                 };
+
+            return contractsQuery.ToList();
+        }
+
+
+        /// <summary>
+        /// 获取对应评分标准
+        /// </summary>
+        public void GetScireCriteria(string taskEnryId)
+        { 
+            //获取对应评分标准
+            var query =LinqSQLExtensions.IQueryable<ProfileTaskEntryEntity>().Where(d => d.F_Id == taskEnryId);
+
+            if (query.Count() <= 0)
+            {
+                throw new Exception("未找到对应任务明细!");
+            }
+
+            var taskEntry = query.FirstOrDefault();
+
+            //寻找对应评分标准
+            switch ((ProfileTaskEntryTypeEnum)taskEntry.TaskEntryType)
+            {
+                case ProfileTaskEntryTypeEnum.Way:
+                    LinqSQLExtensions.IQueryable<ProfileScoreCriteria_EntryEntity>().Where(d=>d.Name=="道路");
+                    break;
+                case ProfileTaskEntryTypeEnum.Tandas:
+                    break;
+                case ProfileTaskEntryTypeEnum.GarbageBox:
+                    break;
+                case ProfileTaskEntryTypeEnum.compressionStation:
+                    break;
+                case ProfileTaskEntryTypeEnum.Greening:
+                    break;
+                case ProfileTaskEntryTypeEnum.GreenResidential:
+                    break;
+                case ProfileTaskEntryTypeEnum.cesspool:
+                    break;
+                case ProfileTaskEntryTypeEnum.Wastebasket:
+                    break;
+                case ProfileTaskEntryTypeEnum.StreetTrash:
+                    break;
+                case ProfileTaskEntryTypeEnum.MachineCleanCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.WashTheCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.GarbageTruckCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.FlyingCar:
+                    break;
+                case ProfileTaskEntryTypeEnum.EightLadleCar:
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }

@@ -1,0 +1,621 @@
+﻿@{
+    ViewBag.Title = "TaskDetail";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<input type=button value="后退" onclick="window.history.back()">
+<input type=button value="上传选中" onclick="updateTaskEntry()">
+<script>
+    function updateTaskEntry() {
+        debugger;
+        //获取当前table
+        var selectRow = GetSelectDataGrid();
+        if (selectRow == null || selectRow.length<=0)
+        {
+            $.modalMsg("请选中要上传任务的行!", "warning");
+            return;
+        }
+
+        var keyValue = selectRow.F_Id;
+        $.modalOpen({
+            id: "Form",
+            title: "修环卫主路",
+            url: "/SystemManage/MainWay/Form?keyValue=" + keyValue,
+            width: "400px",
+            height: "310px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+
+    }
+</script>
+
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active">
+        <a href="#taskWay" data-toggle="tab" id="tabTaskWay">
+            道路清扫
+        </a>
+    </li>
+    <li>
+        <a href="#taskTandas" data-toggle="tab" id="tabTandas">
+            环卫公厕
+        </a>
+    </li>
+    <li>
+        <a href="#taskGarbageBox" data-toggle="tab" id="tabGarbageBox">
+            垃圾箱房
+        </a>
+    </li>
+    <li>
+        <a href="#taskCompressionStation" data-toggle="tab" id="tabCompressionStation">
+            压缩站
+        </a>
+    </li>
+    <li>
+        <a href="#taskGreening" data-toggle="tab" id="tabGreening">
+            沿途绿化
+        </a>
+    </li>
+    <li>
+        <a href="#taskGreenResidential" data-toggle="tab" id="tabGreenResidential">
+            绿色账户小区
+        </a>
+    </li>
+
+    <li>
+        <a href="#taskCesspool" data-toggle="tab" id="tabCesspool">
+            倒粪站小便池
+        </a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    @*道路清扫*@
+    <div class="tab-pane fade in active" id="taskWay">
+        <div class="gridPanel">
+            <table id="taskWaygridList"></table>
+            <div id="taskWaygridPager"></div>
+        </div>
+    </div>
+
+    @*环卫公厕*@
+    <div class="tab-pane fade" id="taskTandas">
+        <div class="gridPanel">
+            <table id="taskTandasgridList"></table>
+            <div id="taskTandasgridPager"></div>
+        </div>
+    </div>
+
+    @*垃圾厢房*@
+    <div class="tab-pane fade" id="taskGarbageBox">
+        <div class="gridPanel">
+            <table id="taskGarbageBoxgridList"></table>
+            <div id="taskGarbageBoxgridPager"></div>
+        </div>
+    </div>
+
+    @*压缩站*@
+    <div class="tab-pane fade" id="taskCompressionStation">
+        <div class="gridPanel">
+            <table id="taskCompressionStationgridList"></table>
+            <div id="taskCompressionStationgridPager"></div>
+        </div>
+    </div>
+
+    @*沿途绿化*@
+    <div class="tab-pane fade" id="taskGreening">
+        <div class="gridPanel">
+            <table id="taskGreeninggridList"></table>
+            <div id="taskGreeninggridPager"></div>
+        </div>
+    </div>
+
+    @*绿色账户小区*@
+    <div class="tab-pane fade" id="taskGreenResidential">
+        <div class="gridPanel">
+            <table id="taskGreenResidentialgridList"></table>
+            <div id="taskGreenResidentialgridPager"></div>
+        </div>
+    </div>
+
+    @*倒粪站小便池*@
+    <div class="tab-pane fade" id="taskCesspool">
+        <div class="gridPanel">
+            <table id="taskCesspoolgridList"></table>
+            <div id="taskCesspoolgridPager"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var keyValue = $.request("keyValue");
+    var selectTabNode = 'tabTaskWay';
+    var TaskEntryDatas = [
+        { id: 'taskWay', isLoad: false, code: 1 },
+        { id: 'taskTandas', isLoad: false, code: 2 },
+        { id: 'taskGarbageBox', isLoad: false, code: 3 },
+        { id: 'taskCompressionStation', isLoad: false, code: 4 },
+        { id: 'taskGreening', isLoad: false, code: 5 },
+        { id: 'taskGreenResidential', isLoad: false, code: 6 },
+        { id: 'taskcesspool', isLoad: false, code: 7 }
+    ];
+
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show');
+
+            //加载对应
+
+            var tabName = e.target.id;
+
+            selectTabNode = tabName;
+
+            switch (tabName) {
+                case "tabTaskWay":
+                    LoadWaygridList();
+                    break;
+                case "tabTandas":
+                    LoadTandasgrudList();
+                    break;
+                case "tabGarbageBox":
+                    LoadGarbageBoxGrudList();
+                    break;
+                case "tabCompressionStation":
+                    LoadCompressionStationGrudList();
+                    break;
+                case "tabGreening":
+                    LoadGreeningGrudList();
+                    break;
+                case "tabGreenResidential":
+                    LoadGreenResidentialGrudList();
+                    break;
+                case "tabCesspool":
+                    LoadcesspoolGrudList();
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        LoadWaygridList();
+    });
+    function GetSelectDataGrid() {
+        if (selectTabNode == null)
+            return null;
+
+        switch (selectTabNode) {
+            case "tabTaskWay":
+                return $("#taskWaygridList").jqGridRowValue();
+                break;
+            case "tabTandas":
+                return $("#taskTandasgridList").jqGridRowValue();
+                break;
+            case "tabGarbageBox":
+                return $("#taskGarbageBoxgridList").jqGridRowValue();
+                break;
+            case "tabCompressionStation":
+                return $("#taskCompressionStationgridList").jqGridRowValue();
+                break;
+            case "tabGreening":
+                return $("#taskGreeninggridList").jqGridRowValue();
+                break;
+            case "tabGreenResidential":
+                return $("#taskGreenResidentialgridList").jqGridRowValue();
+                break;
+            case "tabCesspool":
+                return $("#taskCesspoolgridList").jqGridRowValue();
+                break;
+            default:
+                break;
+        }
+    }
+
+    function GetTaskEntryData(id) {
+        var result = null;
+        for (var i = 0; i < TaskEntryDatas.length; i++) {
+            if (TaskEntryDatas[i].id == id) {
+                result = TaskEntryDatas[i];
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    function GetTaskEntryState(id, isLoad) {
+        for (var i = 0; i < TaskEntryDatas.length; i++) {
+            if (TaskEntryDatas[i].id == id) {
+                TaskEntryDatas[i] = isLoad;
+                break;
+            }
+        }
+    }
+
+    function LoadWaygridList() {
+        var taskEntryData = GetTaskEntryData('taskWay');
+
+        if (taskEntryData.isLoad)//加载过不在进行加载？
+            return;
+
+        var $gridList = $("#taskWaygridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/TaskDistributing/GetTaskDetail",
+            height: $(window).height() - 128,
+            postData: { keyValue: keyValue, type: taskEntryData.code },
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '关联基础数据主键', name: 'DataId', hidden: true },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道名称', name: 'StreetName', width: 80, align: 'left' },
+                { label: '道路名称', name: 'WayName', width: 150, align: 'left' },
+                { label: '道路起点', name: 'Origin', width: 80, align: 'left' },
+                { label: '道路终点', name: 'Destination', width: 80, align: 'left' },
+                {
+                    label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return cellvalue ? "已完成" : "未完成";
+                    }
+                },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
+                { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
+            ],
+            pager: "#taskWaygridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+
+        taskEntryData.isLoad = true;
+    }
+    function LoadTandasgrudList() {
+
+
+        var taskEntryData = GetTaskEntryData('taskTandas');
+
+        if (taskEntryData.isLoad) {
+            return;
+        }
+
+        var $gridList = $("#taskTandasgridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/TaskDistributing/GetTaskDetail",
+            height: $(window).height() - 180,
+            postData: { keyValue: keyValue, type: taskEntryData.code },
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '关联基础数据主键', name: 'DataId', hidden: true },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
+                { label: '公厕地址', name: 'Address', width: 200, align: 'left' },
+                { label: '保洁单位', name: 'CleaningUnit', width: 80, align: 'left' },
+                {
+                    label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return cellvalue ? "已完成" : "未完成";
+                    }
+                },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
+                { label: '责任人员', name: 'PersonInChargeName', width: 100, align: 'left' }
+            ],
+            pager: "#taskTandasgridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+
+        taskEntryData.isLoad = true;
+    }
+    function LoadGarbageBoxGrudList() {
+        var taskEntryData = GetTaskEntryData('taskGarbageBox');
+
+        if (taskEntryData.isLoad)
+            return;
+
+        var $gridList = $("#taskGarbageBoxgridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/TaskDistributing/GetTaskDetail",
+            height: $(window).height() - 180,
+            postData: { keyValue: keyValue, type: taskEntryData.code },
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '关联基础数据主键', name: 'DataId', hidden: true },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
+                { label: '垃圾箱房地址', name: 'Address', width: 200, align: 'left' },
+                {
+                    label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return cellvalue ? "已完成" : "未完成";
+                    }
+                },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
+                { label: '责任人员', name: 'PersonInChargeName', width: 100, align: 'left' }
+            ],
+            pager: "#taskGarbageBoxgridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    function LoadCompressionStationGrudList() {
+        var taskEntryData = GetTaskEntryData('taskCompressionStation');
+
+        if (taskEntryData.isLoad)
+            return;
+
+        var $gridList = $("#taskCompressionStationgridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/TaskDistributing/GetTaskDetail",
+            height: $(window).height() - 180,
+            postData: { keyValue: keyValue, type: taskEntryData.code },
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '关联基础数据主键', name: 'DataId', hidden: true },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                 { label: '街道', name: 'StreetName', width: 80, align: 'left' },
+                { label: '压缩站地址', name: 'Address', width: 200, align: 'left' },
+                 { label: '开放时间', name: 'OpeningHours', width: 100, align: 'left' },
+                {
+                    label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return cellvalue ? "已完成" : "未完成";
+                    }
+                },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 150, align: 'left' },
+                { label: '责任人员', name: 'PersonInChargeName', width: 100, align: 'left' }
+            ],
+            pager: "#taskCompressionStationgridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+
+        taskEntryData.isLoad = true;
+    }
+    function LoadGreeningGrudList() {
+        var taskEntryData = GetTaskEntryData('taskGreening');
+
+        if (taskEntryData.isLoad)
+            return;
+
+        var $gridList = $("#taskGreeninggridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/TaskDistributing/GetTaskDetail",
+            height: $(window).height() - 180,
+            postData: { keyValue: keyValue, type: taskEntryData.code },
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '关联基础数据主键', name: 'DataId', hidden: true },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
+                { label: '沿途绿化地址', name: 'Address', width: 200, align: 'left' },
+                { label: '沿途绿化起点', name: 'Origin', width: 80, align: 'left' },
+                { label: '沿途绿化终点', name: 'Destination', width: 80, align: 'left' },
+                {
+                    label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return cellvalue ? "已完成" : "未完成";
+                    }
+                },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 80, align: 'left' },
+                { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
+            ],
+            pager: "#taskGreeninggridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+
+        taskEntryData.isLoad = true;
+    }
+    function LoadGreenResidentialGrudList() {
+        var taskEntryData = GetTaskEntryData('taskGreenResidential');
+
+        if (taskEntryData.isLoad)
+            return;
+
+        var $gridList = $("#taskGreenResidentialgridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/TaskDistributing/GetTaskDetail",
+            height: $(window).height() - 180,
+            postData: { keyValue: keyValue, type: taskEntryData.code },
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '关联基础数据主键', name: 'DataId', hidden: true },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
+                { label: '小区名称', name: 'ResidentialName', width: 80, align: 'left' },
+                { label: '小区地址', name: 'Address', width: 200, align: 'left' },
+                {
+                    label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return cellvalue ? "已完成" : "未完成";
+                    }
+                },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 80, align: 'left' },
+                { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
+            ],
+            pager: "#taskGreenResidentialgridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+
+        taskEntryData.isLoad = true;
+    }
+    function LoadcesspoolGrudList() {
+        var taskEntryData = GetTaskEntryData('taskcesspool');
+
+        if (taskEntryData.isLoad)
+            return;
+
+        var $gridList = $("#taskCesspoolgridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/TaskDistributing/GetTaskDetail",
+            height: $(window).height() - 180,
+            postData: { keyValue: keyValue, type: taskEntryData.code },
+            colModel: [
+                { label: '主键', name: 'F_Id', hidden: true },
+                { label: '关联基础数据主键', name: 'DataId', hidden: true },
+                {
+                    label: '抽样单名称', name: 'OrdeNo', width: 100, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '街道', name: 'StreetName', width: 80, align: 'left' },
+                { label: '倒粪池小便池地址', name: 'Address', width: 200, align: 'left' },
+                {
+                    label: '完成状态', name: 'CompleteState', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return cellvalue ? "已完成" : "未完成";
+                    }
+                },
+                {
+                    label: '任务单派发时间', name: 'DeliveryTime', width: 150, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == null) {
+                            return "暂未生成"
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: '任务单需完成时间', name: 'CompletionTime', width: 80, align: 'left' },
+                { label: '责任人员', name: 'PersonInChargeName', width: 80, align: 'left' }
+            ],
+            pager: "#taskCesspoolgridPager",
+            sortname: 'F_CreatorTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+
+        taskEntryData.isLoad = true;
+    }
+</script>

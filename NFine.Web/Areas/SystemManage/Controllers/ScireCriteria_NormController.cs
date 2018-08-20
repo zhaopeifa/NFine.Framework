@@ -35,7 +35,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                 tree.text = entryItem.Value;
                 tree.value = "1";
                 tree.parentId = "0";
-                tree.isexpand = false;
+                tree.isexpand = true;
                 tree.complete = true;
                 tree.hasChildren = true;
 

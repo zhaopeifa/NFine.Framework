@@ -47,7 +47,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                 tree.text = item.CountyName;
                 tree.value = "2";
                 tree.parentId = item.CityId;
-                tree.isexpand = false;
+                tree.isexpand = true;
                 tree.complete = true;
                 tree.hasChildren = true;
                 treeList.Add(tree);
@@ -61,7 +61,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                 tree.text = item.ProjectName;
                 tree.value = "3";
                 tree.parentId = item.CountyId;
-                tree.isexpand = false;
+                tree.isexpand = true;
                 tree.complete = true;
                 tree.hasChildren = true;
 
@@ -77,7 +77,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                             treeSani.text = entry.Text;
                             treeSani.value = "4.1";
                             treeSani.parentId = entry.ParentNode == null ? item.F_Id : entry.ParentNode.Id + item.F_Id;
-                            treeSani.isexpand = false;
+                            treeSani.isexpand = true;
                             treeSani.complete = true;
                             treeSani.hasChildren = entry.IsHaveChild;
 
@@ -96,7 +96,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                             treeAmen.text = strName;
                             treeAmen.value = "4.2";
                             treeAmen.parentId = item.F_Id;
-                            treeAmen.isexpand = false;
+                            treeAmen.isexpand = true;
                             treeAmen.complete = true;
                             treeAmen.hasChildren = false;
 

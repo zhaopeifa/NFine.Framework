@@ -6,19 +6,33 @@
 
 <script>
 
-    var keyValue = $.request("keyValue");
+    var groupId = $.request("groupId");
     $(function () {
 
         initControl();
 
-        if (!!keyValue) {
+        if (!!groupId) {
             $.ajax({
                 url: "/SystemManage/ScoreCriteria_Classify/GetFormJson",
-                data: { keyValue: keyValue },
+                data: { groupId: groupId },
                 dataType: "json",
                 async: false,
                 success: function (data) {
                     $("#form1").formSerialize(data);
+                }
+            });
+
+
+            $.ajax({
+                url: "/SystemManage/ScoreCriteria_Classify/GetTypeAssociated",
+                data: { groupId: groupId },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+
+                    $("#SEntryId").val(data.SEntryId).trigger('change');
+
+                    $("#STypeIds").val(data.STypeIds).trigger('change');
                 }
             });
         }
@@ -70,9 +84,10 @@
             allowClear: true,
             multiple: true,
         });
+
+
     }
     function submitForm() {
-        debugger;
         if (!$('#form1').formValid()) {
             return false;
         }
@@ -82,7 +97,7 @@
         postData["typeIdsStr"] = $("#STypeIds").val().toString();;
 
         $.submitForm({
-            url: "/SystemManage/ScoreCriteria_Classify/SubmitForm?keyValue=" + keyValue,
+            url: "/SystemManage/ScoreCriteria_Classify/SubmitForm?groupId=" + groupId,
             param: postData,
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");

@@ -87,5 +87,7 @@ namespace NFine.Domain.Entity.SystemManage
         public string F_LastModifyUserId { get; set; }
 
         public DateTime? F_LastModifyTime { get; set; }
+
+        public int? BYMESS1 { get; set; }
     }
 }

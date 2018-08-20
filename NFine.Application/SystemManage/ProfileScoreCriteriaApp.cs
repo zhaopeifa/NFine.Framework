@@ -356,6 +356,32 @@ namespace NFine.Application.SystemManage
             return result;
         }
 
+        /// <summary>
+        /// 查找小类
+        /// </summary>
+        /// <param name="classifyGroupId"></param>
+        /// <returns></returns>
+        public ProfileScoreCriteria_ClassifyEntity GetClassifyFrom(string classifyGroupId)
+        {
+            var query = LinqSQLExtensions.IQueryable<ProfileScoreCriteria_ClassifyEntity>().Where(d => d.GroupId == classifyGroupId);
+            if (query.Count() > 0)
+            {
+                return query.FirstOrDefault();
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 获取小类管理的所有中类
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetClassifyAssociatedType(string classifyGroupId)
+        {
+            var query = LinqSQLExtensions.IQueryable<ProfileScoreCriteria_ClassifyEntity>().Where(d => d.GroupId == classifyGroupId);
+
+            return query.Select(d => d.STypeId).ToList();
+        }
+
 
         /// <summary>
         ///获取评分标准 暂未写完

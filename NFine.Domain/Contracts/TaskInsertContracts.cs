@@ -38,6 +38,8 @@ namespace NFine.Domain.Contracts
 
         public string WayId { get; set; }
 
+        public int WayPlaceCount { get; set; }
+
         /// <summary>
         /// 环卫公厕数量
         /// </summary>

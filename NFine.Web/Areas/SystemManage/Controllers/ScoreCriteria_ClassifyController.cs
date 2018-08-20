@@ -32,12 +32,43 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(ProfileScoreCriteria_ClassifyEntity Entity, string keyValue, string typeIdsStr)
+        public ActionResult SubmitForm(ProfileScoreCriteria_ClassifyEntity Entity, string groupId, string typeIdsStr)
         {
             string[] typeIds = typeIdsStr.Split(',');
 
-            App.SubmitClassifyForm(Entity, keyValue, typeIds);
+            App.SubmitClassifyForm(Entity, groupId, typeIds);
             return Success("操作成功。");
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetFormJson(string groupId)
+        {
+            var data = App.GetClassifyFrom(groupId);
+
+            return Content(data.ToJson());
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetTypeAssociated(string groupId)
+        {
+            var STypeIds = App.GetClassifyAssociatedType(groupId);
+            var SEntryId = string.Empty;
+
+            if (STypeIds.Count > 0)
+            {
+                SEntryId = App.GetTypeForm(STypeIds[0]).SEntryId;
+            }
+
+            var data = new
+            {
+
+                STypeIds = STypeIds,
+                SEntryId = SEntryId
+            };
+
+            return Content(data.ToJson());
         }
     }
 }

@@ -34,24 +34,24 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增评分标准中类",
+            title: "新增评分标准小类",
             url: "/SystemManage/ScoreCriteria_Classify/Form",
             width: "400px",
-            height: "450px",
+            height: "400px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
     function btn_edit() {
-        var keyValue = $("#gridList").jqGridRowValue().SClassifyId;
+        var keyValue = $("#gridList").jqGridRowValue().groupId;
         debugger;
         $.modalOpen({
             id: "Form",
-            title: "修改评分标准中类",
-            url: "/SystemManage/ScoreCriteria_Classify/Form?keyValue=" + keyValue,
+            title: "修改评分标准小类",
+            url: "/SystemManage/ScoreCriteria_Classify/Form?groupId=" + keyValue,
             width: "400px",
-            height: "250px",
+            height: "400px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -60,7 +60,7 @@
     function btn_delete() {
         $.deleteForm({
             url: "/SystemManage/ScoreCriteria_Classify/DeleteForm",
-            param: { keyValue: $("#gridList").jqGridRowValue().SClassifyId },
+            param: { keyValue: $("#gridList").jqGridRowValue().groupId },
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }

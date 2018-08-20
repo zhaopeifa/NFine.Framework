@@ -75,6 +75,8 @@
     <Compile Include="Entity\SystemManage\Grading\ProfileGrading_OptionsEntity.cs" />
     <Compile Include="Entity\SystemManage\Grading\ProfileGrading_TypeEntity.cs" />
     <Compile Include="Entity\SystemManage\Grading\ProfileGrading_Type_RlationEntity.cs" />
+    <Compile Include="Entity\SystemManage\ProfileDeducImgEntiy.cs" />
+    <Compile Include="Entity\SystemManage\ProfileDeducInsEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileOperationsCompanyEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileOperationsVehicleEntity.cs" />
     <Compile Include="Entity\SystemManage\ProfileProjectEntity.cs" />

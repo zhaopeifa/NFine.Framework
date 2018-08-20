@@ -76,6 +76,8 @@
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_WatersMap.cs" />
     <Compile Include="SystemManage\ProfileCityMap.cs" />
     <Compile Include="SystemManage\ProfileCountyMap.cs" />
+    <Compile Include="SystemManage\ProfileDeducImgMap.cs" />
+    <Compile Include="SystemManage\ProfileDeducInsMap.cs" />
     <Compile Include="SystemManage\ProfileOperationsCompanyMap.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleMap.cs" />
     <Compile Include="SystemManage\ProfileProjectMap.cs" />

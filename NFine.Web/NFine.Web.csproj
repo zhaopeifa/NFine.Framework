@@ -131,6 +131,7 @@
     <Compile Include="Areas\SystemManage\Controllers\OperationsVehicleTypeController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\OperationsCompanyController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\Amenities\AmenitiesMarketController.cs" />
+    <Compile Include="Areas\SystemManage\Controllers\TaskUpload\SanitationTaskUploadController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScireCriteria_NormController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScoreCriteria_ClassifyController.cs" />
     <Compile Include="Areas\SystemManage\Controllers\ScoreCriteria_EntryController.cs" />
@@ -1216,6 +1217,8 @@
     <Content Include="Areas\SystemManage\Views\ScoreCriteria_Classify\Form.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScireCriteria_Norm\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\ScireCriteria_Norm\Form.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\TaskDetail.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />
   </ItemGroup>

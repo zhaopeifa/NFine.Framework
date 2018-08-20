@@ -6,7 +6,7 @@
 
 <script>
 
-    var keyValue = $.request("keyValue");
+    var groupId = $.request("groupId");
     $(function () {
 
         initControl();
@@ -43,7 +43,7 @@
         }
         var postData = $("#form1").formSerialize();
         $.submitForm({
-            url: "/SystemManage/ScoreCriteria_Type/SubmitForm?keyValue=" + keyValue,
+            url: "/SystemManage/ScoreCriteria_Type/SubmitForm?groupId=" + groupId,
             param: $("#form1").formSerialize(),
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");

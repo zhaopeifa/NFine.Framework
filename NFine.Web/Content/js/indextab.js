@@ -121,22 +121,37 @@
             if (dataUrl == undefined || $.trim(dataUrl).length == 0) {
                 return false;
             }
-            $('.menuTab').each(function () {
-                if ($(this).data('id') == dataUrl) {
-                    if (!$(this).hasClass('active')) {
-                        $(this).addClass('active').siblings('.menuTab').removeClass('active');
-                        $.nfinetab.scrollToTab(this);
-                        $('.mainContent .NFine_iframe').each(function () {
-                            if ($(this).data('id') == dataUrl) {
-                                $(this).show().siblings('.NFine_iframe').hide();
-                                return false;
-                            }
-                        });
-                    }
-                    flag = false;
-                    return false;
-                }
+
+
+            //$('.menuTab').each(function () {
+            //    if ($(this).data('id') == dataUrl) {
+            //        if (!$(this).hasClass('active')) {
+            //            $(this).addClass('active').siblings('.menuTab').removeClass('active');
+            //            $.nfinetab.scrollToTab(this);
+            //            $('.mainContent .NFine_iframe').each(function () {
+            //                if ($(this).data('id') == dataUrl) {
+            //                    $(this).show().siblings('.NFine_iframe').hide();
+            //                    return false;
+            //                }
+            //            });
+            //        }
+            //        flag = false;
+            //        return false;
+            //    }
+            //});
+
+            $('.page-tabs-content').children("[data-id]").find('.fa-remove').each(function () {
+                $('.NFine_iframe[data-id="' + $(this).data('id') + '"]').remove();
+                $(this).parents('a').remove();
             });
+            $('.page-tabs-content').children("[data-id]:first").each(function () {
+                $('.NFine_iframe[data-id="' + $(this).data('id') + '"]').show();
+                $(this).addClass("active");
+            });
+            $('.page-tabs-content').css("margin-left", "0");
+
+
+
             if (flag) {
                 var str = '<a href="javascript:;" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-remove"></i></a>';
                 $('.menuTab').removeClass('active');
