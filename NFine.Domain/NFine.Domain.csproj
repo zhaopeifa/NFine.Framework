@@ -42,10 +42,13 @@
   <ItemGroup>
     <Compile Include="Contracts\ITaskDetail.cs" />
     <Compile Include="Contracts\ProfileCarWorkItemContracts.cs" />
+    <Compile Include="Contracts\ProfileDeducInsSubMitContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_OptionsContracts.cs" />
     <Compile Include="Contracts\ProfileGrading_TypeContracts.cs" />
     <Compile Include="Contracts\ProfileTaskContracts.cs" />
+    <Compile Include="Contracts\ScireCriteriaContracts.cs" />
     <Compile Include="Contracts\ScorCriteriaClassifyContracts.cs" />
+    <Compile Include="Contracts\ScorCriteriaClassifyTreeGridContracts.cs" />
     <Compile Include="Contracts\ScoreCriteriaClassifyContracts.cs" />
     <Compile Include="Contracts\ScoreCriteriaTypeContracts.cs" />
     <Compile Include="Contracts\TaskDetailCesspoolContracts.cs" />

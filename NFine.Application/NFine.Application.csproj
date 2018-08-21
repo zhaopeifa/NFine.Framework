@@ -73,6 +73,7 @@
     <Compile Include="SystemManage\Amenities\ProfileAmenitiesMainWay_WatersApp.cs" />
     <Compile Include="SystemManage\ProfileCityApp.cs" />
     <Compile Include="SystemManage\ProfileCountyApp.cs" />
+    <Compile Include="SystemManage\ProfileDeducInsApp.cs" />
     <Compile Include="SystemManage\ProfileOperationsCompanyApp.cs" />
     <Compile Include="SystemManage\ProfileOperationsVehicleApp.cs" />
     <Compile Include="SystemManage\ProfileProjectApp.cs" />

@@ -1,0 +1,230 @@
+﻿@{
+    ViewBag.Title = "DeductForm";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<script src="~/Content/js/uploadify/webuploader.js"></script>
+<link href="~/Content/js/uploadify/webuploader.css" rel="stylesheet" />
+<link href="~/Content/js/uploadify/style.css" rel="stylesheet" />
+<link href="~/Content/js/uploadify/font-awesome.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    var taskEntryId = $.request("taskEntryId");
+    var normId = $.request("normId");
+
+    $(function () {
+
+        $("#TaskEntryId").val(taskEntryId);
+        $("#NormId").val(normId);
+
+    });
+
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var formData = new FormData();
+        var form1Data = $("#form1").formSerialize();
+
+        $.submitForm({
+            url: "/SystemManage/SanitationTaskUpload/SubmitForm?keyValue=" + $("#F_Id").val(),
+            param: formData,
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+
+
+</script>
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr hidden="hidden">
+                <td>
+                    <input id="TaskEntryId" name="TaskEntryId" />
+                    <input id="NormId" name="NormId" />
+                    <input id="F_Id" name="F_Id" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">几处</th>
+                <td class="formValue">
+                    <input id="DeductionSeveral" name="DeductionSeveral" type="text" class="form-control required number" placeholder="请输入几处" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">几分</th>
+                <td class="formValue">
+                    <input id="DeductionScore" name="DeductionScore" type="text" class="form-control required number" placeholder="请输入几分" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">描述</th>
+                <td class="formValue">
+                    <textarea id="DeductionDescribe" name="DeductionDescribe" placeholder="请输入描述"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">图片</th>
+                <td class="formValue">
+                    <table class="tc_table_cp" border="0">
+                        <tr>
+                            <td colspan="3">
+                                <div id="fileList">
+
+                                </div>
+                                <div class="cp_img_jia" id="filePicker"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="104"></td>
+                            <td colspan="3">
+                                <button id="ctlBtn" class="btn btn-default">开始上传</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    debugger;
+    var applicationPath = window.applicationPath === "" ? "" : window.applicationPath || "../../";
+    $(function () {
+        debugger;
+        var $ = jQuery,
+        $list = $('#fileList'),
+        // 优化retina, 在retina下这个值是2
+        ratio = window.devicePixelRatio || 1,
+        // 缩略图大小
+        thumbnailWidth = 90 * ratio,
+        thumbnailHeight = 90 * ratio,
+
+        // Web Uploader实例
+        uploader;
+        uploader = WebUploader.create({
+            // 选完文件后，是否自动上传。
+            auto: false,
+
+            disableGlobalDnd: true,
+            // swf文件路径
+            swf: applicationPath + '/js/uploadify/Uploader.swf',
+
+            // 文件接收服务端。
+            server: applicationPath + '/SystemManage/SanitationTaskUpload/UpLoadProcess',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+
+            //只允许选择图片
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+
+        // 当有文件添加进来的时候
+        uploader.on('fileQueued', function (file) {
+            var $li = $(
+                    '<div id="' + file.id + '" class="cp_img">' +
+                        '<img>' +
+                    '<div class="cp_img_jian"></div></div>'
+                    ),
+                $img = $li.find('img');
+
+
+            // $list为容器jQuery实例
+            $list.append($li);
+
+            // 创建缩略图
+            // 如果为非图片文件，可以不用调用此方法。
+            // thumbnailWidth x thumbnailHeight 为 100 x 100
+            uploader.makeThumb(file, function (error, src) {
+                if (error) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+
+                $img.attr('src', src);
+            }, thumbnailWidth, thumbnailHeight);
+        });
+
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress span');
+
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<p class="progress"><span></span></p>')
+                        .appendTo($li)
+                        .find('span');
+            }
+
+            $percent.css('width', percentage * 100 + '%');
+        });
+
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on('uploadSuccess', function (file, response) {
+
+            $('#' + file.id).addClass('upload-state-done');
+        });
+
+        // 文件上传失败，显示上传出错。
+        uploader.on('uploadError', function (file) {
+            var $li = $('#' + file.id),
+                $error = $li.find('div.error');
+
+            // 避免重复创建
+            if (!$error.length) {
+                $error = $('<div class="error"></div>').appendTo($li);
+            }
+
+            $error.text('上传失败');
+        });
+
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.progress').remove();
+        });
+
+        //所有文件上传完毕
+        uploader.on("uploadFinished", function () {
+            //提交表单
+
+        });
+
+        //开始上传
+        $("#ctlBtn").click(function () {
+            debugger;
+            uploader.upload();
+
+        });
+
+        ////显示删除按钮
+        //$(".cp_img").live("mouseover", function () {
+        //    $(this).children(".cp_img_jian").css('display', 'block');
+
+        //});
+        ////隐藏删除按钮
+        //$(".cp_img").live("mouseout", function () {
+        //    $(this).children(".cp_img_jian").css('display', 'none');
+
+        //});
+        //执行删除方法
+        $list.on("click", ".cp_img_jian", function () {
+            var Id = $(this).parent().attr("id");
+            uploader.removeFile(uploader.getFile(Id, true));
+            $(this).parent().remove();
+        });
+
+    });
+</script>

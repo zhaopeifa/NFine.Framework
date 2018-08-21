@@ -58,9 +58,10 @@
         });
     }
     function btn_delete() {
+        debugger;
         $.deleteForm({
             url: "/SystemManage/ScoreCriteria_Classify/DeleteForm",
-            param: { keyValue: $("#gridList").jqGridRowValue().groupId },
+            param: { classifyGroupId: $("#gridList").jqGridRowValue().groupId },
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }

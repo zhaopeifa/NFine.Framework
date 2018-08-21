@@ -356,6 +356,12 @@ namespace NFine.Application.SystemManage
             return result;
         }
 
+
+        public void DeleteClassifyForm(string classifyGroupId)
+        {
+            classApp.DeleteForm(classifyGroupId);
+        }
+
         /// <summary>
         /// 查找小类
         /// </summary>

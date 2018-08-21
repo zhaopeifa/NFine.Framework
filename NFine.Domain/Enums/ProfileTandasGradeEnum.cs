@@ -11,8 +11,8 @@ namespace NFine.Domain.Enums
     /// </summary>
     public enum ProfileTandasGradeEnum
     {
-        一类 = 1,
-        二类,
-        三类
+        一类公厕 = 1,
+        二类公厕,
+        三类公厕
     }
 }

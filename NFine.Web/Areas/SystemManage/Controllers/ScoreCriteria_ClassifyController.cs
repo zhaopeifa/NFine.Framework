@@ -40,6 +40,17 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             return Success("操作成功。");
         }
 
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteForm(string classifyGroupId)
+        {
+            App.DeleteClassifyForm(classifyGroupId);
+
+            return Success("删除成功。");
+        }
+
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string groupId)

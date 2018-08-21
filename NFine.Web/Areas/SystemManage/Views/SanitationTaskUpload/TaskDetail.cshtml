@@ -7,7 +7,6 @@
 <input type=button value="上传选中" onclick="updateTaskEntry()">
 <script>
     function updateTaskEntry() {
-        debugger;
         //获取当前table
         var selectRow = GetSelectDataGrid();
         if (selectRow == null || selectRow.length<=0)
@@ -15,19 +14,7 @@
             $.modalMsg("请选中要上传任务的行!", "warning");
             return;
         }
-
-        var keyValue = selectRow.F_Id;
-        $.modalOpen({
-            id: "Form",
-            title: "修环卫主路",
-            url: "/SystemManage/MainWay/Form?keyValue=" + keyValue,
-            width: "400px",
-            height: "310px",
-            callBack: function (iframeId) {
-                top.frames[iframeId].submitForm();
-            }
-        });
-
+        window.location = "/SystemManage/SanitationTaskUpload/UpLoadTaskEntrFormy?taskEntryId=" + selectRow.F_Id;
     }
 </script>
 

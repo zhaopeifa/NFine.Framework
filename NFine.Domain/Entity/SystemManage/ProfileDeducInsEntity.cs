@@ -62,6 +62,11 @@ namespace NFine.Domain.Entity.SystemManage
         public int DeductionScore { get; set; }
 
         /// <summary>
+        /// 扣分扣描述
+        /// </summary>
+        public string DeductionDescribe { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }

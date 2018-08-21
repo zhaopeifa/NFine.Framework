@@ -557,6 +557,8 @@
     <Content Include="Content\img\alipay.jpg" />
     <Content Include="Content\img\alipayimg.png" />
     <Content Include="Content\img\button_pm_close.png" />
+    <Content Include="Content\img\cp_img_tj.png" />
+    <Content Include="Content\img\cp_img_tj_a.png" />
     <Content Include="Content\img\cy-reward-title-bg.jpg" />
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\radio1.jpg" />
@@ -781,6 +783,12 @@
     <Content Include="Content\js\simditor\js\simditor.min.js" />
     <Content Include="Content\js\simditor\js\uploader.js" />
     <Content Include="Content\js\simditor\js\uploader.min.js" />
+    <Content Include="Content\js\uploadify\font-awesome.min.css" />
+    <Content Include="Content\js\uploadify\jquery-1.8.2.min.js" />
+    <Content Include="Content\js\uploadify\style.css" />
+    <Content Include="Content\js\uploadify\Uploader.swf" />
+    <Content Include="Content\js\uploadify\webuploader.css" />
+    <Content Include="Content\js\uploadify\webuploader.js" />
     <Content Include="Content\js\validate\jquery.validate.min.js" />
     <Content Include="Content\js\wdtree\images\icons\add.png" />
     <Content Include="Content\js\wdtree\images\icons\addStep.gif" />
@@ -1040,6 +1048,7 @@
     <Folder Include="Areas\ReportManage\Views\Echarts\" />
     <Folder Include="Common\" />
     <Folder Include="Content\FormDesinger\ueditor\net\Bin\" />
+    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\ReportManage\Views\Highcharts\Sample1.cshtml" />
@@ -1219,6 +1228,8 @@
     <Content Include="Areas\SystemManage\Views\ScireCriteria_Norm\Form.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\Index.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\TaskDetail.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\UpLoadTaskEntrFormy.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\DeductForm.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />
   </ItemGroup>

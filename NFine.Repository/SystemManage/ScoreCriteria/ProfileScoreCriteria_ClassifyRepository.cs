@@ -131,5 +131,33 @@ namespace NFine.Repository.SystemManage
                 db.Commit();
             }
         }
+
+        public void DeleteForm(string groupId)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                //删除几个关联的
+
+                var deleteClassifys = db.IQueryable<ProfileScoreCriteria_ClassifyEntity>().Where(d => d.GroupId == groupId).ToArray();
+
+                foreach (var item in deleteClassifys)
+                {
+                    db.Delete<ProfileScoreCriteria_ClassifyEntity>(item);
+
+                    //删除评分明细
+                    var deleteNorms = db.IQueryable<ProfileScireCriteria_NormEntity>().Where(d => d.SClassifyId == item.SClassifyId).ToArray();
+                    if (deleteNorms != null &&
+                        deleteNorms.Length > 0)
+                    {
+                        foreach (var delNorm in deleteNorms)
+                        {
+                            db.Delete<ProfileScireCriteria_NormEntity>(delNorm);
+                        }
+                    }
+                }
+
+                db.Commit();
+            }
+        }
     }
 }

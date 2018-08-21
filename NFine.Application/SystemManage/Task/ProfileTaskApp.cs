@@ -875,10 +875,12 @@ namespace NFine.Application.SystemManage
         /// <summary>
         /// 获取对应评分标准
         /// </summary>
-        public void GetScireCriteria(string taskEnryId)
-        { 
+        public List<ScireCriteriaContracts> GetScireCriteria(string taskEnryId)
+        {
+            List<ScireCriteriaContracts> result = new List<ScireCriteriaContracts>();
+
             //获取对应评分标准
-            var query =LinqSQLExtensions.IQueryable<ProfileTaskEntryEntity>().Where(d => d.F_Id == taskEnryId);
+            var query = LinqSQLExtensions.IQueryable<ProfileTaskEntryEntity>().Where(d => d.F_Id == taskEnryId);
 
             if (query.Count() <= 0)
             {
@@ -887,14 +889,69 @@ namespace NFine.Application.SystemManage
 
             var taskEntry = query.FirstOrDefault();
 
+            string scEntryName = "";
+            string scTypeName = "";
+
             //寻找对应评分标准
             switch ((ProfileTaskEntryTypeEnum)taskEntry.TaskEntryType)
             {
+                #region 道路评分标准
                 case ProfileTaskEntryTypeEnum.Way:
-                    LinqSQLExtensions.IQueryable<ProfileScoreCriteria_EntryEntity>().Where(d=>d.Name=="道路");
+                    scEntryName = "道路";
+
+                    //获取对应道路去拿等级
+                    var wayDataQuery = LinqSQLExtensions.IQueryable<ProfileSanitationWayEntity>().Where(d => d.F_Id == taskEntry.EntryDataId);
+                    if (wayDataQuery.Count() > 0)
+                    {
+                        var wayData = wayDataQuery.FirstOrDefault();
+                        switch ((ProfileWayGradeEnum)wayData.WayGrade)
+                        {
+                            case ProfileWayGradeEnum.一级道路:
+                                scTypeName = "一级道路";
+                                break;
+                            case ProfileWayGradeEnum.二级道路:
+                                scTypeName = "二级道路";
+                                break;
+                            case ProfileWayGradeEnum.三级及其它:
+                                scTypeName = "三级道路";
+                                break;
+                            default:
+                                scTypeName = "无";
+                                break;
+                        }
+                    }
+
                     break;
+
+                #endregion
+                #region 公厕评分标准
+
                 case ProfileTaskEntryTypeEnum.Tandas:
+                    scEntryName = "公厕";
+
+                    var tandasDataQuery = LinqSQLExtensions.IQueryable<ProfileSanitationTandasEntity>().Where(d => d.F_Id == taskEntry.EntryDataId);
+                    if (tandasDataQuery.Count() > 0)
+                    {
+                        var tandasData = tandasDataQuery.FirstOrDefault();
+                        switch ((ProfileTandasGradeEnum)tandasData.Grade)
+                        {
+                            case ProfileTandasGradeEnum.一类公厕:
+                                scTypeName = "一类公厕";
+                                break;
+                            case ProfileTandasGradeEnum.二类公厕:
+                                scTypeName = "二类公厕";
+                                break;
+                            case ProfileTandasGradeEnum.三类公厕:
+                                scTypeName = "三类公厕";
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
                     break;
+
+                #endregion
                 case ProfileTaskEntryTypeEnum.GarbageBox:
                     break;
                 case ProfileTaskEntryTypeEnum.compressionStation:
@@ -923,6 +980,88 @@ namespace NFine.Application.SystemManage
                     break;
             }
 
+            StringBuilder sqlStr = new StringBuilder();
+            sqlStr.Append("SELECT c.Name AS SEntryName,c.SEntryId AS SEntryId,b.Name AS STypeName,b.STypeId AS STypeId,a.SClassifyId as SClassifyId,a.SClassifyName as SClassifyName,a.Score as Score  ");
+            sqlStr.Append("FROM ProfileScoreCriteria_Classify a LEFT JOIN ProfileScoreCriteria_Type b ");
+            sqlStr.Append("ON a.STypeId=b.STypeId LEFT JOIN ProfileScoreCriteria_Entry c ");
+            sqlStr.Append("  ON b.SEntryId=c.SEntryId where 1=1 AND c.Name='" + scEntryName + "' AND b.Name='" + scTypeName + "'  ");
+
+            DataTable table = DbHelper.ExecuteDataTable(sqlStr.ToString(), null);
+
+            ScireCriteriaContracts scContr = null;
+            ScireCriteriaNormContracts scNormContr = null;
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                scContr = new ScireCriteriaContracts();
+
+                if (table.Rows[i]["SEntryName"] != null)
+                {
+                    scContr.SEntryName = table.Rows[i]["SEntryName"].ToString();
+                }
+                if (table.Rows[i]["SEntryId"] != null)
+                {
+                    scContr.SEntryId = table.Rows[i]["SEntryId"].ToString();
+                }
+                if (table.Rows[i]["STypeName"] != null)
+                {
+                    scContr.STypeName = table.Rows[i]["STypeName"].ToString();
+                }
+                if (table.Rows[i]["STypeId"] != null)
+                {
+                    scContr.STypeId = table.Rows[i]["STypeId"].ToString();
+                }
+                if (table.Rows[i]["SClassifyId"] != null)
+                {
+                    scContr.SClassifyId = table.Rows[i]["SClassifyId"].ToString();
+                }
+                if (table.Rows[i]["SClassifyName"] != null)
+                {
+                    scContr.SClassifyName = table.Rows[i]["SClassifyName"].ToString();
+                }
+                if (table.Rows[i]["Score"] != null)
+                {
+                    scContr.SClassifyScore = (int)table.Rows[i]["Score"];
+                }
+
+
+                sqlStr.Clear();
+                sqlStr.Append("SELECT SNormId,SNormProjectName,SNormStandardName,Condition FROM ProfileScireCriteria_Norm WHERE SClassifyId='" + scContr.SClassifyId + "'");
+
+                var normTable = DbHelper.ExecuteDataTable(sqlStr.ToString(), null);
+
+                scContr.SNromCollecion = new List<ScireCriteriaNormContracts>();
+
+
+                for (int j = 0; j < normTable.Rows.Count; j++)
+                {
+                    scNormContr = new ScireCriteriaNormContracts();
+
+                    if (normTable.Rows[j]["SNormId"] != null)
+                    {
+                        scNormContr.SNormId = normTable.Rows[j]["SNormId"].ToString();
+                    }
+                    if (normTable.Rows[j]["SNormProjectName"] != null)
+                    {
+                        scNormContr.SNormProjectName = normTable.Rows[j]["SNormProjectName"].ToString();
+                    }
+                    if (normTable.Rows[j]["SNormStandardName"] != null)
+                    {
+                        scNormContr.SNormStandardName = normTable.Rows[j]["SNormStandardName"].ToString();
+                    }
+                    if (normTable.Rows[j]["Condition"] != null)
+                    {
+                        scNormContr.SNormCondition = (int)normTable.Rows[j]["Condition"];
+                    }
+
+                    scContr.SNromCollecion.Add(scNormContr);
+                }
+
+
+                result.Add(scContr);
+            }
+
+
+            return result;
         }
     }
 }
