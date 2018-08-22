@@ -13,6 +13,7 @@ namespace NFine.Application.SystemManage
     public class ProfileDeducInsApp
     {
         private ProfileDeducInsRepository service = new ProfileDeducInsRepository();
+        private ProfileDeducImgRepository imgService = new ProfileDeducImgRepository();
 
         public void SubmitForm(ProfileDeducInsSubMitContracts entity, string keyValue)
         {
@@ -39,6 +40,11 @@ namespace NFine.Application.SystemManage
             }
 
             return null;
+        }
+
+        public void SubmitImageForm(string filePath,string deducInsId)
+        {
+            imgService.SubmitForm(filePath, deducInsId);
         }
     }
 }

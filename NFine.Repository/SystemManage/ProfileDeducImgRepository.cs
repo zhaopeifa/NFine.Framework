@@ -13,5 +13,26 @@ namespace NFine.Repository.SystemManage
     /// </summary>
     public class ProfileDeducImgRepository : RepositoryBase<ProfileDeducImgEntiy>
     {
+
+        public void SubmitForm(string filePath, string deducInsId)
+        {
+            
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+
+                //暂时只做添加s
+                ProfileDeducImgEntiy dedicImgEntity = new ProfileDeducImgEntiy()
+                {
+                    DeducImg_Id = Guid.NewGuid().ToString(),
+                    DeducImgPath = filePath,
+                    DeducIns_Id = deducInsId
+                };
+
+                db.Insert<ProfileDeducImgEntiy>(dedicImgEntity);
+
+
+                db.Commit();
+            }
+        }
     }
 }

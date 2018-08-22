@@ -24,7 +24,6 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         private ProfileScoreCriteriaApp scApp = new ProfileScoreCriteriaApp();
         private ProfileDeducInsApp diApp = new ProfileDeducInsApp();
 
-
         [HttpGet]
         public ActionResult TaskDetail()
         {
@@ -58,6 +57,20 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
+        /// 获取Guid
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult GetGuidId()
+        {
+            var data = new
+            {
+                id = Guid.NewGuid().ToString()
+            };
+            return Content(data.ToJson());
+        }
+
+        /// <summary>
         /// 加载评分标准
         /// </summary>
         /// <returns></returns>
@@ -77,7 +90,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         public ActionResult GetScireCriteriaTreeGridJson(string taskEntryId)
         {
             var data = taskApp.GetScireCriteria(taskEntryId);
-            
+
             var treeList = new List<TreeGridModel>();
 
             List<ScorCriteriaClassifyTreeGridContracts> tests = new List<ScorCriteriaClassifyTreeGridContracts>();
@@ -86,7 +99,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             foreach (var item in data)
             {
                 classifyGC = new ScorCriteriaClassifyTreeGridContracts();
-                classifyGC.F_ParentId="0";
+                classifyGC.F_ParentId = "0";
                 classifyGC.Type = 1;
                 classifyGC.F_Id = item.SClassifyId;
                 classifyGC.SClassifyName = item.SClassifyName;
@@ -97,7 +110,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                 {
                     normGC = new ScorCriteriaClassifyTreeGridContracts();
 
-                    normGC.Type=2;
+                    normGC.Type = 2;
                     normGC.F_Id = itemNorm.SNormId;
                     normGC.F_ParentId = item.SClassifyId;
                     normGC.SNormProjectName = itemNorm.SNormProjectName;
@@ -128,17 +141,15 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         /// 上传扣分
         /// </summary>
         /// <returns></returns>
-        public ActionResult SubmitForm(ProfileDeducInsSubMitContracts entity,string keyValue)
+        public ActionResult SubmitForm(ProfileDeducInsSubMitContracts entity, string keyValue)
         {
-
-
             diApp.SubmitForm(entity, keyValue);
             return Success("操作成功!");
         }
 
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetFormJson(string normId,string taskEntryId)
+        public ActionResult GetFormJson(string normId, string taskEntryId)
         {
             var data = diApp.GetForm(normId, taskEntryId);
             return Content(data.ToJson());
@@ -170,7 +181,37 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             });
 
         }
+
+        public ActionResult Upload(HttpPostedFileBase Filedata, string deducInsId)
+        {
+            if (Filedata == null || string.IsNullOrEmpty(Filedata.FileName) || Filedata.ContentLength == 0)
+            {
+                return HttpNotFound();
+            }
+
+            string fileMD5 = Guid.NewGuid().ToString();
+            string FileEextension = Path.GetExtension(Filedata.FileName);
+            string uploadDate = DateTime.Now.ToString("yyyyMMdd");
+
+
+            string virtualPath = string.Format("/Upload/{0}/{1}{2}", uploadDate, fileMD5, FileEextension);
+
+            string fullFileName = this.Server.MapPath(virtualPath);
+
+            //创建文件夹，保存文件
+            string path = Path.GetDirectoryName(fullFileName);
+            Directory.CreateDirectory(path);
+
+            if (!System.IO.File.Exists(fullFileName))
+            {
+                Filedata.SaveAs(fullFileName);
+            }
+
+            diApp.SubmitImageForm(virtualPath, deducInsId);
+
+            return Content(fullFileName);
+        }
     }
 
-    
+
 }

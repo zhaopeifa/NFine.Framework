@@ -28,12 +28,13 @@ namespace NFine.Repository.SystemManage
                 var scEntryEntity = LinqSQLExtensions.IQueryable<ProfileScoreCriteria_EntryEntity>().Where(d => d.SEntryId == scTypeEntit.SEntryId).FirstOrDefault();
 
 
-                if (!string.IsNullOrEmpty(keyValue))
-                {
-                    var deducInsQuery = db.IQueryable<ProfileDeducInsEntity>().Where(d => d.DeducIns_Id == keyValue);
+                //判断当前当中是存在数据，如果存在则是修改
+                //两条具体使用哪一个？
+                var deducInsQuery = db.IQueryable<ProfileDeducInsEntity>().Where(d => d.DeducIns_Id == keyValue);
+                 deducInsQuery = db.IQueryable<ProfileDeducInsEntity>().Where(d => d.TaskEntry_Id == entity.TaskEntryId && d.SCNorm_Id == entity.NormId);
 
-                    if (deducInsQuery.Count() <= 0)
-                        throw new Exception("未找到对应扣分记录!");
+                if (deducInsQuery.Count() > 0)
+                {
 
                     var deducInsEntiy = deducInsQuery.FirstOrDefault();
 
@@ -53,14 +54,12 @@ namespace NFine.Repository.SystemManage
 
 
                     db.Update<ProfileDeducInsEntity>(deducInsEntiy);
-
                 }
                 else
                 {
-
                     ProfileDeducInsEntity deducInsEntity = new ProfileDeducInsEntity()
                     {
-                        DeducIns_Id = Guid.NewGuid().ToString(),
+                        DeducIns_Id = keyValue,
                         TaskEntry_Id = entity.TaskEntryId,
                         SCNorm_Id = entity.NormId,
                         SCNormProjectName = scNormEntity.SNormProjectName,
