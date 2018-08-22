@@ -1234,6 +1234,7 @@
     <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\TaskDetail.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\UpLoadTaskEntrFormy.cshtml" />
     <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\DeductForm.cshtml" />
+    <Content Include="Areas\SystemManage\Views\SanitationTaskUpload\DeductList.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_All.cshtml" />
   </ItemGroup>

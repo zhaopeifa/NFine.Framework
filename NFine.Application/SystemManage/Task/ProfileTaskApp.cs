@@ -1063,5 +1063,35 @@ namespace NFine.Application.SystemManage
 
             return result;
         }
+
+        public ScorCriteriaClassifyTreeGridContracts GetScireCriteriaByNormId(string normId)
+        {
+            ScorCriteriaClassifyTreeGridContracts result = new ScorCriteriaClassifyTreeGridContracts();
+
+            var normQuery = LinqSQLExtensions.IQueryable<ProfileScireCriteria_NormEntity>().Where(d => d.SNormId == normId);
+            if (normQuery.Count() <= 0)
+                return null;
+
+            var scNormEntity = normQuery.FirstOrDefault();
+
+            result.SNormProjectName = scNormEntity.SNormProjectName;
+            result.SNormStandardName = scNormEntity.SNormStandardName;
+            result.SNormCondition = scNormEntity.Condition;
+
+            var classifyEntiy = LinqSQLExtensions.IQueryable<ProfileScoreCriteria_ClassifyEntity>().Where(d => d.SClassifyId == scNormEntity.SClassifyId).FirstOrDefault();
+
+            result.SClassifyName = classifyEntiy.SClassifyName;
+            result.SClassifyScore = classifyEntiy.Score;
+
+            var TypeEntity = LinqSQLExtensions.IQueryable<ProfileScoreCriteria_TypeEntity>().Where(d => d.STypeId == classifyEntiy.STypeId).FirstOrDefault();
+
+            result.STypeName = TypeEntity.Name;
+
+            var entryEntity = LinqSQLExtensions.IQueryable<ProfileScoreCriteria_EntryEntity>().Where(d => d.SEntryId == TypeEntity.SEntryId).FirstOrDefault();
+
+            result.SEntryName = entryEntity.Name;
+
+            return result;
+        }
     }
 }

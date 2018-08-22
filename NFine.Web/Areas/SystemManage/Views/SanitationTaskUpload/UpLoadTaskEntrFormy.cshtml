@@ -54,37 +54,24 @@
         }
 
         var normId = selectRow.F_Id;
-
-        //进行扣分
-        $.modalOpen({
-            id: "Form",
-            title: "扣分",
-            url: "/SystemManage/SanitationTaskUpload/DeductForm?taskEntryId=" + taskEntryId + "&normId=" + normId,
-            width: "600px",
-            height: "500px",
-            callBack: function (iframeId) {
-                top.frames[iframeId].submitForm();
-            }
-        });
-
-
+    }
+    function GetSelectSCNorm()
+    {
+        var selectRow = $("#gridList").jqGridRowValue();
+        if (selectRow == null) {
+            $.modalMsg("请选中要操作的行!", "warning");
+            return;
+        }
+        if (selectRow.Type == 1) {
+            $.modalMsg("请选中子集扣分明细进行操作!", "warning");
+            return;
+        }
+        $.modalClose();
+        return selectRow.F_Id;
+        
     }
 </script>
-<input type=button value="后退" onclick="window.history.back()">
 <div class="topPanel">
-    <div class="toolbar">
-        <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建菜单</a>
-        </div>
-        <div class="operate">
-            <ul id="ul_bar" class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-deduct" onclick="btn_deduct()"><i class="fa fa-pencil-square-o"></i>扣分</a></li>
-            </ul>
-            <a href="javascript:;" class="close"></a>
-        </div>
-        <script>$('.toolbar').authorizeButton()</script>
-    </div>
     <div class="search">
         <table>
             <tr>

@@ -17,7 +17,7 @@ namespace NFine.Repository.SystemManage
     public class ProfileDeducInsRepository : RepositoryBase<ProfileDeducInsEntity>
     {
 
-        public void SubmitForm(ProfileDeducInsSubMitContracts entity, string keyValue)
+        public void SubmitForm(ProfileDeducInsSubMitContracts entity, string keyValue, string DeducIns_Id)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
@@ -30,10 +30,9 @@ namespace NFine.Repository.SystemManage
 
                 //判断当前当中是存在数据，如果存在则是修改
                 //两条具体使用哪一个？
-                var deducInsQuery = db.IQueryable<ProfileDeducInsEntity>().Where(d => d.DeducIns_Id == keyValue);
-                 deducInsQuery = db.IQueryable<ProfileDeducInsEntity>().Where(d => d.TaskEntry_Id == entity.TaskEntryId && d.SCNorm_Id == entity.NormId);
+                var deducInsQuery = db.IQueryable<ProfileDeducInsEntity>().Where(d => d.DeducIns_Id == DeducIns_Id);
 
-                if (deducInsQuery.Count() > 0)
+                if (!string.IsNullOrEmpty(DeducIns_Id))
                 {
 
                     var deducInsEntiy = deducInsQuery.FirstOrDefault();
@@ -80,6 +79,25 @@ namespace NFine.Repository.SystemManage
 
 
 
+
+                db.Commit();
+            }
+        }
+
+        public void DeleteForm(string keyValue)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                var deleteEntity = db.IQueryable<ProfileDeducInsEntity>().Where(d => d.DeducIns_Id == keyValue).FirstOrDefault();
+
+                db.Delete<ProfileDeducInsEntity>(deleteEntity);
+
+                var delimgs =db.IQueryable<ProfileDeducImgEntiy>().Where(d => d.DeducIns_Id == keyValue).ToArray();
+
+                foreach (var item in delimgs)
+                {
+                    db.Delete<ProfileDeducImgEntiy>(item);
+                }
 
                 db.Commit();
             }

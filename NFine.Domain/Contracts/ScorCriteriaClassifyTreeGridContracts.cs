@@ -23,6 +23,10 @@ namespace NFine.Domain.Contracts
         /// </summary>
         public string F_Id { get; set; }
 
+        public string SEntryName { get; set; }
+
+        public string STypeName { get; set; }
+
         /// <summary>
         /// 小类名
         /// </summary>

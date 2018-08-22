@@ -46,6 +46,7 @@
             url: "/SystemManage/ScoreCriteria_Type/SubmitForm?groupId=" + groupId,
             param: $("#form1").formSerialize(),
             success: function () {
+                debugger;
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         })

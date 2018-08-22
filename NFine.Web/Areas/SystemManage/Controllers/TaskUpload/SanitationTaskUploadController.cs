@@ -37,6 +37,26 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         }
 
         [HttpGet]
+        public ActionResult DeductList()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetGridDedutJson(Pagination pagination, string keyword, string taskEntryId)
+        {
+            var data = new
+            {
+                rows = diApp.GetDeducIns(pagination, keyword, taskEntryId),
+                total = pagination.total,
+                page = pagination.page,
+                records = pagination.records
+            };
+            return Content(data.ToJson());
+        }
+
+        [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword)
         {
@@ -81,6 +101,16 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 
             var data = taskApp.GetScireCriteria(taskEntryId);
 
+
+            return Content(data.ToJson());
+        }
+
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetScireCriteriaJson(string normId)
+        {
+            var data= taskApp.GetScireCriteriaByNormId(normId);
 
             return Content(data.ToJson());
         }
@@ -141,9 +171,9 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         /// 上传扣分
         /// </summary>
         /// <returns></returns>
-        public ActionResult SubmitForm(ProfileDeducInsSubMitContracts entity, string keyValue)
+        public ActionResult SubmitForm(ProfileDeducInsSubMitContracts entity, string keyValue, string DeducIns_Id)
         {
-            diApp.SubmitForm(entity, keyValue);
+            diApp.SubmitForm(entity, keyValue, DeducIns_Id);
             return Success("操作成功!");
         }
 
@@ -152,6 +182,22 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         public ActionResult GetFormJson(string normId, string taskEntryId)
         {
             var data = diApp.GetForm(normId, taskEntryId);
+            return Content(data.ToJson());
+        }
+
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteForm(string keyValue)
+        {
+            diApp.DeleteForm(keyValue);
+            return Success("删除成功。");
+        }
+
+        public ActionResult GetFormJsonByKeyValue(string keyValue)
+        {
+            var data =diApp.GetFormByKeyValue(keyValue);
             return Content(data.ToJson());
         }
 

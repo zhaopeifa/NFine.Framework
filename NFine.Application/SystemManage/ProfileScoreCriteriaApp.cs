@@ -74,7 +74,7 @@ namespace NFine.Application.SystemManage
                         };
 
 
-            return dataQ.ToList();
+            return dataQ.OrderBy(d=>d.SEntryId).ToList();
 
         }
 
@@ -413,7 +413,7 @@ namespace NFine.Application.SystemManage
 
             sqlStr.Append("GROUP BY GroupId,SNormProjectName,Condition,SNormStandardName ");
 
-            sqlStr.Append(" ORDER BY GroupId ");
+            sqlStr.Append(" ORDER BY SNormProjectName ");
             sqlStr.Append(" offset " + pagination.rows * (pagination.page - 1) + " rows fetch next " + pagination.rows * (pagination.page - 1) + pagination.rows + " rows ONLY");
 
             DataTable table = DbHelper.ExecuteDataTable(sqlStr.ToString(), null);
