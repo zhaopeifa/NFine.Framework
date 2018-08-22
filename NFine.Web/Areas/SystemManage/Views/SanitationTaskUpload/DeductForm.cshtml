@@ -175,7 +175,7 @@
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on('uploadSuccess', function (file, response) {
 
-            $('#' + file.id).addClass('upload-state-done');
+            //$('#' + file.id).addClass('upload-state-done');
         });
 
         // 文件上传失败，显示上传出错。
@@ -204,21 +204,24 @@
 
         //开始上传
         $("#ctlBtn").click(function () {
-            debugger;
             uploader.upload();
 
         });
 
-        ////显示删除按钮
-        //$(".cp_img").live("mouseover", function () {
-        //    $(this).children(".cp_img_jian").css('display', 'block');
+        //显示删除按钮
+        $(".cp_img").live("mouseover", function () {
+            $(this).children(".cp_img_jian").css('display', 'block');
 
-        //});
-        ////隐藏删除按钮
-        //$(".cp_img").live("mouseout", function () {
-        //    $(this).children(".cp_img_jian").css('display', 'none');
+        });
 
-        //});
+        //隐藏删除按钮
+        $(".cp_img").live("mouseout", function () {
+            $(this).children(".cp_img_jian").css('display', 'none');
+
+        });
+
+       
+
         //执行删除方法
         $list.on("click", ".cp_img_jian", function () {
             var Id = $(this).parent().attr("id");
